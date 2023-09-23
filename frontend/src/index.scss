@@ -3,6 +3,7 @@ $backGroundColor: #182129;
 $borderColor: #73737b;
 $buttonColor: #243341;
 $buttonHover: #456077;
+$DraggableCharInfoFontCOlor: #f9ae01;
 
 * {
   padding: 0;
@@ -11,7 +12,7 @@ $buttonHover: #456077;
   color: white;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -43,7 +44,7 @@ a{
 
 .modal-content {
   background-color: #182129;
-  .icon{
+  .icon {
     cursor: pointer;
   }
 }
@@ -60,17 +61,31 @@ Body {
       // * playGround
       .PlayGround {
         position: relative;
+        overflow: hidden;
 
-        // * not selectable start
+        // not selectable mode start
         user-select: none;
         -moz-user-select: none;
         -khtml-user-select: none;
         -webkit-user-select: none;
-        -o-user-select: none ;
-        // * not selectable end
+        -o-user-select: none;
+        // not selectable mode end
 
-        .tablePlace {
+        // Draggable Image design
+        .DraggableImage {
           position: absolute;
+
+          img {
+            width: 90px;
+            border-radius: 5px;
+          }
+
+          .draggableCharInfo{
+            text-align: center;
+            color: $DraggableCharInfoFontCOlor;
+            line-height: 1rem;
+          }
+
         }
       }
 

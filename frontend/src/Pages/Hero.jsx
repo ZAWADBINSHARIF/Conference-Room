@@ -1,9 +1,8 @@
 // external import
 import { Col, Row } from 'react-bootstrap'
 
-
 // internal import
-import PlayGround from '../components/PlayGround'
+import PlayGround from '../components/PlayGround/PlayGround'
 import SideBar from '../components/SideBar'
 
 const Hero = () => {
