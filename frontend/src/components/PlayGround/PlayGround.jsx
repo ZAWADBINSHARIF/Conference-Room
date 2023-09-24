@@ -1,5 +1,5 @@
 // external import
-import { useDroppable } from '@dnd-kit/core'
+import { useDroppable, TouchSensor, MouseSensor, useSensor } from '@dnd-kit/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { DndContext } from '@dnd-kit/core'
 
@@ -12,15 +12,28 @@ const PlayGround = () => {
 
   const draggableImgs = useSelector(state => state.draggable_img)
   const dispatch = useDispatch()
+  const mouseSensor = useSensor(MouseSensor, {
+    // Require the mouse to move by 10 pixels before activating
+    activationConstraint: {
+      distance: 10,
+    },
+  });
+  const touchSensor = useSensor(TouchSensor, {
+    // Press delay of 250ms, with tolerance of 5px of movement
+    activationConstraint: {
+      tolerance: 5,
+    },
+  });
 
-  const { setNodeRef, isOver } = useDroppable({
+  const { setNodeRef } = useDroppable({
     id: 'Droppable'
   })
 
-  console.log(isOver)
-
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext
+    onDragEnd={handleDragEnd}
+      sensors={[mouseSensor, touchSensor]}
+    >
 
       <div
         className="PlayGround w-100 h-100 d-flex justify-content-center align-items-center"
@@ -37,7 +50,7 @@ const PlayGround = () => {
             position={img.position}
           />
         ))}
-        <TablePlace ref={setNodeRef}/>
+        <TablePlace/>
 
       </div>
 

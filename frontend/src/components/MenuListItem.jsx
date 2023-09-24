@@ -1,6 +1,7 @@
 // external import 
 import { useState } from "react";
 import CardInfo from "./CardInfo";
+import { BiPlus } from "react-icons/bi"
 
 const MenuListItem = ({ imgPath }) => {
 
@@ -16,7 +17,12 @@ const MenuListItem = ({ imgPath }) => {
         handleClose={handleClose}
       />
       <img width={90} src={imgPath} />
-      <span className="addButton px-3" onClick={()=> handleShow()}>+</span>
+      <BiPlus
+        className="addButton"
+        size={32}
+        color={"white"}
+        onClick={() => handleShow()}
+      />
     </div>
   );
 };

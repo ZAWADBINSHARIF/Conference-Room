@@ -18,7 +18,7 @@ const CardInfo = ({ show, handleClose }) => {
                         <InputGroup>
                             <Form.Control type="text" placeholder="Name" />
                             <InputGroup.Text style={{ background: '#182129' }}>
-                                <BsFillMicFill className="icon" />
+                                <BsFillMicFill color="white" className="icon" />
                             </InputGroup.Text>
                         </InputGroup>
                     </Form.Group>
@@ -27,7 +27,7 @@ const CardInfo = ({ show, handleClose }) => {
                         <InputGroup>
                             <Form.Control type="text" placeholder="Role" />
                             <InputGroup.Text style={{ background: '#182129' }}>
-                                <PiStopFill className="icon"/>
+                                <PiStopFill color="red" className="icon" />
                             </InputGroup.Text>
                         </InputGroup>
                     </Form.Group>
