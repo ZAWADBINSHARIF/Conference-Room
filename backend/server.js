@@ -1,5 +1,11 @@
+// external import
 import express from 'express'
 import dotenv from 'dotenv'
+import mariadb from 'mariadb'
+
+// internal import
+import dbConnection from './configs/dbConnection.js'
+import apiRoute from './routes/apiRoute.js'
 
 // for getting the values from the .env file
 dotenv.config()
@@ -7,8 +13,17 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 4000
 
-app.get('/', (req, res)=> {
+// for getting json data
+app.use(express.json())
+
+// for getting json form data
+app.use(express.urlencoded({ extended: true }))
+
+// for database connection
+dbConnection({app, PORT})
+
+app.get('/', (req, res) => {
     res.send('<h1>Server is running...</h1>')
 })
 
-app.listen(PORT, () => console.log("Server listening on port: http://localhost:" + PORT))
+app.use('/api', apiRoute)
