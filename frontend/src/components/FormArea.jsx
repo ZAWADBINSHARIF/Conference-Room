@@ -1,26 +1,62 @@
+import axios from "axios"
+import { useState } from "react"
 import { Form, Row, Col, Button } from "react-bootstrap"
 
 const FormArea = () => {
+
+    const [folderName, setFolderName] = useState('')
+    const [pictureName, setPictureName] = useState('')
+    const [imageFile, setImageFile] = useState(null)
+
+    async function handleSubmit() {
+
+        const formData = new FormData()
+
+        formData.append('name', pictureName)
+        formData.append('folderName', folderName)
+        formData.append('image', imageFile)
+
+        try {
+            const response = await axios.post(`/upload_${folderName}_img`,
+               formData
+            )
+            console.log(response)
+        } catch (error) {
+            console.log(error.response.data)
+        }
+    }
+
     return (
-        <Form className="FormArea mt-5 p-5">
+        <Form
+            className="FormArea mt-5 p-5"
+            onSubmit={e => e.preventDefault()}
+            encType="multipart/form-data"
+        >
             <h1>Add Image</h1>
+            {folderName !== "" && folderName !== 'tables' &&
+                <Form.Group className="mb-3" controlId="name">
+                    <Form.Label>Picture name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter picture name" value={pictureName} onChange={e => setPictureName(e.target.value)} />
+                </Form.Group>
+            }
             <Form.Label>Select a folder</Form.Label>
-            <Form.Select aria-label="Select A Folder">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <Form.Select aria-label="Select A Folder" value={folderName} onChange={e => setFolderName(e.target.value)}>
+                <option value=''>Select Picture Folder</option>
+                <option value="people">People</option>
+                <option value="dogs">Dog</option>
+                <option value="tables">Table</option>
             </Form.Select>
-            <Form.Group controlId="formFileMultiple" className="mb-3 mt-3">
-                <Form.Label>Multiple files input example</Form.Label>
-                <Form.Control type="file" multiple />
+            <Form.Group controlId="formFile" className="mb-3 mt-3">
+                <Form.Label>Picture</Form.Label>
+                <Form.Control type="file" accept="image/png, image/jpg, image/jpeg" required onChange={e => setImageFile(e.target.files[0])} />
             </Form.Group>
             <Row className="text-end">
                 <Col>
-                    <Button variant="secondary">Add</Button>
+                    <Button variant="secondary"
+                        onClick={() => handleSubmit()}>Add</Button>
                 </Col>
             </Row>
-        </Form>
+        </Form >
     )
 }
 export default FormArea

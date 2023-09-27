@@ -1,6 +1,6 @@
 import mariadb from 'mariadb'
 
-const db = mariadb.createPool(
+export const db = mariadb.createPool(
     {
         host: "localhost",
         user: "root",
