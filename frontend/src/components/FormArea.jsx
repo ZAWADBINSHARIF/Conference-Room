@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { Form, Row, Col, Button } from "react-bootstrap"
+import {toast} from 'react-toastify'
 
 const FormArea = () => {
 
@@ -12,17 +13,23 @@ const FormArea = () => {
 
         const formData = new FormData()
 
-        formData.append('name', pictureName)
-        formData.append('folderName', folderName)
-        formData.append('image', imageFile)
+        if (folderName !== "" && folderName !== 'tables') {
+            formData.append('name', pictureName)
+        }
+        if (imageFile && pictureName) {
+            formData.append('folderName', folderName)
+            formData.append('image', imageFile)
+        }
 
         try {
-            const response = await axios.post(`/upload_${folderName}_img`,
-               formData
-            )
+            const response = await axios.post(`/${folderName}`, formData)
             console.log(response)
+
+            toast.success("Picture has been uploaded")
+
         } catch (error) {
-            console.log(error.response.data)
+            toast.error("Failed to upload")
+            console.log(error)
         }
     }
 

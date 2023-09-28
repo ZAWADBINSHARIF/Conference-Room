@@ -1,7 +1,6 @@
 // external import
-import multer from "multer";
-import path, { dirname } from 'path'
-import createHttpError from "http-errors";
+import multer from "multer"
+import path from 'path'
 
 const singleUpload = (
     subFolderName,
@@ -40,7 +39,7 @@ const singleUpload = (
             if (allowedFileType.includes(file.mimetype)) {
                 cd(null, true)
             } else {
-                cd(createHttpError(errorMessage))
+                cd(errorMessage)
             }
         }
     })

@@ -5,9 +5,11 @@ import multer from "multer"
 import singleUpload from "../utilities/singleUploader.js"
 
 const pictureUpload = (req, res, next) => {
-console.log(req.body)
+
+    const subFolderName = req.folderName
+
     const upload = singleUpload(
-        "people",
+        subFolderName,
         ['image/jpg', 'image/png', 'image/jpeg'],
         '5',
         'Only .jpg .png or .jpeg file allowed!'

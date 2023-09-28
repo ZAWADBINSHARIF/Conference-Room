@@ -1,5 +1,4 @@
 // external import
-import cookieParser from 'cookie-parser'
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
@@ -20,9 +19,6 @@ app.use(express.json())
 
 // for getting json form data
 app.use(express.urlencoded({ extended: true }))
-
-// for parsing cookie
-app.use(cookieParser())
 
 app.use(cors({
     origin: "*"
