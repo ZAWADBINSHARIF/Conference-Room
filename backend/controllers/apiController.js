@@ -113,11 +113,10 @@ async function postSaveHistory(req, res) {
         return res.status(200).json({ msg: "Data has been saved" })
     }
 
-    sql = 'INSERT INTO save_history(id, name, role, src, position_x, position_y, folder_name) VALUES (?)'
+    sql = 'INSERT INTO save_history(id, name, role, src, position_x, position_y, folder_name) VALUES (?,?,?,?,?,?,?)'
 
-    let VALUES = []
-
-    function insertValue(item) {
+    data.forEach(async (item) => {
+        
         const value = [
             item.id,
             item.name,
@@ -127,21 +126,16 @@ async function postSaveHistory(req, res) {
             item.position_y,
             item.folder_name
         ]
-        VALUES.push(value)
-    }
-
-    for (let i = 0; i < data.length; i++) {
-        insertValue(data[i])
-    }
-
-    try {
-        await db.query(sql, VALUES)
-        res.status(200).json({ msg: "Data has been saved" })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ errors: { msg: error } })
-    }
-
+        
+        try {
+            await db.query(sql, value)
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ errors: { msg: error } })
+        }
+    })
+    
+    res.status(200).json({ msg: "Data has been saved" })
 }
 
 // @desc post save table
@@ -162,7 +156,6 @@ async function postSaveTable(req, res) {
         return res.status(200).json({ msg: "Data has been saved" })
     }
 
-    console.log(req.body)
     sql = 'INSERT INTO save_table (filename) VALUES(?)'
 
     try {
