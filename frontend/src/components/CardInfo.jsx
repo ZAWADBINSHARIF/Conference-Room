@@ -5,7 +5,7 @@ import { BsFillMicFill } from 'react-icons/bs'
 import { PiStopFill } from 'react-icons/pi'
 
 
-const CardInfo = ({ show, handleClose }) => {
+const CardInfo = ({ show, handleClose, handlleAddToPlayGround }) => {
 
     const [name, setName] = useState('')
     const [role, setRole] = useState('')
@@ -84,7 +84,7 @@ const CardInfo = ({ show, handleClose }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={()=> handlleAddToPlayGround(name, role)}>
                         Save
                     </Button>
                 </Modal.Footer>

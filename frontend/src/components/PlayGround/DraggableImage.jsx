@@ -7,9 +7,10 @@ import { useDispatch } from "react-redux"
 // internal import
 import { removeDraggableImg } from "../../Store/Slices/DraggableImgSlice"
 
-const DraggableImage = ({ id, src, position, name, role }) => {
+const DraggableImage = ({ id, src, x, y, name, role, folder_name }) => {
 
     const dispatch = useDispatch()
+    const apiPath = import.meta.env.VITE_API
 
     const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
         id: id
@@ -17,8 +18,8 @@ const DraggableImage = ({ id, src, position, name, role }) => {
 
     const style = {
         transform: CSS.Translate.toString(transform),
-        left: position.x,
-        top: position.y,
+        left: x,
+        top: y,
         cursor: isDragging ? "grabbing" : "grab"
     }
 
@@ -41,7 +42,7 @@ const DraggableImage = ({ id, src, position, name, role }) => {
                         onDoubleClick={() => handleRemoveImg(id)}
                     />
                 </div>
-                <img src={src} />
+                <img src={`${apiPath}/${folder_name}/${src}`} />
             </div>
 
             <div className="draggableCharInfo mt-2">

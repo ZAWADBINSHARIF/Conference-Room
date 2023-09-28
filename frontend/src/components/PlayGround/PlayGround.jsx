@@ -6,12 +6,11 @@ import { DndContext } from '@dnd-kit/core'
 // internal import
 import TablePlace from "./TablePlace"
 import DraggableImage from './DraggableImage'
-import { setDraggableImgPosition } from '../../Store/Slices/DraggableImgSlice.js'
+import { fetchSaveHistory, setDraggableImgPosition } from '../../Store/Slices/DraggableImgSlice.js'
+import { useEffect } from 'react'
 
 const PlayGround = () => {
 
-  const draggableImgs = useSelector(state => state.draggable_img)
-  const dispatch = useDispatch()
   const mouseSensor = useSensor(MouseSensor, {
     // Require the mouse to move by 10 pixels before activating
     activationConstraint: {
@@ -25,9 +24,16 @@ const PlayGround = () => {
     },
   });
 
+  const draggableImgs = useSelector(state => state.draggable_img)
+  const dispatch = useDispatch()
+
   const { setNodeRef } = useDroppable({
     id: 'Droppable'
   })
+
+  useEffect(() => {
+    dispatch(fetchSaveHistory())
+  }, [dispatch])
 
   return (
     <DndContext
@@ -40,14 +46,16 @@ const PlayGround = () => {
         ref={setNodeRef}
       >
 
-        {draggableImgs.map(img => (
+        {draggableImgs.map((img, index) => (
           <DraggableImage
-            key={img.id}
+            key={index}
             id={img.id}
             name={img.name}
             role={img.role}
             src={img.src}
-            position={img.position}
+            x={img.position_x}
+            y={img.position_y}
+            folder_name={img.folder_name}
           />
         ))}
         <TablePlace/>

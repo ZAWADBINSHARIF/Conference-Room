@@ -34,7 +34,7 @@ async function uploadTablePicture(req, res) {
     const filename = req.files[0]?.filename || null
 
     if (!filename) {
-        res.status(500).json({error:{msg: 'Fill the image'}})
+        res.status(500).json({ error: { msg: 'Fill the image' } })
         return
     }
 
@@ -52,35 +52,75 @@ async function uploadTablePicture(req, res) {
 }
 
 // @desc get all table pictures
-// route GET  /api/get_all_tables
+// route GET  /api/tables
 // @access Public
-function getAllTable(req, res) {
-    res.send("<h1>Tables</h1>")
+async function getAllTable(req, res) {
+    const sql = 'SELECT * FROM tables'
+    try {
+        const data = await db.query(sql)
+        res.status(200).json(data)
+    } catch (error) {
+        console.log(error)
+        res.status.json(error)
+    }
 }
 
 // @desc get all character pictures
-// route GET  /api/get_all_characters
+// route GET  /api/characters
 // @access Public
-function getAllCharacters(req, res) {
-    res.send("<h1>Characters</h1>")
+async function getAllCharacters(req, res) {
+    const sql = 'SELECT * FROM characters'
+    try {
+        const data = await db.query(sql)
+        res.status(200).json(data)
+    } catch (error) {
+        console.log(error)
+        res.status.json(error)
+    }
+
 }
 
 // @desc get save data
-// route GET  /api/save_data
+// route GET  /api/save_history
 // @access Public
-function getSaveData(req, res) {
-    res.send("<h1>Save Data</h1>")
+async function getSaveHistroy(req, res) {
+    const sql = 'SELECT * FROM save_history'
+    try {
+        const data = await db.query(sql)
+        res.status(200).json(data)
+    } catch (error) {
+        console.log(error)
+        res.status.json(error)
+    }
 }
 
 // @desc post save data
 // route POST /api/save_data
 // @access Public
-function postSaveData(req, res) {
+function postSaveHistory(req, res) {
+    res.send("<h1>Post Save Data</h1>")
+}
+
+// @desc post save table
+// route POST /api/save_table
+// @access Public
+function postSaveTable(req, res) {
+    res.send("<h1>Post Save Data</h1>")
+}
+// @desc get save table
+// route POST /api/save_table
+// @access Public
+function getSaveTable(req, res) {
     res.send("<h1>Post Save Data</h1>")
 }
 
 export {
     uploadCharacterPicture,
     getAllTable,
-    uploadTablePicture
+    uploadTablePicture,
+    getAllCharacters,
+    getSaveHistroy,
+    postSaveHistory,
+    getSaveTable,
+    postSaveTable
 }

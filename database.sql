@@ -20,10 +20,18 @@ CREATE TABLE
 
 CREATE TABLE
     save_history(
-        character_id INT NOT NULL,
+        id INT NOT NULL,
         name VARCHAR(255) NOT NULL,
         role VARCHAR(255) NOT NULL,
+        folder_name VARCHAR(255) NOT NULL,
+        src VARCHAR(255) NOT NULL,
         position_x DECIMAL(2, 2) NOT NULL,
-        position_y DECIMAL(2, 2) NOT NULL,
-        folder_name VARCHAR(255) NOT NULL
+        position_y DECIMAL(2, 2) NOT NULL
     );
+
+CREATE TABLE
+    save_table(
+        filename VARCHAR(255)
+    )
+
+DROP TABLE save_history;

@@ -2,6 +2,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import path from 'path'
 
 // internal import
 import dbConnection from './configs/dbConnection.js'
@@ -13,6 +14,7 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 4000
+const __dirname = path.resolve()
 
 // for getting json data
 app.use(express.json())
@@ -27,6 +29,10 @@ app.use(cors({
 // for database connection
 dbConnection({ app, PORT })
 
+// set up static files
+app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
+
+// routers
 app.get('/', (req, res) => {
     res.send('<h1>Server is running...</h1>')
 })

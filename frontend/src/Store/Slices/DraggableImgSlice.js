@@ -1,43 +1,10 @@
 // external import
 import { createSlice } from '@reduxjs/toolkit'
-
-
-const initialState = [
-    {
-        id: 1,
-        name: "Fox",
-        role: "Fireman1",
-        src: "./activities-001.png",
-        position: {
-            x: 32,
-            y: 32
-        }
-    },
-    {
-        id: 2,
-        name: "Fox",
-        role: "Fireman2",
-        src: "./activities-001.png",
-        position: {
-            x: 128,
-            y: 32
-        }
-    },
-    {
-        id: 3,
-        name: "Fox",
-        role: "Fireman3",
-        src: "./activities-001.png",
-        position: {
-            x: 240,
-            y: 32
-        }
-    },
-]
+import axios from 'axios'
 
 const draggableImgSlice = createSlice({
     name: "Draggable_Img",
-    initialState,
+    initialState: [],
     reducers: {
         addDraggableImg(state, action) {
             state.push(action.payload)
@@ -47,8 +14,8 @@ const draggableImgSlice = createSlice({
 
             if (!found) return
 
-            found.position.x += action.payload.new_x
-            found.position.y += action.payload.new_y
+            found.position_x += action.payload.new_x
+            found.position_y += action.payload.new_y
 
             state = [...state, found]
         },
@@ -56,9 +23,32 @@ const draggableImgSlice = createSlice({
             const newData = state.filter(item => item.id !== action.payload)
 
             return state = [...newData]
+        },
+        setDraggableImg(state, action) {
+            state = action.payload
+        },
+        removeAllDraggableImg(state, action) {
+            return state = action.payload
         }
     }
 })
 
-export const { removeDraggableImg, setDraggableImgPosition, addDraggableImg } = draggableImgSlice.actions
+export const {
+    removeDraggableImg,
+    setDraggableImgPosition,
+    addDraggableImg,
+    removeAllDraggableImg
+} = draggableImgSlice.actions
 export default draggableImgSlice.reducer
+
+export function fetchSaveHistory() {
+    return async function () {
+
+        try {
+            const response = await axios.get('/save_history')
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}

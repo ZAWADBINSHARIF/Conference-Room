@@ -1,7 +1,18 @@
+import { useSelector } from "react-redux"
+
+
 const TablePlace = () => {
+
+  const tableFileName = useSelector(state => state.save_table[0]?.filename)
+  const apiPath = import.meta.env.VITE_API
+
+  console.log(tableFileName)
+
   return (
     <div className="TablePlace">
-      <img src='./round_table.png' />
+      {tableFileName &&
+        <img src={`${apiPath}/tables/${tableFileName}`} />
+      }
     </div>
   )
 }
