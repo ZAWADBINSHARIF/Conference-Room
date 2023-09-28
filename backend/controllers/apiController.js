@@ -94,24 +94,98 @@ async function getSaveHistroy(req, res) {
     }
 }
 
-// @desc post save data
-// route POST /api/save_data
+// @desc post save history
+// route POST /api/save_history
 // @access Public
-function postSaveHistory(req, res) {
-    res.send("<h1>Post Save Data</h1>")
+async function postSaveHistory(req, res) {
+
+    const data = req.body?.body
+
+    // ! delete all recodes of save-history Table
+    let sql = 'DELETE FROM save_history'
+    try {
+        await db.query(sql)
+    } catch (error) {
+        console.log(error)
+    }
+
+    if (data.length == 0) {
+        return res.status(200).json({ msg: "Data has been saved" })
+    }
+
+    sql = 'INSERT INTO save_history(id, name, role, src, position_x, position_y, folder_name) VALUES (?)'
+
+    let VALUES = []
+
+    function insertValue(item) {
+        const value = [
+            item.id,
+            item.name,
+            item.role,
+            item.src,
+            item.position_x,
+            item.position_y,
+            item.folder_name
+        ]
+        VALUES.push(value)
+    }
+
+    for (let i = 0; i < data.length; i++) {
+        insertValue(data[i])
+    }
+
+    try {
+        await db.query(sql, VALUES)
+        res.status(200).json({ msg: "Data has been saved" })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ errors: { msg: error } })
+    }
+
 }
 
 // @desc post save table
 // route POST /api/save_table
 // @access Public
-function postSaveTable(req, res) {
-    res.send("<h1>Post Save Data</h1>")
+async function postSaveTable(req, res) {
+    const value = [req.body?.body]
+
+    // ! delete all recodes of save-history Table
+    let sql = 'DELETE FROM save_table'
+    try {
+        await db.query(sql)
+    } catch (error) {
+        console.log(error)
+    }
+
+    if (!value) {
+        return res.status(200).json({ msg: "Data has been saved" })
+    }
+
+    console.log(req.body)
+    sql = 'INSERT INTO save_table (filename) VALUES(?)'
+
+    try {
+        await db.query(sql, value)
+        res.status(200).json({ msg: "Data has been saved" })
+    } catch (error) {
+        res.status(500).json({ errors: { msg: error } })
+    }
 }
+
 // @desc get save table
 // route POST /api/save_table
 // @access Public
-function getSaveTable(req, res) {
-    res.send("<h1>Post Save Data</h1>")
+async function getSaveTable(req, res) {
+
+    const sql = 'SELECT * FROM save_table'
+    try {
+        const data = await db.query(sql)
+        res.status(200).json(data)
+    } catch (error) {
+        console.log(error)
+        res.status.json(error)
+    }
 }
 
 export {

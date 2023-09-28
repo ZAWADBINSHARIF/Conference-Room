@@ -6,7 +6,7 @@ import { DndContext } from '@dnd-kit/core'
 // internal import
 import TablePlace from "./TablePlace"
 import DraggableImage from './DraggableImage'
-import { fetchSaveHistory, setDraggableImgPosition } from '../../Store/Slices/DraggableImgSlice.js'
+import { fetchSaveHistoryThunk, setDraggableImgPosition } from '../../Store/Slices/DraggableImgSlice.js'
 import { useEffect } from 'react'
 
 const PlayGround = () => {
@@ -32,7 +32,7 @@ const PlayGround = () => {
   })
 
   useEffect(() => {
-    dispatch(fetchSaveHistory())
+    dispatch(fetchSaveHistoryThunk())
   }, [dispatch])
 
   return (

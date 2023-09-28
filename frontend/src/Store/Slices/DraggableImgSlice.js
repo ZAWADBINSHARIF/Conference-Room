@@ -25,7 +25,7 @@ const draggableImgSlice = createSlice({
             return state = [...newData]
         },
         setDraggableImg(state, action) {
-            state = action.payload
+            return state = action.payload
         },
         removeAllDraggableImg(state, action) {
             return state = action.payload
@@ -37,16 +37,33 @@ export const {
     removeDraggableImg,
     setDraggableImgPosition,
     addDraggableImg,
-    removeAllDraggableImg
+    removeAllDraggableImg,
+    setDraggableImg
 } = draggableImgSlice.actions
 export default draggableImgSlice.reducer
 
-export function fetchSaveHistory() {
-    return async function () {
+export function fetchSaveHistoryThunk() {
+    return async function (dispatch, getState) {
 
         try {
             const response = await axios.get('/save_history')
             console.log(response.data)
+            dispatch(setDraggableImg(response.data))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function saveHistoryThunk() {
+    return async function (dispatch, getState) {
+
+        try {
+            const data = getState().draggable_img
+            console.log(data)
+            await axios.post('/save_history', {
+                body: data
+            })
         } catch (error) {
             console.log(error)
         }

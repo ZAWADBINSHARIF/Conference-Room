@@ -1,12 +1,21 @@
-import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+
+// internal import
+import { fetchSaveTableThunk } from "../../Store/Slices/SaveTableSlice"
 
 
 const TablePlace = () => {
 
+
   const tableFileName = useSelector(state => state.save_table[0]?.filename)
   const apiPath = import.meta.env.VITE_API
+  const dispatch = useDispatch()
 
-  console.log(tableFileName)
+
+  useEffect(() => {
+    dispatch(fetchSaveTableThunk())
+  }, [dispatch])
 
   return (
     <div className="TablePlace">

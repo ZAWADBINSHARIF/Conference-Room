@@ -6,17 +6,24 @@ import { useDispatch, useSelector } from 'react-redux'
 // internal import 
 import CharactersListItem from "./CharacterListItem"
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js"
-import { fetchAllTables } from "../Store/Slices/TableImgSlice"
+import { fetchAllTables } from "../Store/Slices/TableImgSlice.js"
 import TableListItem from "./TableListItem"
-import { removeAllDraggableImg } from "../Store/Slices/DraggableImgSlice"
-import { removeTable } from "../Store/Slices/SaveTableSlice"
+import { removeAllDraggableImg, saveHistoryThunk } from "../Store/Slices/DraggableImgSlice"
+import { removeTable, saveTableThunk } from "../Store/Slices/SaveTableSlice"
 
 const SideBar = () => {
 
   const dispatch = useDispatch()
   const allCharacters = useSelector(state => state.character_img.data)
+  const tableFileName = useSelector(state => state.save_table[0]?.filename)
   const allTables = useSelector(state=> state.table_img.data)
   const [flagName, setFlagName] = useState('TABLES') // *** It decides which images are shown
+
+
+  function handleSaveData() {
+    dispatch(saveHistoryThunk())
+    dispatch(saveTableThunk(tableFileName))
+  }
 
   function handleRemoveAllData() {
     dispatch(removeAllDraggableImg([]))
@@ -63,7 +70,10 @@ const SideBar = () => {
         gap-2"
         >
           <Col>
-            <Button className="menuButton">Save</Button>
+            <Button
+              className="menuButton"
+              onClick={()=> handleSaveData()}
+            >Save</Button>
           </Col>
 
           <Col>

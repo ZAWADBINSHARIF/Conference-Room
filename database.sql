@@ -25,13 +25,8 @@ CREATE TABLE
         role VARCHAR(255) NOT NULL,
         folder_name VARCHAR(255) NOT NULL,
         src VARCHAR(255) NOT NULL,
-        position_x DECIMAL(2, 2) NOT NULL,
-        position_y DECIMAL(2, 2) NOT NULL
+        position_x INT NOT NULL,
+        position_y INT NOT NULL
     );
 
-CREATE TABLE
-    save_table(
-        filename VARCHAR(255)
-    )
-
-DROP TABLE save_history;
+CREATE TABLE save_table( filename VARCHAR(255) );

@@ -20,7 +20,8 @@ const DraggableImage = ({ id, src, x, y, name, role, folder_name }) => {
         transform: CSS.Translate.toString(transform),
         left: x,
         top: y,
-        cursor: isDragging ? "grabbing" : "grab"
+        cursor: isDragging ? "grabbing" : "grab",
+        position: 'absolute'
     }
 
     function handleRemoveImg(id) {
