@@ -1,13 +1,24 @@
 import axios from "axios"
 import { useState } from "react"
 import { Form, Row, Col, Button } from "react-bootstrap"
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const FormArea = () => {
 
     const [folderName, setFolderName] = useState('')
     const [pictureName, setPictureName] = useState('')
     const [imageFile, setImageFile] = useState(null)
+
+    function handleSelectImage(e) {
+
+        const file = e.target.files[0]
+        setImageFile(file)
+
+        if (folderName === 'people' || folderName === 'dogs') {
+            const filename = file.name.replace(/\.[^/.]+$/, "")
+            setPictureName(filename)
+        }
+    }
 
     async function handleSubmit() {
 
@@ -55,7 +66,7 @@ const FormArea = () => {
             </Form.Select>
             <Form.Group controlId="formFile" className="mb-3 mt-3">
                 <Form.Label>Picture</Form.Label>
-                <Form.Control type="file" accept="image/png, image/jpg, image/jpeg" required onChange={e => setImageFile(e.target.files[0])} />
+                <Form.Control type="file" accept="image/png, image/jpg, image/jpeg" required onChange={e => handleSelectImage(e)} />
             </Form.Group>
             <Row className="text-end">
                 <Col>

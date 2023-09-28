@@ -31,7 +31,12 @@ async function uploadCharacterPicture(req, res) {
 // route POST /api/table
 // @access Public
 async function uploadTablePicture(req, res) {
-    const filename = req.files[0].filename
+    const filename = req.files[0]?.filename || null
+
+    if (!filename) {
+        res.status(500).json({error:{msg: 'Fill the image'}})
+        return
+    }
 
     const sql = `INSERT INTO tables (id, filename) VALUES (DEFAULT, ?)`
     const values = [filename]
