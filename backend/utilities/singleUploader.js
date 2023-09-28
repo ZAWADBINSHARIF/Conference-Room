@@ -18,13 +18,13 @@ const singleUpload = (
         filename: function (req, file, cd) {
             const fileExt = path.extname(file.originalname)
             const filename = file.originalname
-                .replace(fileExt, '')
-                .toLowerCase()
-                .split(" ")
-                .join("-") +
-                "-" +
-                Date.now()
-
+            .replace(fileExt, '')
+            .toLowerCase()
+            .split(" ")
+            .join("-") +
+            "-" +
+            Date.now()
+            
             cd(null, filename + fileExt)
         }
 

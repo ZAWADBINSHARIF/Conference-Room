@@ -31,6 +31,9 @@ const FormArea = () => {
             formData.append('folderName', folderName)
             formData.append('image', imageFile)
         }
+        if (folderName === 'tables') {
+            formData.append('image', imageFile)
+        }
 
         try {
             await axios.post(`/${folderName}`, formData)

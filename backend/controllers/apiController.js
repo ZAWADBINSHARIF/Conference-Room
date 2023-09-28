@@ -32,7 +32,7 @@ async function uploadCharacterPicture(req, res) {
 // @access Public
 async function uploadTablePicture(req, res) {
     const filename = req.files[0]?.filename || null
-
+    console.log(req.files)
     if (!filename) {
         res.status(500).json({ error: { msg: 'Fill the image' } })
         return

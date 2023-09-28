@@ -24,8 +24,10 @@ const pictureUpload = (req, res, next) => {
                     }
                 }
             })
-        } else
+        } else {
             next()
+        }
+        
     })
 
 }
