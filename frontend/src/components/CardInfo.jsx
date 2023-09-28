@@ -29,15 +29,12 @@ const CardInfo = ({ show, handleClose, handlleAddToPlayGround }) => {
                 setName(transcript)
             else if (inputName === "Role")
                 setRole(transcript)
-
-            console.log(transcript)
         })
         recognition.start()
         setIsListensng(true)
     }
 
     function handleStopRecognition() {
-        console.log('stop')
         setIsListensng(false)
         recognition.stop()
     }

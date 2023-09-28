@@ -49,6 +49,7 @@ const PlayGround = () => {
         {draggableImgs.map((img, index) => (
           <DraggableImage
             key={index}
+            draggable_id={img.draggable_id}
             id={img.id}
             name={img.name}
             role={img.role}

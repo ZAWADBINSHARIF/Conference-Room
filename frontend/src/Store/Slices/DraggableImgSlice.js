@@ -10,7 +10,7 @@ const draggableImgSlice = createSlice({
             state.push(action.payload)
         },
         setDraggableImgPosition(state, action) {
-            const found = state.find(item => item.id === action.payload.id)
+            const found = state.find(item => item.draggable_id === action.payload.id)
 
             if (!found) return
 
@@ -20,7 +20,7 @@ const draggableImgSlice = createSlice({
             state = [...state, found]
         },
         removeDraggableImg(state, action) {
-            const newData = state.filter(item => item.id !== action.payload)
+            const newData = state.filter(item => item.draggable_id !== action.payload)
 
             return state = [...newData]
         },
@@ -47,7 +47,6 @@ export function fetchSaveHistoryThunk() {
 
         try {
             const response = await axios.get('/save_history')
-            console.log(response.data)
             dispatch(setDraggableImg(response.data))
         } catch (error) {
             console.log(error)
@@ -60,7 +59,6 @@ export function saveHistoryThunk() {
 
         try {
             const data = getState().draggable_img
-            console.log(data)
             await axios.post('/save_history', {
                 body: data
             })

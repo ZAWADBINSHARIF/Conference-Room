@@ -28,7 +28,6 @@ export function fetchSaveTableThunk() {
         
         try {
             const response = await axios.get('/save_table')
-            console.log(response.data)
             dispatch(setSaveTable(response.data))
         } catch (error) {
             console.log(error)
@@ -42,7 +41,6 @@ export function saveTableThunk(filename) {
             const response = await axios.post('/save_table', {
                 body:filename
             })
-            console.log(response.data)
         } catch (error) {
             console.log(error)
         }

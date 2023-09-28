@@ -33,8 +33,7 @@ const FormArea = () => {
         }
 
         try {
-            const response = await axios.post(`/${folderName}`, formData)
-            console.log(response)
+            await axios.post(`/${folderName}`, formData)
 
             toast.success("Picture has been uploaded")
 

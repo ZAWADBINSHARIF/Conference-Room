@@ -11,6 +11,7 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
 
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
+  const draggable_id = Math.round(Math.random() * 5999999 + 1)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -19,6 +20,7 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
 
     const imgInfo = {
       id: id,
+      draggable_id: draggable_id,
       name: name,
       role: role,
       src: imgFilename,
