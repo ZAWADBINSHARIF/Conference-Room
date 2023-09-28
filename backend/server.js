@@ -31,12 +31,10 @@ dbConnection({ app, PORT })
 
 // set up static files
 app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
+app.use(express.static(path.join(__dirname, 'frontend', 'dist')))
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html')))
 
 // routers
-app.get('/', (req, res) => {
-    res.send('<h1>Server is running...</h1>')
-})
-
 app.use('/api', apiRoute)
 
 // common error handle

@@ -37,7 +37,7 @@ const PlayGround = () => {
 
   return (
     <DndContext
-    onDragEnd={handleDragEnd}
+      onDragEnd={handleDragEnd}
       sensors={[mouseSensor, touchSensor]}
     >
 
@@ -46,9 +46,9 @@ const PlayGround = () => {
         ref={setNodeRef}
       >
 
-        {draggableImgs.map((img, index) => (
+        {draggableImgs.map(img => (
           <DraggableImage
-            key={index}
+            key={img.id}
             draggable_id={img.draggable_id}
             id={img.id}
             name={img.name}
@@ -59,7 +59,7 @@ const PlayGround = () => {
             folder_name={img.folder_name}
           />
         ))}
-        <TablePlace/>
+        <TablePlace />
 
       </div>
 
