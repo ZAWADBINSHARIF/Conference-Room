@@ -3,6 +3,7 @@ import { useState } from "react";
 import CardInfo from "./CardInfo";
 import { BiPlus } from "react-icons/bi"
 import { useDispatch } from "react-redux";
+import CryptoJS from 'crypto-js';
 
 // internal import
 import { addDraggableImg } from "../Store/Slices/DraggableImgSlice";
@@ -11,12 +12,14 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
 
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
-  const draggable_id = Math.round(Math.random() * 5999999 + 1)
+  const [draggable_id, setDraggable_id] = useState(CryptoJS.lib.WordArray.random(6).toString())
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const handlleAddToPlayGround = (name, role) => {
     if (name == '', role == '') return
+
+    setDraggable_id(CryptoJS.lib.WordArray.random(6).toString())
 
     const imgInfo = {
       id: id,

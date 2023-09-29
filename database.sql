@@ -21,6 +21,7 @@ CREATE TABLE
 CREATE TABLE
     save_history(
         id INT NOT NULL,
+        draggable_id VARCHAR(255) NOT NULL,
         name VARCHAR(255) NOT NULL,
         role VARCHAR(255) NOT NULL,
         folder_name VARCHAR(255) NOT NULL,

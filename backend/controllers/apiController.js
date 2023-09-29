@@ -112,12 +112,13 @@ async function postSaveHistory(req, res) {
         return res.status(200).json({ msg: "Data has been saved" })
     }
 
-    sql = 'INSERT INTO save_history(id, name, role, src, position_x, position_y, folder_name) VALUES (?,?,?,?,?,?,?)'
+    sql = 'INSERT INTO save_history(id, draggable_id, name, role, src, position_x, position_y, folder_name) VALUES (?,?,?,?,?,?,?,?)'
 
     data.forEach(async (item) => {
         
         const value = [
             item.id,
+            item.draggable_id, 
             item.name,
             item.role,
             item.src,
