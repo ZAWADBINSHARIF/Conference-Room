@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css' // bootstrap css file
 import './index.scss'
 
 // set axios base url
-const baseUrl = 'http://localhost:3000/api'
+const baseUrl = '/api'
 axios.defaults.baseURL = baseUrl
 
 const router = createBrowserRouter(

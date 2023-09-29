@@ -8,7 +8,6 @@ import { addSaveTable } from "../Store/Slices/SaveTableSlice.js"
 const TableListItem = ({ id, imgFilename }) => {
 
   const dispatch = useDispatch()
-  const apiPath = import.meta.env.VITE_API
 
   function handleAddTable() {
     dispatch(addSaveTable(imgFilename))
@@ -21,7 +20,7 @@ const TableListItem = ({ id, imgFilename }) => {
         <img
           width={90}
           id={id}
-          src={`${apiPath}/tables/${imgFilename}`} />
+          src={`/tables/${imgFilename}`} />
         <BiPlus
           className="addButton"
           size={32}

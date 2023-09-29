@@ -37,8 +37,6 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
     handleClose()
   }
 
-  const apiPath = import.meta.env.VITE_API
-
   return (
     <div className="CharacterListItem">
       <CardInfo
@@ -51,7 +49,7 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
         <img
           width={90}
           id={id}
-          src={`${apiPath}/${folderName}/${imgFilename}`} />
+          src={`/${folderName}/${imgFilename}`} />
         <BiPlus
           className="addButton"
           size={32}

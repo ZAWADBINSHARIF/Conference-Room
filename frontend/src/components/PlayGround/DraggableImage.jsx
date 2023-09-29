@@ -11,7 +11,6 @@ const DraggableImage = ({ id, src, x, y, name, role, folder_name, draggable_id }
 
 
     const dispatch = useDispatch()
-    const apiPath = import.meta.env.VITE_API
 
     const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
         id: draggable_id
@@ -44,7 +43,7 @@ const DraggableImage = ({ id, src, x, y, name, role, folder_name, draggable_id }
                         onDoubleClick={() => handleRemoveImg(draggable_id)}
                     />
                 </div>
-                <img src={`${apiPath}/${folder_name}/${src}`} />
+                <img src={`/${folder_name}/${src}`} />
             </div>
 
             <div className="draggableCharInfo mt-2">
