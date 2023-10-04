@@ -1,7 +1,7 @@
 {
-  "name": "mind-map-game",
-  "version": "1.0.0",
-  "description": "This is a mind map game.",
+  "name": "mind-game",
+  "version": "2.0.0",
+  "description": "This is a mind game.",
   "main": "backend/server.js",
   "type": "module",
   "scripts": {

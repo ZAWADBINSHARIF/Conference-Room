@@ -1,13 +1,12 @@
 // enternal import
 import { Button, Row, Col } from "react-bootstrap"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 
 // internal import 
 import CharactersListItem from "./CharacterListItem"
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js"
 import { fetchAllTables } from "../Store/Slices/TableImgSlice.js"
-import TableListItem from "./TableListItem"
 import { removeAllDraggableImg, saveHistoryThunk } from "../Store/Slices/DraggableImgSlice"
 import { removeTable, saveTableThunk } from "../Store/Slices/SaveTableSlice"
 
@@ -68,7 +67,7 @@ const SideBar = () => {
 
         </Row>
       </section>
-      <div className="MenuList d-flex flex-column gap-3">
+      <div className="MenuList d-flex flex-column">
 
         <MenuListItem />
 

@@ -17,6 +17,9 @@ a {
 
 // * scroll bar design start
 
+// ? this scroll bar had been removed since V-2.0
+// ? Scroll bar does not remove totaly that's why I designed this scroll bar
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -29,12 +32,14 @@ a {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #43505c;
+  // background: #43505c;
+  background: $backGroundColor;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #7b91a7;
+  // background: #7b91a7;
+  background: $backGroundColor;
 }
 
 // * scroll bar design end
@@ -74,29 +79,8 @@ Body {
 
         // Draggable Image design
         .DraggableImage {
-          position: absolute;
-
-          .img_container {
-            position: relative;
-
-            .icons {
-              position: absolute;
-              width: 100%;
-              display: none;
-              justify-content: end;
-              color: $buttonColor;
-            }
-
-            .removeImgBtn {
-              cursor: pointer;
-            }
-
-            &:hover .icons {
-              display: flex;
-            }
-
             img {
-              width: 90px;
+              width: 75px;
               border-radius: 5px;
             }
           }
@@ -127,28 +111,35 @@ Body {
           }
         }
 
-        .CharacterListItem, .TableListItem {
-          position: relative;
+        .CharacterListItem {
+          .imgArea {
+            position: relative;
 
-          .addButton {
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.3s ease;
-            border-radius: 5px;
-            background-color: $buttonColor;
+            .addButton {
+              opacity: 0;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              transition: opacity 0.3s ease;
+              border-radius: 5px;
+              background-color: $buttonColor;
+            }
+
+            img {
+              // width: 90px;
+              border-radius: 5px;
+            }
+
+            &:hover .addButton {
+              opacity: 0.85;
+              cursor: pointer;
+            }
           }
 
-          img {
-            width: 90px;
-            border-radius: 5px;
-          }
-
-          &:hover .addButton {
-            opacity: 0.85;
-            cursor: pointer;
+          p{
+            // font-weight: 100;
+            color: #a4a4a4
           }
         }
       }
@@ -169,5 +160,4 @@ Body {
         }
       }
     }
-  }
 }

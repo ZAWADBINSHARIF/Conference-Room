@@ -1,5 +1,5 @@
 // external import 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import CardInfo from "./CardInfo";
 import { BiPlus } from "react-icons/bi"
 import { useDispatch } from "react-redux";
@@ -40,25 +40,35 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
   const apiPath = import.meta.env.VITE_API
 
   return (
-    <div className="CharacterListItem">
+    <div className="CharacterListItem text-light">
       <CardInfo
         show={show}
         handleClose={handleClose}
         handlleAddToPlayGround={handlleAddToPlayGround}
       />
-      <div className="d-flex justify-content-center align-item-center">
 
-        <img
-          width={90}
-          id={id}
-          src={`${apiPath}/${folderName}/${imgFilename}`} />
-        <BiPlus
-          className="addButton"
-          size={32}
-          color={"white"}
-          onClick={() => handleShow()}
-        />
-      </div>
+      <Fragment className="d-flex flex-column">
+
+        <div className="
+        imgArea
+        d-flex
+        justify-content-center
+        align-items-center">
+          <img
+            width={75}
+            id={id}
+            src={`${apiPath}/${folderName}/${imgFilename}`}
+          />
+
+          <BiPlus
+            className="addButton"
+            size={32}
+            color={"white"}
+            onClick={() => handleShow()}
+          />
+        </div>
+        <p className="text-center">{name}</p>
+      </Fragment>
     </div>
   );
 };
