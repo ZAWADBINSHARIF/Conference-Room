@@ -16,9 +16,6 @@ const SideBar = () => {
   const dispatch = useDispatch()
   const allCharacters = useSelector(state => state.character_img.data)
   const tableFileName = useSelector(state => state.save_table[0]?.filename)
-  const allTables = useSelector(state=> state.table_img.data)
-  const [flagName, setFlagName] = useState('TABLES') // *** It decides which images are shown
-
 
   function handleSaveData() {
     dispatch(saveHistoryThunk())
@@ -30,31 +27,17 @@ const SideBar = () => {
     dispatch(removeTable([]))
   }
 
-  const MenuListItem = () => {
-    if (flagName === 'CHARACTERS') {
-      return (
-        allCharacters.map((item) => (
-          <CharactersListItem
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            imgFilename={item.filename}
-            folderName={item.folder_name}
-          />
-        ))
-      )
-    } else if (flagName === 'TABLES') {
-      return (
-        allTables.map(item => (
-          <TableListItem
-            key={item.id}
-            id={item.id}
-            imgFilename={item.filename}
-          />
-        ))
-      )
-    }
-  }
+  const MenuListItem = () => (
+    allCharacters.map((item) => (
+      <CharactersListItem
+        key={item.id}
+        id={item.id}
+        name={item.name}
+        imgFilename={item.filename}
+        folderName={item.folder_name}
+      />
+    ))
+  )
 
   useEffect(() => {
     dispatch(fetchAllCharacters())
@@ -72,38 +55,22 @@ const SideBar = () => {
           <Col>
             <Button
               className="menuButton"
-              onClick={()=> handleSaveData()}
+              onClick={() => handleSaveData()}
             >Save</Button>
           </Col>
 
           <Col>
             <Button
               className="menuButton"
-              onClick={()=> handleRemoveAllData()}
+              onClick={() => handleRemoveAllData()}
             >Delete</Button>
-          </Col>
-
-          <Col>
-            <Button
-              className="menuButton"
-              onClick={() => setFlagName('CHARACTERS')}
-            >Characters
-            </Button>
-          </Col>
-
-          <Col>
-            <Button
-              className="menuButton"
-              onClick={() => setFlagName('TABLES')}
-            >Tables
-            </Button>
           </Col>
 
         </Row>
       </section>
       <div className="MenuList d-flex flex-column gap-3">
 
-        <MenuListItem/>
+        <MenuListItem />
 
       </div>
     </menu>
