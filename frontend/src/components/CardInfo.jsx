@@ -11,12 +11,14 @@ const CardInfo = ({ show, handleClose, handlleAddToPlayGround }) => {
     const [role, setRole] = useState('')
     const [isListening, setIsListensng] = useState(false)
 
-    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 
+    console.log(SpeechRecognition);
     const recognition = new SpeechRecognition()
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.lang = "en-US";
+
 
     function handleSpeechRecognition(inputName) {
         recognition.addEventListener('result', e => {

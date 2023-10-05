@@ -1,5 +1,4 @@
 // enternal import
-import { Button, Row, Col } from "react-bootstrap"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -66,7 +65,7 @@ const SideBar = () => {
 
         </Row>
       </section> */}
-      <div className="MenuList d-flex flex-column">
+      <div className="MenuList d-flex flex-column me-4">
 
         <MenuListItem />
 

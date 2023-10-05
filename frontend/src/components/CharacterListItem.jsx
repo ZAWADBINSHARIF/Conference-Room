@@ -1,5 +1,5 @@
 // external import 
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import CardInfo from "./CardInfo";
 import { BiPlus } from "react-icons/bi"
 import { useDispatch } from "react-redux";
@@ -47,7 +47,7 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
         handlleAddToPlayGround={handlleAddToPlayGround}
       />
 
-      <Fragment className="d-flex flex-column">
+      <div className="d-flex flex-column">
 
         <div className="
         imgArea
@@ -68,7 +68,7 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
           />
         </div>
         <p className="text-center">{name}</p>
-      </Fragment>
+      </div>
     </div>
   );
 };

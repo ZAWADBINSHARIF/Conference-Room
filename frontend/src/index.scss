@@ -20,26 +20,9 @@ a {
 // ? this scroll bar had been removed since V-2.0
 // ? Scroll bar does not remove totaly that's why I designed this scroll bar
 
-/* width */
 ::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: $backGroundColor;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  // background: #43505c;
-  background: $backGroundColor;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  // background: #7b91a7;
-  background: $backGroundColor;
+  width: 0;
+  background: transparent;
 }
 
 // * scroll bar design end
@@ -57,10 +40,13 @@ a {
 
 // ? Dailuge Modal Design end
 
-Body {
+body {
   background-color: $backGroundColor;
   width: 100dvw;
   overflow: hidden;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   #root {
     .App {
@@ -79,37 +65,47 @@ Body {
 
         // Draggable Image design
         .DraggableImage {
-            img {
-              width: 75px;
-              border-radius: 5px;
-            }
-          }
-
-          .draggableCharInfo {
-            text-align: center;
-            color: $DraggableCharInfoFontCOlor;
-            line-height: 1rem;
+          img {
+            width: 75px;
+            border-radius: 5px;
           }
         }
-      }
 
-      // * SideBar Menu
-      menu {
-        height: 100dvh;
-        border-left: 3px solid $borderColor;
+        .draggableCharInfo {
+          text-align: center;
+          color: $DraggableCharInfoFontCOlor;
+          line-height: 1rem;
+        }
+      }
+    }
+
+    // * SideBar Menu
+    menu {
+      height: 100dvh;
+      // border-left: 3px solid $borderColor;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      // .menuBar {
+      //   .menuButton {
+      //     background: $buttonColor;
+      //     border: 0;
+
+      //     &:hover {
+      //       background: $buttonHover;
+      //     }
+      //   }
+      // }
+
+      .MenuList {
         overflow-x: hidden;
         overflow-y: scroll;
-
-        // .menuBar {
-        //   .menuButton {
-        //     background: $buttonColor;
-        //     border: 0;
-
-        //     &:hover {
-        //       background: $buttonHover;
-        //     }
-        //   }
-        // }
+        border: 3px solid $borderColor;
+        border-radius: 25px;
+        height: 75%;
+        padding: 12px 0;
 
         .CharacterListItem {
           .imgArea {
@@ -137,27 +133,28 @@ Body {
             }
           }
 
-          p{
+          p {
             // font-weight: 100;
-            color: #a4a4a4
-          }
-        }
-      }
-
-      // * Admin design Start
-      .Admin {
-        .FormArea {
-          width: 400px;
-          border: 1px solid $borderColor;
-          border-radius: 12px;
-          color: white;
-
-          .form-select,
-          .form-control {
-            background-color: $buttonColor;
-            color: white;
+            color: #a4a4a4;
           }
         }
       }
     }
+
+    // * Admin design Start
+    .Admin {
+      .FormArea {
+        width: 400px;
+        border: 1px solid $borderColor;
+        border-radius: 12px;
+        color: white;
+
+        .form-select,
+        .form-control {
+          background-color: $buttonColor;
+          color: white;
+        }
+      }
+    }
+  }
 }
