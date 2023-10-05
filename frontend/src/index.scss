@@ -100,16 +100,16 @@ Body {
         overflow-x: hidden;
         overflow-y: scroll;
 
-        .menuBar {
-          .menuButton {
-            background: $buttonColor;
-            border: 0;
+        // .menuBar {
+        //   .menuButton {
+        //     background: $buttonColor;
+        //     border: 0;
 
-            &:hover {
-              background: $buttonHover;
-            }
-          }
-        }
+        //     &:hover {
+        //       background: $buttonHover;
+        //     }
+        //   }
+        // }
 
         .CharacterListItem {
           .imgArea {

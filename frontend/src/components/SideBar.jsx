@@ -7,24 +7,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import CharactersListItem from "./CharacterListItem"
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js"
 import { fetchAllTables } from "../Store/Slices/TableImgSlice.js"
-import { removeAllDraggableImg, saveHistoryThunk } from "../Store/Slices/DraggableImgSlice"
-import { removeTable, saveTableThunk } from "../Store/Slices/SaveTableSlice"
+// import { removeAllDraggableImg, saveHistoryThunk } from "../Store/Slices/DraggableImgSlice"
+// import { removeTable, saveTableThunk } from "../Store/Slices/SaveTableSlice"
 
 const SideBar = () => {
 
   const dispatch = useDispatch()
   const allCharacters = useSelector(state => state.character_img.data)
-  const tableFileName = useSelector(state => state.save_table[0]?.filename)
 
-  function handleSaveData() {
-    dispatch(saveHistoryThunk())
-    dispatch(saveTableThunk(tableFileName))
-  }
+  // function handleSaveData() {
+  //   dispatch(saveHistoryThunk())
+  //   dispatch(saveTableThunk(tableFileName))
+  // }
 
-  function handleRemoveAllData() {
-    dispatch(removeAllDraggableImg([]))
-    dispatch(removeTable([]))
-  }
+  // function handleRemoveAllData() {
+  //   dispatch(removeAllDraggableImg([]))
+  //   dispatch(removeTable([]))
+  // }
 
   const MenuListItem = () => (
     allCharacters.map((item) => (
@@ -46,7 +45,7 @@ const SideBar = () => {
   return (
     <menu className="SideBar">
 
-      <section className="menuBar py-5">
+      {/* <section className="menuBar py-5">
         <Row className="
         px-2
         gap-2"
@@ -66,7 +65,7 @@ const SideBar = () => {
           </Col>
 
         </Row>
-      </section>
+      </section> */}
       <div className="MenuList d-flex flex-column">
 
         <MenuListItem />
