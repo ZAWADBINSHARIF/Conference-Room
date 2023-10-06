@@ -5,7 +5,7 @@
   "main": "backend/server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js --prefix backend",
+    "start": "node server.js backend/server.js",
     "client": "npm run dev --prefix frontend",
     "server": "nodemon backend/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -14,7 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.1",
-    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mariadb": "^3.2.1",

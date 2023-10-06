@@ -14,16 +14,6 @@ const SideBar = () => {
   const dispatch = useDispatch()
   const allCharacters = useSelector(state => state.character_img.data)
 
-  // function handleSaveData() {
-  //   dispatch(saveHistoryThunk())
-  //   dispatch(saveTableThunk(tableFileName))
-  // }
-
-  // function handleRemoveAllData() {
-  //   dispatch(removeAllDraggableImg([]))
-  //   dispatch(removeTable([]))
-  // }
-
   const MenuListItem = () => (
     allCharacters.map((item) => (
       <CharactersListItem
@@ -43,28 +33,7 @@ const SideBar = () => {
 
   return (
     <menu className="SideBar">
-
-      {/* <section className="menuBar py-5">
-        <Row className="
-        px-2
-        gap-2"
-        >
-          <Col>
-            <Button
-              className="menuButton"
-              onClick={() => handleSaveData()}
-            >Save</Button>
-          </Col>
-
-          <Col>
-            <Button
-              className="menuButton"
-              onClick={() => handleRemoveAllData()}
-            >Delete</Button>
-          </Col>
-
-        </Row>
-      </section> */}
+      
       <div className="MenuList d-flex flex-column me-4">
 
         <MenuListItem />

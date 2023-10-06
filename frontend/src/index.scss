@@ -15,6 +15,11 @@ a {
   text-decoration: none;
 }
 
+p,
+div {
+  color: white;
+}
+
 // * scroll bar design start
 
 // ? this scroll bar had been removed since V-2.0
@@ -87,17 +92,6 @@ body {
       justify-content: center;
       align-items: center;
       flex-direction: column;
-
-      // .menuBar {
-      //   .menuButton {
-      //     background: $buttonColor;
-      //     border: 0;
-
-      //     &:hover {
-      //       background: $buttonHover;
-      //     }
-      //   }
-      // }
 
       .MenuList {
         overflow-x: hidden;
