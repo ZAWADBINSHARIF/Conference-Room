@@ -8,14 +8,15 @@ async function uploadCharacterPicture(req, res) {
     const name = req.body.name
     const filename = req.files[0]?.filename || null
     const folder_name = req.folderName
+    const description = req.body.description
 
     if (!name && !filename) {
         res.status(500).json({ errors: { msg: "File the name and image file" } })
         return
     }
 
-    const sql = `INSERT INTO characters (id, name, filename, folder_name) VALUES (DEFAULT, ?, ?, ?)`
-    const values = [name, filename, folder_name]
+    const sql = `INSERT INTO characters (id, name, filename, folder_name, description) VALUES (DEFAULT, ?, ?, ?, ?)`
+    const values = [name, filename, folder_name, description]
 
     try {
         await db.query(sql, values)

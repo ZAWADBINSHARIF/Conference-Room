@@ -8,6 +8,8 @@ import TablePlace from "./TablePlace"
 import DraggableImage from './DraggableImage'
 import { fetchSaveHistoryThunk, setDraggableImgPosition } from '../../Store/Slices/DraggableImgSlice.js'
 import { useEffect } from 'react'
+import ArchetypeDescription from './ArchetypeDescription'
+import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice'
 
 const PlayGround = () => {
 
@@ -44,6 +46,7 @@ const PlayGround = () => {
       <div
         className="PlayGround w-100 d-flex justify-content-center align-items-center"
         ref={setNodeRef}
+        onTouchEnd={() => dispatch(clearAchetypeDescriptionText())}
       >
 
         {draggableImgs.map(img => (
@@ -60,6 +63,8 @@ const PlayGround = () => {
           />
         ))}
         <TablePlace />
+
+        <ArchetypeDescription />
 
       </div>
 

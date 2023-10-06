@@ -7,6 +7,7 @@ import CryptoJS from 'crypto-js';
 
 // internal import
 import { addDraggableImg } from "../Store/Slices/DraggableImgSlice";
+import { clearAchetypeDescriptionText, setAchetypeDescriptionText } from "../Store/Slices/CharacterImgSlice";
 
 const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
 
@@ -37,10 +38,20 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
     handleClose()
   }
 
+  function onTouchEndAndOnMouseOver() {
+    dispatch(setAchetypeDescriptionText(id))
+  }
+
+
   const apiPath = import.meta.env.VITE_API
 
   return (
-    <div className="CharacterListItem text-light">
+    <div
+      className="CharacterListItem text-light"
+      onTouchEnd={() => onTouchEndAndOnMouseOver()}
+      onMouseOver={() => onTouchEndAndOnMouseOver()}
+      onMouseOut={() => dispatch(clearAchetypeDescriptionText())}
+    >
       <CardInfo
         show={show}
         handleClose={handleClose}

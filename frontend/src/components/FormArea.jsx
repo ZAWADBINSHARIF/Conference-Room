@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 const FormArea = () => {
 
     const [folderName, setFolderName] = useState('')
+    const [description, setDescription] = useState('')
     const [pictureName, setPictureName] = useState('')
     const [imageFile, setImageFile] = useState(null)
 
@@ -29,6 +30,7 @@ const FormArea = () => {
         }
         if (imageFile && pictureName) {
             formData.append('folderName', folderName)
+            formData.append('description', description)
             formData.append('image', imageFile)
         }
         if (folderName === 'tables') {
@@ -54,10 +56,16 @@ const FormArea = () => {
         >
             <h1>Add Image</h1>
             {folderName !== "" && folderName !== 'tables' &&
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Picture name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter picture name" value={pictureName} onChange={e => setPictureName(e.target.value)} />
-                </Form.Group>
+                <>
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Picture name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter picture name" value={pictureName} onChange={e => setPictureName(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="description">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control type="text" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
+                    </Form.Group>
+                </>
             }
             <Form.Label>Select a folder</Form.Label>
             <Form.Select aria-label="Select A Folder" value={folderName} onChange={e => setFolderName(e.target.value)}>

@@ -13,7 +13,6 @@ const CardInfo = ({ show, handleClose, handlleAddToPlayGround }) => {
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 
-    console.log(SpeechRecognition);
     const recognition = new SpeechRecognition()
     recognition.continuous = false;
     recognition.interimResults = false;
