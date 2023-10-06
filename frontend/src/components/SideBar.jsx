@@ -30,8 +30,8 @@ const SideBar = () => {
   }, [dispatch])
 
   return (
-    <menu className="SideBar">
-      
+    <menu className="SideBar" style={{ display: allCharacters.length != 0 ? 'flex' : "none" }}>
+
       <div className="MenuList d-flex flex-column me-4">
 
         <MenuListItem />
