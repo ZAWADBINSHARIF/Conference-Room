@@ -1,7 +1,7 @@
 // external import
 import express from 'express'
 import dotenv from 'dotenv'
-// import cors from 'cors'
+import cors from 'cors'
 import path from 'path'
 
 // internal import
@@ -22,9 +22,9 @@ app.use(express.json())
 // for getting json form data
 app.use(express.urlencoded({ extended: true }))
 
-// app.use(cors({
-//     origin: "*"
-// }))
+app.use(cors({
+    origin: "*"
+}))
 
 // for database connection
 dbConnection({ app, PORT })

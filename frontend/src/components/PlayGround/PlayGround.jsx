@@ -42,7 +42,7 @@ const PlayGround = () => {
     >
 
       <div
-        className="PlayGround w-100 h-100 d-flex justify-content-center align-items-center"
+        className="PlayGround w-100 d-flex justify-content-center align-items-center"
         ref={setNodeRef}
       >
 

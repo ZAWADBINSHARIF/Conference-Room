@@ -11,13 +11,13 @@ const Hero = () => {
         <>
             <Row>
                 {/* playGround */}
-                <Col md={11}>
+                <Col xxl={11} xl={10} md={10}>
                     <PeanutGallery/>
                     <PlayGround />
                 </Col>
 
                 {/* SideBar */}
-                <Col md={1}>
+                <Col xxl={1} xl={2} md={2}>
                     <SideBar />
                 </Col>
             </Row>

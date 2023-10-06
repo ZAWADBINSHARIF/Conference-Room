@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import CharactersListItem from "./CharacterListItem"
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js"
 import { fetchAllTables } from "../Store/Slices/TableImgSlice.js"
-// import { removeAllDraggableImg, saveHistoryThunk } from "../Store/Slices/DraggableImgSlice"
-// import { removeTable, saveTableThunk } from "../Store/Slices/SaveTableSlice"
 
 const SideBar = () => {
 
