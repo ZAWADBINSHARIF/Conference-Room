@@ -23,7 +23,8 @@ const PeanutGallery = () => {
             key={item.draggable_id}
             src={`${apiPath}/${item.folder_name}/${item.src}`}
             width={75}
-            onDoubleClick={()=> handleRemove(item.draggable_id)}
+            onDoubleClick={() => handleRemove(item.draggable_id)}
+            onTouchEnd={()=> handleRemove(item.draggable_id)}
           />
         ))}
 

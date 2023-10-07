@@ -3,6 +3,7 @@ $backGroundColor: #182129;
 $borderColor: #73737b;
 $buttonColor: #243341;
 $buttonHover: #456077;
+$chooseTableHoverColor: #0d1a25;
 $DraggableCharInfoFontCOlor: #f9ae01;
 
 * {
@@ -40,6 +41,36 @@ div {
 
   .icon {
     cursor: pointer;
+  }
+  // choose table modal section
+  .tablesContainer {
+    height:70vh;
+    overflow: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+
+    .TableListItem{
+      border: 3px solid $borderColor;
+      border-radius: 12px;
+      padding: 5px;
+      cursor: pointer;
+      
+      &:hover{
+        border: 3px solid white;
+        transition: .5s;
+        background-color: $chooseTableHoverColor;
+      }
+
+      img{
+        &:hover{
+          scale: 1.02;
+          transition: 0.5s;
+        }
+      }
+    }
+
   }
 }
 
@@ -120,7 +151,7 @@ body {
           border: 3px solid $borderColor;
           border-radius: 12px;
           position: absolute;
-          bottom: 0%;
+          bottom: -5%;
           left: 50%;
           transform: translate(-50%, -50%);
         }

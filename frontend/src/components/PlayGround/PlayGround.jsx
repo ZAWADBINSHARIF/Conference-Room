@@ -7,12 +7,22 @@ import { DndContext } from '@dnd-kit/core'
 import TablePlace from "./TablePlace"
 import DraggableImage from './DraggableImage'
 import { fetchSaveHistoryThunk, setDraggableImgPosition } from '../../Store/Slices/DraggableImgSlice.js'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import ArchetypeDescription from './ArchetypeDescription'
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice'
+import TablesChooseModal from '../Modals/TablesChooseModal'
 
 const PlayGround = () => {
 
+  
+  const draggableImgs = useSelector(state => state.draggable_img)
+  const dispatch = useDispatch()
+  const { setNodeRef } = useDroppable({
+    id: 'Droppable'
+  })
+
+  const [showTableModal, setShowTableModal] = useState(true)
+  
   const mouseSensor = useSensor(MouseSensor, {
     // Require the mouse to move by 10 pixels before activating
     activationConstraint: {
@@ -26,13 +36,6 @@ const PlayGround = () => {
     },
   });
 
-  const draggableImgs = useSelector(state => state.draggable_img)
-  const dispatch = useDispatch()
-
-  const { setNodeRef } = useDroppable({
-    id: 'Droppable'
-  })
-
   useEffect(() => {
     dispatch(fetchSaveHistoryThunk())
   }, [dispatch])
@@ -43,6 +46,11 @@ const PlayGround = () => {
       sensors={[mouseSensor, touchSensor]}
     >
 
+      <TablesChooseModal
+        show={showTableModal}
+        onHide={() => setShowTableModal(false)}
+      />
+      
       <div
         className="PlayGround w-100 d-flex justify-content-center align-items-center"
         ref={setNodeRef}

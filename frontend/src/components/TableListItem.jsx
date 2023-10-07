@@ -5,30 +5,24 @@ import { useDispatch } from "react-redux"
 // internal import
 import { addSaveTable } from "../Store/Slices/SaveTableSlice.js"
 
-const TableListItem = ({ id, imgFilename }) => {
+const TableListItem = ({ id, imgFilename, hideTheTableModal }) => {
 
   const dispatch = useDispatch()
   const apiPath = import.meta.env.VITE_API
 
   function handleAddTable() {
     dispatch(addSaveTable(imgFilename))
+    hideTheTableModal()
   }
 
   return (
     <div className="TableListItem">
-      <div className="d-flex justify-content-center align-item-center">
-
-        <img
-          width={90}
-          id={id}
-          src={`${apiPath}/tables/${imgFilename}`} />
-        <BiPlus
-          className="addButton"
-          size={32}
-          color={"white"}
-          onClick={() => handleAddTable()}
-        />
-      </div>
+      <img
+        width={250}
+        id={id}
+        src={`${apiPath}/tables/${imgFilename}`}
+        onClick={() => handleAddTable()}
+      />
     </div>
   )
 }

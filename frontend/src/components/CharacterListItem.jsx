@@ -1,6 +1,6 @@
 // external import 
 import { useState } from "react";
-import CardInfo from "./CardInfo";
+import CardInfo from "./Modals/CardInfo";
 import { BiPlus } from "react-icons/bi"
 import { useDispatch } from "react-redux";
 import CryptoJS from 'crypto-js';
