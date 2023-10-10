@@ -1,20 +1,25 @@
 // external import
 import { useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 // internal import
 import '../result.scss'
 
-
 const FinalResult = () => {
+
+    const All_Allies = useSelector(state => state.draggable_img)
+    const All_Traitors = useSelector(state => state.removed_draggable_img)
 
     function showPrintPDF() {
         window.print()
     }
 
+    const apiPath = import.meta.env.VITE_API
+
     useEffect(() => {
         console.log('Load')
-        // window.onload = showPrintPDF()
+        window.onload = showPrintPDF()
     })
     return (
         <div className="FinalResult">
@@ -23,41 +28,29 @@ const FinalResult = () => {
             <Row>
                 <Col>
                     <h2>ALLIES</h2>
-                    <div className='d-flex flex-row'>
-                        <img src='/friend1.png' />
+                    {All_Allies.map(item=> (
+                    <div className='d-flex flex-row' key={item.draggable_id}>
+                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} />
                         <div className="d-flex flex-column justify-content-center align-content-center">
-                            <span>[Name]</span>
-                            <span>[Role]</span>
-                            <span>[Description]</span>
+                                <span>{ item.name}</span>
+                                <span>{item.role}</span>
+                                <span>{ item.description}</span>
                         </div>
                     </div>
-                    <div className='d-flex flex-row'>
-                        <img src='/friend2.png' />
-                        <div className="d-flex flex-column justify-content-center align-content-center">
-                            <span>[Name]</span>
-                            <span>[Role]</span>
-                            <span>[Description]</span>
-                        </div>
-                    </div>
+                    ))}
                 </Col>
                 <Col>
                     <h2>TRAITORS</h2>
-                    <div className='d-flex flex-row'>
-                        <img src='/enemy1.png' />
-                        <div className="d-flex flex-column justify-content-center align-content-center">
-                            <span>[Name]</span>
-                            <span>[Role]</span>
-                            <span>[Description]</span>
+                    {All_Traitors.map(item => (
+                        <div className='d-flex flex-row' key={item.draggable_id}>
+                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                            <div className="d-flex flex-column justify-content-center align-content-center">
+                                <span>{item.name}</span>
+                                <span>{item.role}</span>
+                                <span>{item.description}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className='d-flex flex-row'>
-                        <img src='/enemy2.png' />
-                        <div className="d-flex flex-column justify-content-center align-content-center">
-                            <span>[Name]</span>
-                            <span>[Role]</span>
-                            <span>[Description]</span>
-                        </div>
-                    </div>
+                    ))}
                 </Col>
             </Row>
         </div>

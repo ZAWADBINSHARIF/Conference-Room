@@ -9,7 +9,7 @@ import CryptoJS from 'crypto-js';
 import { addDraggableImg } from "../Store/Slices/DraggableImgSlice";
 import { clearAchetypeDescriptionText, setAchetypeDescriptionText } from "../Store/Slices/CharacterImgSlice";
 
-const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
+const CharacterListItem = ({ id, name, imgFilename, folderName, description }) => {
 
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
@@ -30,7 +30,8 @@ const CharacterListItem = ({ id, name, imgFilename, folderName }) => {
       src: imgFilename,
       position_x: 32,
       position_y: 32,
-      folder_name: folderName
+      folder_name: folderName,
+      description: description
     }
 
     dispatch(addDraggableImg(imgInfo))

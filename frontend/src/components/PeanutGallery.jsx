@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 
 // internal import
 import { removeDraggableImg } from "../Store/Slices/DraggableImgSlice.js"
+import {getRemovedDraggableImg} from "../Store/Slices/RemovedDraggableImgSlice.js"
 
 const PeanutGallery = () => {
 
@@ -11,6 +12,7 @@ const PeanutGallery = () => {
   const apiPath = import.meta.env.VITE_API
 
   function handleRemove(draggable_id) {
+    dispatch(getRemovedDraggableImg(draggable_id))
     dispatch(removeDraggableImg(draggable_id))
   }
 

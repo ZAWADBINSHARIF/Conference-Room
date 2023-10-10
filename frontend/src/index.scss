@@ -37,7 +37,7 @@ div {
 
 .modal-content {
   background-color: #182129;
-  * {
+  * :not(input){
     color: white;
   }
 
@@ -186,6 +186,10 @@ body {
             .imgArea {
               position: relative;
 
+              *{
+                color: inherit;
+              }
+              
               .addButton {
                 opacity: 0;
                 position: absolute;

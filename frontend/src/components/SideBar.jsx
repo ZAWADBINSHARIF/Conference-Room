@@ -8,12 +8,14 @@ import CharactersListItem from "./CharacterListItem"
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js"
 import { fetchAllTables } from "../Store/Slices/TableImgSlice.js"
 import { Button } from "react-bootstrap"
+import { toast } from "react-toastify"
 
 const SideBar = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const allCharacters = useSelector(state => state.character_img.data)
+  const draggable_imgs = useSelector(state=> state.draggable_img)
 
   const MenuListItem = () => (
     allCharacters.map((item) => (
@@ -23,11 +25,13 @@ const SideBar = () => {
         name={item.name}
         imgFilename={item.filename}
         folderName={item.folder_name}
+        description={item.description}
       />
     ))
   )
 
   function handleEndGame() {
+    if(!draggable_imgs.length) return toast.info("At least make one Ally")
     navigate('/result')
   }
 
@@ -38,14 +42,14 @@ const SideBar = () => {
 
   return (
     <menu
-      className="SideBar text-center"
+      className="SideBar text-center d-flex flex-column me-4"
       style={{ display: allCharacters.length != 0 ? 'flex' : "none" }}>
 
-      <Button className="my-4" variant="secondary" onClick={()=> handleEndGame()}>
+      <Button className="my-4" variant="success" onClick={()=> handleEndGame()}>
         End Game
       </Button>
       
-      <div className="MenuList d-flex flex-column me-4">
+      <div className="MenuList ">
 
         <MenuListItem />
 
