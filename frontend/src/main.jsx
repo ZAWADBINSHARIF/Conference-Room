@@ -8,6 +8,7 @@ import axios from 'axios'
 import App from './App.jsx'
 import Hero from './Pages/Hero.jsx'
 import Admin from './Pages/Admin.jsx'
+import FinalResult from './Pages/FinalResult.jsx'
 import 'react-toastify/dist/ReactToastify.css'; // toastify css file
 import 'bootstrap/dist/css/bootstrap.min.css' // bootstrap css file
 import './index.scss'
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       <Route path='/' element={<Hero />} />
       <Route path='/admin' element={<Admin />} />
+      <Route path='/result' element={<FinalResult />} />
     </Route>
   )
 )

@@ -1,0 +1,22 @@
+* {
+  padding: 0;
+  margin: 0;
+  color: black;
+}
+
+.FinalResult {
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+  * {
+    color: black;
+  }
+  h2 {
+    text-align: center;
+    color: red;
+  }
+  img {
+    width: 75px;
+    margin: 12px;
+  }
+}

@@ -14,7 +14,6 @@ import TablesChooseModal from '../Modals/TablesChooseModal'
 
 const PlayGround = () => {
 
-  
   const draggableImgs = useSelector(state => state.draggable_img)
   const dispatch = useDispatch()
   const { setNodeRef } = useDroppable({
@@ -55,6 +54,7 @@ const PlayGround = () => {
         className="PlayGround w-100 d-flex justify-content-center align-items-center"
         ref={setNodeRef}
         onTouchEnd={() => dispatch(clearAchetypeDescriptionText())}
+        onClick={() => dispatch(clearAchetypeDescriptionText())}
       >
 
         {draggableImgs.map(img => (

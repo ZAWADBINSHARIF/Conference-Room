@@ -37,40 +37,49 @@ div {
 
 .modal-content {
   background-color: #182129;
-  color: white;
+  * {
+    color: white;
+  }
 
   .icon {
     cursor: pointer;
   }
   // choose table modal section
   .tablesContainer {
-    height:70vh;
+    height: 70vh;
     overflow: scroll;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
 
-    .TableListItem{
+    .TableListItem {
       border: 3px solid $borderColor;
       border-radius: 12px;
       padding: 5px;
       cursor: pointer;
-      
-      &:hover{
+
+      // not selectable mode start
+      user-select: none;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -o-user-select: none;
+      // not selectable mode end
+
+      &:hover {
         border: 3px solid white;
-        transition: .5s;
+        transition: 0.5s;
         background-color: $chooseTableHoverColor;
       }
 
-      img{
-        &:hover{
+      img {
+        &:hover {
           scale: 1.02;
           transition: 0.5s;
         }
       }
     }
-
   }
 }
 
@@ -213,12 +222,16 @@ body {
           width: 400px;
           border: 1px solid $borderColor;
           border-radius: 12px;
-          color: white;
-
-          .form-select,
-          .form-control {
-            background-color: $buttonColor;
+          *:not(button) {
             color: white;
+            background-color: $backGroundColor;
+            ::placeholder{
+              color: rgba(0, 0, 0, 0.5);
+            }
+            input {
+              color: black;
+              background-color: white;
+            }
           }
         }
       }
