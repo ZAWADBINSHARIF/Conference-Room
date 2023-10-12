@@ -4,6 +4,7 @@ $borderColor: #73737b;
 $buttonColor: #243341;
 $buttonHover: #456077;
 $chooseTableHoverColor: #0d1a25;
+$textColor: #a4a4a4;
 $DraggableCharInfoFontCOlor: #f9ae01;
 
 * {
@@ -37,7 +38,7 @@ div {
 
 .modal-content {
   background-color: #182129;
-  * :not(input){
+  * :not(input) {
     color: white;
   }
 
@@ -145,6 +146,28 @@ body {
             width: 75px;
             border-radius: 5px;
           }
+
+          .ContextMenu {
+            position: absolute;
+            left: 75px;
+            padding: 9px;
+            border-radius: 6px;
+            margin-left: 6px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: center;
+            cursor: pointer;
+            span {
+              color: $buttonHover;
+              font-weight: 600;
+              
+              &:hover {
+                color: $backGroundColor;
+              }
+            }
+          }
         }
 
         .draggableCharInfo {
@@ -186,10 +209,10 @@ body {
             .imgArea {
               position: relative;
 
-              *{
+              * {
                 color: inherit;
               }
-              
+
               .addButton {
                 opacity: 0;
                 position: absolute;
@@ -214,7 +237,7 @@ body {
 
             p {
               // font-weight: 100;
-              color: #a4a4a4;
+              color: $textColor;
             }
           }
         }
@@ -229,7 +252,7 @@ body {
           *:not(button) {
             color: white;
             background-color: $backGroundColor;
-            ::placeholder{
+            ::placeholder {
               color: rgba(0, 0, 0, 0.5);
             }
             input {
