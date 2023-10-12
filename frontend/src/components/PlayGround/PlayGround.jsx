@@ -68,6 +68,7 @@ const PlayGround = () => {
             x={img.position_x}
             y={img.position_y}
             folder_name={img.folder_name}
+            description={img.description}
           />
         ))}
         <TablePlace />

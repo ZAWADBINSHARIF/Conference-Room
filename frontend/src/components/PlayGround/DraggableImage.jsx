@@ -17,7 +17,8 @@ const DraggableImage = ({
     name,
     role,
     folder_name,
-    draggable_id }) => {
+    draggable_id,
+    description }) => {
 
     const apiPath = import.meta.env.VITE_API
     const [showContextMenu, setShowContextMenu] = useState(false)
@@ -42,10 +43,10 @@ const DraggableImage = ({
     }
 
     function handleAddToPeanutGallery() {
-        dispatch(setCharacterToPeanutGallery({ id, src, x, y, name, role, folder_name, draggable_id }))
+        dispatch(setCharacterToPeanutGallery({ id, src, x, y, name, role, folder_name, draggable_id, description }))
         dispatch(removeDraggableImg(draggable_id))
     }
-    
+
     function handleRemove() {
         dispatch(getRemovedDraggableImg(draggable_id))
         dispatch(removeDraggableImg(draggable_id))
