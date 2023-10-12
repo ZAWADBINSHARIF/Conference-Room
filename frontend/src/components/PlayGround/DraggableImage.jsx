@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux"
 // internal import
 import { removeDraggableImg } from "../../Store/Slices/DraggableImgSlice.js"
 import { getRemovedDraggableImg } from "../../Store/Slices/RemovedDraggableImgSlice.js"
+import { setCharacterToPeanutGallery } from "../../Store/Slices/PeanutGalleryImgSlice.js"
 
 const DraggableImage = ({
     id,
@@ -40,6 +41,11 @@ const DraggableImage = ({
         position: 'absolute'
     }
 
+    function handleAddToPeanutGallery() {
+        dispatch(setCharacterToPeanutGallery({ id, src, x, y, name, role, folder_name, draggable_id }))
+        dispatch(removeDraggableImg(draggable_id))
+    }
+    
     function handleRemove() {
         dispatch(getRemovedDraggableImg(draggable_id))
         dispatch(removeDraggableImg(draggable_id))
@@ -48,7 +54,8 @@ const DraggableImage = ({
     function ContextMenu() {
         return (
             <div className="ContextMenu">
-                <span>Peanut Gallery</span>
+                <span
+                    onClick={() => handleAddToPeanutGallery()}>Peanut Gallery</span>
                 <span
                     onClick={() => handleRemove()}
                     className="text-danger">
@@ -84,7 +91,7 @@ const DraggableImage = ({
         >
             {showContextMenu && <ContextMenu />}
 
-            {/* // ! do not remove this div. If you do, any click event will not work*/}
+            {/* // ! Do not remove this div. If you do, any click event will not work*/}
             <div
                 {...attributes}
                 {...listeners}

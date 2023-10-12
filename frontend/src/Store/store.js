@@ -7,6 +7,7 @@ import CharacterImgSlice from "./Slices/CharacterImgSlice.js";
 import TableImgSlice from "./Slices/TableImgSlice.js";
 import SaveTableSlice from "./Slices/SaveTableSlice.js";
 import RemovedDraggableImgSlice from "./Slices/RemovedDraggableImgSlice.js";
+import PeanutGalleryImgSlice from "./Slices/PeanutGalleryImgSlice.js";
 
 const store = configureStore({
     reducer: {
@@ -14,7 +15,8 @@ const store = configureStore({
         character_img: CharacterImgSlice,
         table_img: TableImgSlice,
         save_table: SaveTableSlice,
-        removed_draggable_img: RemovedDraggableImgSlice
+        removed_draggable_img: RemovedDraggableImgSlice,
+        peanut_gallery_img: PeanutGalleryImgSlice 
     }
 })
 
