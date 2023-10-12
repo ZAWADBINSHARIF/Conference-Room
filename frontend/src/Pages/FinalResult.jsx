@@ -8,8 +8,9 @@ import '../result.scss'
 
 const FinalResult = () => {
 
-    const All_Allies = useSelector(state => state.draggable_img)
-    const All_Traitors = useSelector(state => state.removed_draggable_img)
+    const Room = useSelector(state => state.draggable_img)
+    const PeanutGallery = useSelector(state => state.peanut_gallery_img)
+    const Outside = useSelector(state => state.removed_draggable_img)
 
     function showPrintPDF() {
         window.print()
@@ -27,21 +28,34 @@ const FinalResult = () => {
             <br />
             <Row>
                 <Col>
-                    <h2>ALLIES</h2>
-                    {All_Allies.map(item=> (
-                    <div className='d-flex flex-row' key={item.draggable_id}>
+                    <h2>IN ROOM</h2>
+                    {Room.map(item => (
+                        <div className='d-flex flex-row' key={item.draggable_id}>
                             <img src={`${apiPath}/${item.folder_name}/${item.src}`} />
-                        <div className="d-flex flex-column justify-content-center align-content-center">
-                                <span>{ item.name}</span>
+                            <div className="d-flex flex-column justify-content-center align-content-center">
+                                <span>{item.name}</span>
                                 <span>{item.role}</span>
-                                <span>{ item.description}</span>
+                                <span>{item.description}</span>
+                            </div>
                         </div>
-                    </div>
                     ))}
                 </Col>
                 <Col>
-                    <h2>TRAITORS</h2>
-                    {All_Traitors.map(item => (
+                    <h2>PEANUT GALLERY</h2>
+                    {PeanutGallery.map(item => (
+                        <div className='d-flex flex-row' key={item.draggable_id}>
+                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                            <div className="d-flex flex-column justify-content-center align-content-center">
+                                <span>{item.name}</span>
+                                <span>{item.role}</span>
+                                <span>{item.description}</span>
+                            </div>
+                        </div>
+                    ))}
+                </Col>
+                <Col md={12}>
+                    <h2>OUTSIDE</h2>
+                    {Outside.map(item => (
                         <div className='d-flex flex-row' key={item.draggable_id}>
                             <img src={`${apiPath}/${item.folder_name}/${item.src}`} />
                             <div className="d-flex flex-column justify-content-center align-content-center">

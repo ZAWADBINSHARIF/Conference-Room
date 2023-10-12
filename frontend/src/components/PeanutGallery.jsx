@@ -10,7 +10,7 @@ const PeanutGallery = () => {
     <div className="PeanutGallery">
       <div className="peanutGalleryWrapper p-1">
 
-        {peanutGalleryImg.map(item => (
+        {peanutGalleryImg.map(item => (          
           <img
             key={item.draggable_id}
             src={`${apiPath}/${item.folder_name}/${item.src}`}
