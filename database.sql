@@ -15,7 +15,8 @@ CREATE TABLE
         create_time DATETIME COMMENT 'Create Time',
         filename VARCHAR(255) NOT NULL COMMENT "CHARACTER PICTURE'S FILE NAME",
         name VARCHAR(255) NOT NULL COMMENT "NAME OF THE CHARACTER",
-        folder_name VARCHAR(255) NOT NULL COMMENT "Folder name where the picture was saved"
+        folder_name VARCHAR(255) NOT NULL COMMENT "Folder name where the picture was saved",
+        description VARCHAR(255) COMMENT "Description of CHARACTER"
     );
 
 CREATE TABLE
