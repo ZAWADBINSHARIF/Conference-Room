@@ -19,7 +19,6 @@ const DraggableImage = ({
     folder_name,
     draggable_id }) => {
 
-    const apiPath = import.meta.env.VITE_API
     const [showContextMenu, setShowContextMenu] = useState(false)
     const dispatch = useDispatch()
     const {
@@ -96,7 +95,7 @@ const DraggableImage = ({
                 {...attributes}
                 {...listeners}
             >
-                <img src={`${apiPath}/${folder_name}/${src}`} />
+                <img src={`/${folder_name}/${src}`} />
 
                 <div className="draggableCharInfo mt-2">
                     {`${name}`}

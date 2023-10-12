@@ -43,9 +43,6 @@ const CharacterListItem = ({ id, name, imgFilename, folderName, description }) =
     dispatch(setAchetypeDescriptionText(id))
   }
 
-
-  const apiPath = import.meta.env.VITE_API
-
   return (
     <div
       className="CharacterListItem text-light"
@@ -69,7 +66,7 @@ const CharacterListItem = ({ id, name, imgFilename, folderName, description }) =
           <img
             width={75}
             id={id}
-            src={`${apiPath}/${folderName}/${imgFilename}`}
+            src={`/${folderName}/${imgFilename}`}
           />
 
           <BiPlus

@@ -16,8 +16,6 @@ const FinalResult = () => {
         window.print()
     }
 
-    const apiPath = import.meta.env.VITE_API
-
     useEffect(() => {
         console.log('Load')
         window.onload = showPrintPDF()
@@ -31,7 +29,7 @@ const FinalResult = () => {
                     <h2>IN ROOM</h2>
                     {Room.map(item => (
                         <div className='d-flex flex-row' key={item.draggable_id}>
-                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                            <img src={`/${item.folder_name}/${item.src}`} />
                             <div className="d-flex flex-column justify-content-center align-content-center">
                                 <span>{item.name}</span>
                                 <span>{item.role}</span>
@@ -44,7 +42,7 @@ const FinalResult = () => {
                     <h2>PEANUT GALLERY</h2>
                     {PeanutGallery.map(item => (
                         <div className='d-flex flex-row' key={item.draggable_id}>
-                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                            <img src={`/${item.folder_name}/${item.src}`} />
                             <div className="d-flex flex-column justify-content-center align-content-center">
                                 <span>{item.name}</span>
                                 <span>{item.role}</span>
@@ -57,7 +55,7 @@ const FinalResult = () => {
                     <h2>OUTSIDE</h2>
                     {Outside.map(item => (
                         <div className='d-flex flex-row' key={item.draggable_id}>
-                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                            <img src={`/${item.folder_name}/${item.src}`} />
                             <div className="d-flex flex-column justify-content-center align-content-center">
                                 <span>{item.name}</span>
                                 <span>{item.role}</span>

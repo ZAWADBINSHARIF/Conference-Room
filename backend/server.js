@@ -30,11 +30,18 @@ app.use(cors({
 dbConnection({ app, PORT })
 
 // set up static files
-app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
+app.use(express.static(path.join(__dirname, 'public', 'uploads')))
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')))
+
+// ** this code for windows
+// app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
 // app.use(express.static(path.join(__dirname, 'frontend', 'dist')))
 
 // routers
 app.use('/api', apiRoute)
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html')))
+
+// ** this code for windows
 // app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html')))
 
 // common error handle
