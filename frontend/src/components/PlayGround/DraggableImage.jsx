@@ -20,10 +20,7 @@ const DraggableImage = ({
     draggable_id,
     description }) => {
 
-<<<<<<< HEAD
     const apiPath = import.meta.env.VITE_API // ! it will be removed when hosting
-=======
->>>>>>> 2.0-Production
     const [showContextMenu, setShowContextMenu] = useState(false)
     const dispatch = useDispatch()
     const {
