@@ -6,6 +6,7 @@ import { db } from "../configs/dbConnection.js"
 // @access Public
 async function uploadCharacterPicture(req, res) {
     const name = req.body.name
+    const role = req.body.role
     const filename = req.files[0]?.filename || null
     const folder_name = req.folderName
     const description = req.body.description
@@ -15,8 +16,8 @@ async function uploadCharacterPicture(req, res) {
         return
     }
 
-    const sql = `INSERT INTO characters (id, name, filename, folder_name, description) VALUES (DEFAULT, ?, ?, ?, ?)`
-    const values = [name, filename, folder_name, description]
+    const sql = `INSERT INTO characters (id, name, role, filename, folder_name, description) VALUES (DEFAULT, ?,?, ?, ?, ?)`
+    const values = [name, role, filename, folder_name, description]
 
     try {
         await db.query(sql, values)
@@ -116,10 +117,10 @@ async function postSaveHistory(req, res) {
     sql = 'INSERT INTO save_history(id, draggable_id, name, role, src, position_x, position_y, folder_name) VALUES (?,?,?,?,?,?,?,?)'
 
     data.forEach(async (item) => {
-        
+
         const value = [
             item.id,
-            item.draggable_id, 
+            item.draggable_id,
             item.name,
             item.role,
             item.src,
@@ -127,7 +128,7 @@ async function postSaveHistory(req, res) {
             item.position_y,
             item.folder_name
         ]
-        
+
         try {
             await db.query(sql, value)
         } catch (error) {
@@ -135,7 +136,7 @@ async function postSaveHistory(req, res) {
             res.status(500).json({ errors: { msg: error } })
         }
     })
-    
+
     res.status(200).json({ msg: "Data has been saved" })
 }
 

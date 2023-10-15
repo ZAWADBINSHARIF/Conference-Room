@@ -82,7 +82,7 @@ const DraggableImage = ({
 
     return (
         <div
-            className="DraggableImage"
+            className="DraggableImage text-center"
             onClick={() => setShowContextMenu(false)}
             onTouchStart={() => handleOnTouchStart()}
             onTouchEnd={() => handleOnTouchEnd()}
@@ -99,7 +99,7 @@ const DraggableImage = ({
             >
                 <img src={`${apiPath}/${folder_name}/${src}`} />
 
-                <div className="draggableCharInfo mt-2">
+                <div className="draggableCharInfo mt-2 text-center">
                     {`${name}`}
                     <br />
                     {`${role}`}

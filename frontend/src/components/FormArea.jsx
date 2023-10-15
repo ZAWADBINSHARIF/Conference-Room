@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 const FormArea = () => {
 
     const [folderName, setFolderName] = useState('')
+    const [role, setRole] = useState('')
     const [description, setDescription] = useState('')
     const [pictureName, setPictureName] = useState('')
     const [imageFile, setImageFile] = useState(null)
@@ -28,8 +29,9 @@ const FormArea = () => {
         if (folderName !== "" && folderName !== 'tables') {
             formData.append('name', pictureName)
         }
-        if (imageFile && pictureName) {
+        if (imageFile && pictureName && role) {
             formData.append('folderName', folderName)
+            formData.append('role', role)
             formData.append('description', description)
             formData.append('image', imageFile)
         }
@@ -60,6 +62,10 @@ const FormArea = () => {
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Picture name</Form.Label>
                         <Form.Control type="text" placeholder="Enter picture name" value={pictureName} onChange={e => setPictureName(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="role">
+                        <Form.Label>Role</Form.Label>
+                        <Form.Control type="text" placeholder="Role" value={role} onChange={e => setRole(e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Description</Form.Label>

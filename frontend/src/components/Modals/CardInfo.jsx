@@ -5,10 +5,10 @@ import { BsFillMicFill } from 'react-icons/bs'
 import { PiStopFill } from 'react-icons/pi'
 
 
-const CardInfo = ({ show, handleClose, handlleAddToPlayGround }) => {
+const CardInfo = ({ characterName, characterRole, show, handleClose, handlleAddToPlayGround }) => {
 
-    const [name, setName] = useState('')
-    const [role, setRole] = useState('')
+    const [name, setName] = useState(characterName)
+    const [role, setRole] = useState(characterRole)
     const [isListening, setIsListensng] = useState(false)
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -55,10 +55,10 @@ const CardInfo = ({ show, handleClose, handlleAddToPlayGround }) => {
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Name</Form.Label>
                         <InputGroup>
-                            <Form.Control type="text" placeholder="Name" value={name} onChange={e=> setName(e.target.value)} />
+                            <Form.Control type="text" placeholder="Name" disabled value={name} onChange={e => setName(e.target.value)} />
                             <InputGroup.Text style={{ background: '#182129' }}>
                                 {isListening ?
-                                    <PiStopFill color="red" className="icon" onClick={()=> handleStopRecognition()} /> :
+                                    <PiStopFill color="red" className="icon" onClick={() => handleStopRecognition()} /> :
                                     <BsFillMicFill color="white" className="icon" onClick={() => handleSpeechRecognition("Name")} />
                                 }
                             </InputGroup.Text>
@@ -67,10 +67,10 @@ const CardInfo = ({ show, handleClose, handlleAddToPlayGround }) => {
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Role</Form.Label>
                         <InputGroup>
-                            <Form.Control type="text" placeholder="Role" value={role} onChange={e=> setRole(e.target.value)} />
+                            <Form.Control type="text" placeholder="Role" disabled value={role} onChange={e => setRole(e.target.value)} />
                             <InputGroup.Text style={{ background: '#182129' }}>
                                 {isListening ?
-                                    <PiStopFill color="red" className="icon" onClick={()=> handleStopRecognition()} /> :
+                                    <PiStopFill color="red" className="icon" onClick={() => handleStopRecognition()} /> :
                                     <BsFillMicFill color="white" className="icon" onClick={() => handleSpeechRecognition("Role")} />
                                 }
                             </InputGroup.Text>
@@ -82,7 +82,7 @@ const CardInfo = ({ show, handleClose, handlleAddToPlayGround }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="secondary" onClick={()=> handlleAddToPlayGround(name, role)}>
+                    <Button variant="secondary" onClick={() => handlleAddToPlayGround(name, role)}>
                         Save
                     </Button>
                 </Modal.Footer>

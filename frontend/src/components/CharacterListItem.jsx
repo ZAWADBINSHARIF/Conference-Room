@@ -9,7 +9,7 @@ import CryptoJS from 'crypto-js';
 import { addDraggableImg } from "../Store/Slices/DraggableImgSlice";
 import { clearAchetypeDescriptionText, setAchetypeDescriptionText } from "../Store/Slices/CharacterImgSlice";
 
-const CharacterListItem = ({ id, name, imgFilename, folderName, description }) => {
+const CharacterListItem = ({ id, name, role, imgFilename, folderName, description }) => {
 
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
@@ -54,6 +54,8 @@ const CharacterListItem = ({ id, name, imgFilename, folderName, description }) =
       onMouseOut={() => dispatch(clearAchetypeDescriptionText())}
     >
       <CardInfo
+        characterName={name}
+        characterRole={role}
         show={show}
         handleClose={handleClose}
         handlleAddToPlayGround={handlleAddToPlayGround}
