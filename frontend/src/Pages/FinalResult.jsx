@@ -16,11 +16,8 @@ const FinalResult = () => {
         window.print()
     }
 
-<<<<<<< HEAD
     const apiPath = import.meta.env.VITE_API // ! it will be removed when hosting
 
-=======
->>>>>>> 2.0-Production
     useEffect(() => {
         console.log('Load')
         window.onload = showPrintPDF()
@@ -34,11 +31,7 @@ const FinalResult = () => {
                     <h2>IN ROOM</h2>
                     {Room.map(item => (
                         <div className='d-flex flex-row' key={item.draggable_id}>
-<<<<<<< HEAD
                             <img src={`${apiPath}/${item.folder_name}/${item.src}`} /> {/* // ! it will be removed when hosting */}
-=======
-                            <img src={`/${item.folder_name}/${item.src}`} />
->>>>>>> 2.0-Production
                             <div className="d-flex flex-column justify-content-center align-content-center">
                                 <span>{item.name}</span>
                                 <span>{item.role}</span>
@@ -51,11 +44,7 @@ const FinalResult = () => {
                     <h2>PEANUT GALLERY</h2>
                     {PeanutGallery.map(item => (
                         <div className='d-flex flex-row' key={item.draggable_id}>
-<<<<<<< HEAD
                             <img src={`${apiPath}/${item.folder_name}/${item.src}`} /> {/* // ! it will be removed when hosting */}
-=======
-                            <img src={`/${item.folder_name}/${item.src}`} />
->>>>>>> 2.0-Production
                             <div className="d-flex flex-column justify-content-center align-content-center">
                                 <span>{item.name}</span>
                                 <span>{item.role}</span>
@@ -68,11 +57,7 @@ const FinalResult = () => {
                     <h2>OUTSIDE</h2>
                     {Outside.map(item => (
                         <div className='d-flex flex-row' key={item.draggable_id}>
-<<<<<<< HEAD
                             <img src={`${apiPath}/${item.folder_name}/${item.src}`} /> {/* // ! it will be removed when hosting */}
-=======
-                            <img src={`/${item.folder_name}/${item.src}`} />
->>>>>>> 2.0-Production
                             <div className="d-flex flex-column justify-content-center align-content-center">
                                 <span>{item.name}</span>
                                 <span>{item.role}</span>
