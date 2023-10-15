@@ -8,7 +8,7 @@ import { addSaveTable } from "../Store/Slices/SaveTableSlice.js"
 const TableListItem = ({ id, imgFilename, hideTheTableModal }) => {
 
   const dispatch = useDispatch()
-  const apiPath = import.meta.env.VITE_API
+  const apiPath = import.meta.env.VITE_API // ! it will be removed when hosting
 
   function handleAddTable() {
     dispatch(addSaveTable(imgFilename))
@@ -20,7 +20,7 @@ const TableListItem = ({ id, imgFilename, hideTheTableModal }) => {
       <img
         width={250}
         id={id}
-        src={`${apiPath}/tables/${imgFilename}`}
+        src={`${apiPath}/tables/${imgFilename}`} // ! it will be removed when hosting
         onClick={() => handleAddTable()}
       />
     </div>

@@ -43,7 +43,7 @@ const CharacterListItem = ({ id, name, role, imgFilename, folderName, descriptio
     dispatch(setAchetypeDescriptionText(id))
   }
 
-
+  // ! it will be removed when hosting
   const apiPath = import.meta.env.VITE_API
 
   return (
@@ -71,7 +71,7 @@ const CharacterListItem = ({ id, name, role, imgFilename, folderName, descriptio
           <img
             width={75}
             id={id}
-            src={`${apiPath}/${folderName}/${imgFilename}`}
+            src={`${apiPath}/${folderName}/${imgFilename}`} // ! it will be removed when hosting
           />
 
           <BiPlus

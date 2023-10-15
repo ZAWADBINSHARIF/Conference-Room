@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 const PeanutGallery = () => {
 
   const peanutGalleryImg = useSelector(state => state.peanut_gallery_img)
-  const apiPath = import.meta.env.VITE_API
+  const apiPath = import.meta.env.VITE_API // ! it will be removed when hosting
 
   return (
     <div className="PeanutGallery">
@@ -13,7 +13,7 @@ const PeanutGallery = () => {
         {peanutGalleryImg.map(item => (          
           <img
             key={item.draggable_id}
-            src={`${apiPath}/${item.folder_name}/${item.src}`}
+            src={`${apiPath}/${item.folder_name}/${item.src}`} // ! it will be removed when hosting
             width={75}
           />
         ))}
