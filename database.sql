@@ -17,7 +17,8 @@ CREATE TABLE
         description TEXT COMMENT "DESCRIPTION OF THE CHARACTER",
         folder_name VARCHAR(255) NOT NULL COMMENT "Folder name where the picture was saved",
         filename VARCHAR(255) NOT NULL COMMENT "CHARACTER PICTURE'S FILE NAME",
-        create_time DATETIME COMMENT 'Create Time'
+        name VARCHAR(255) NOT NULL COMMENT "NAME OF THE CHARACTER",
+        folder_name VARCHAR(255) NOT NULL COMMENT "Folder name where the picture was saved"
     );
 
 CREATE TABLE
