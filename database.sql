@@ -16,9 +16,7 @@ CREATE TABLE
         role VARCHAR(255) NOT NULL COMMENT "ROLE OF THE CHARACTER",
         description TEXT COMMENT "DESCRIPTION OF THE CHARACTER",
         folder_name VARCHAR(255) NOT NULL COMMENT "Folder name where the picture was saved",
-        filename VARCHAR(255) NOT NULL COMMENT "CHARACTER PICTURE'S FILE NAME",
-        name VARCHAR(255) NOT NULL COMMENT "NAME OF THE CHARACTER",
-        folder_name VARCHAR(255) NOT NULL COMMENT "Folder name where the picture was saved"
+        filename VARCHAR(255) NOT NULL COMMENT "CHARACTER PICTURE'S FILE NAME"
     );
 
 CREATE TABLE
