@@ -9,7 +9,7 @@ const singleUpload = (
     errorMessage
 ) => {
     const __dirname = path.resolve()
-    const uploadFolder = path.join(__dirname, "backend", "public", "uploads", subFolderName)
+    const uploadFolder = path.join(__dirname, "public", "uploads", subFolderName)
 
     const storage = multer.diskStorage({
         destination: function (req, file, cd) {
