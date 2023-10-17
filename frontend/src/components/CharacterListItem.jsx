@@ -71,7 +71,7 @@ const CharacterListItem = ({ id, name, role, imgFilename, folderName, descriptio
           <img
             width={75}
             id={id}
-            src={`${apiPath}/${folderName}/${imgFilename}`}
+            src={`/${folderName}/${imgFilename}`}
           />
 
           <BiPlus

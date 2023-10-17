@@ -20,7 +20,7 @@ const TableListItem = ({ id, imgFilename, hideTheTableModal }) => {
       <img
         width={250}
         id={id}
-        src={`${apiPath}/tables/${imgFilename}`} // ! it will be removed when hosting
+        src={`/tables/${imgFilename}`} // ! it will be removed when hosting
         onClick={() => handleAddTable()}
       />
     </div>

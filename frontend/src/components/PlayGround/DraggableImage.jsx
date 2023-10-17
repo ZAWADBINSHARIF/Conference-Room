@@ -97,7 +97,7 @@ const DraggableImage = ({
                 {...attributes}
                 {...listeners}
             >
-                <img src={`${apiPath}/${folder_name}/${src}`} /> {/* // ! it will be removed when hosting */}
+                <img src={`/${folder_name}/${src}`} /> {/* // ! it will be removed when hosting */}
 
                 <div className="draggableCharInfo mt-2 text-center">
                     {`${name}`}

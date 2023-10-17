@@ -20,7 +20,7 @@ const TablePlace = () => {
   return (
     <div className="TablePlace">
       {tableFileName &&
-        <img src={`${apiPath}/tables/${tableFileName}`} /> 
+        <img src={`/tables/${tableFileName}`} />
       }
     </div>
   )
