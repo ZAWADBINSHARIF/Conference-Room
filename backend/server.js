@@ -39,10 +39,12 @@ app.use(express.static(path.join(__dirname, 'frontend', 'dist')))
 
 // routers
 app.use('/api', apiRoute)
+
+// ** this code for linux
 // app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html')))
 
 // ** this code for windows
-app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html')))
+// app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html')))
 
 // common error handle
 // app.use(errorHandler)

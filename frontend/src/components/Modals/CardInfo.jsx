@@ -5,7 +5,7 @@ import { BsFillMicFill } from 'react-icons/bs'
 import { PiStopFill } from 'react-icons/pi'
 
 
-const CardInfo = ({ characterName, characterRole, show, handleClose, handlleAddToPlayGround }) => {
+const CardInfo = ({ characterName, characterRole, show, handleClose, handleAddToPlayGround }) => {
 
     const [name, setName] = useState(characterName)
     const [role, setRole] = useState(characterRole)

@@ -10,7 +10,6 @@ const singleUpload = (
 ) => {
     const __dirname = path.resolve()
     const uploadFolder = path.join(__dirname, "backend", "public", "uploads", subFolderName)
-
     const storage = multer.diskStorage({
         destination: function (req, file, cd) {
             cd(null, uploadFolder)

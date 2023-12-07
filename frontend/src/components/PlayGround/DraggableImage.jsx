@@ -1,13 +1,13 @@
 // external import
-import { useDraggable } from "@dnd-kit/core"
-import { CSS } from "@dnd-kit/utilities"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDraggable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 // internal import
-import { removeDraggableImg } from "../../Store/Slices/DraggableImgSlice.js"
-import { getRemovedDraggableImg } from "../../Store/Slices/RemovedDraggableImgSlice.js"
-import { setCharacterToPeanutGallery } from "../../Store/Slices/PeanutGalleryImgSlice.js"
+import { removeDraggableImg } from "../../Store/Slices/DraggableImgSlice.js";
+import { getRemovedDraggableImg } from "../../Store/Slices/RemovedDraggableImgSlice.js";
+import { setCharacterToPeanutGallery } from "../../Store/Slices/PeanutGalleryImgSlice.js";
 
 const DraggableImage = ({
     id,
@@ -20,9 +20,9 @@ const DraggableImage = ({
     draggable_id,
     description }) => {
 
-    const apiPath = import.meta.env.VITE_API // ! it will be removed when hosting
-    const [showContextMenu, setShowContextMenu] = useState(false)
-    const dispatch = useDispatch()
+    const apiPath = import.meta.env.VITE_API; // ! it will be removed when hosting
+    const [showContextMenu, setShowContextMenu] = useState(false);
+    const dispatch = useDispatch();
     const {
         attributes,
         listeners,
@@ -30,8 +30,11 @@ const DraggableImage = ({
         transform,
         isDragging
     } = useDraggable({
-        id: draggable_id
-    })
+        id: draggable_id,
+        data: {
+            type: 'PlayGroundCharacter'
+        }
+    });
     let timer;
 
     const style = {
@@ -40,16 +43,16 @@ const DraggableImage = ({
         top: y,
         cursor: isDragging ? "grabbing" : "grab",
         position: 'absolute'
-    }
+    };
 
     function handleAddToPeanutGallery() {
-        dispatch(setCharacterToPeanutGallery({ id, src, x, y, name, role, folder_name, draggable_id, description }))
-        dispatch(removeDraggableImg(draggable_id))
+        dispatch(setCharacterToPeanutGallery({ id, src, x, y, name, role, folder_name, draggable_id, description }));
+        dispatch(removeDraggableImg(draggable_id));
     }
 
     function handleRemove() {
-        dispatch(getRemovedDraggableImg(draggable_id))
-        dispatch(removeDraggableImg(draggable_id))
+        dispatch(getRemovedDraggableImg(draggable_id));
+        dispatch(removeDraggableImg(draggable_id));
     }
 
     function ContextMenu() {
@@ -63,21 +66,21 @@ const DraggableImage = ({
                     Leave
                 </span>
             </div>
-        )
+        );
     }
 
     function handleContextMenu(e) {
-        e.preventDefault()
-        setShowContextMenu(prev => !prev)
+        e.preventDefault();
+        setShowContextMenu(prev => !prev);
     }
 
     function handleOnTouchStart() {
-        timer = setTimeout(handleContextMenu, 500)
+        timer = setTimeout(handleContextMenu, 500);
     }
 
     function handleOnTouchEnd() {
         if (timer)
-            clearTimeout(timer)
+            clearTimeout(timer);
     }
 
     return (
@@ -106,6 +109,6 @@ const DraggableImage = ({
                 </div>
             </div>
         </div>
-    )
-}
-export default DraggableImage
+    );
+};
+export default DraggableImage;
