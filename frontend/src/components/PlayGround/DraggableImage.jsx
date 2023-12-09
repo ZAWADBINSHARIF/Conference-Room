@@ -32,7 +32,8 @@ const DraggableImage = ({
     } = useDraggable({
         id: draggable_id,
         data: {
-            type: 'PlayGroundCharacter'
+            type: 'PlayGroundCharacter',
+            draggable_id
         }
     });
     let timer;
@@ -100,9 +101,18 @@ const DraggableImage = ({
                 {...attributes}
                 {...listeners}
             >
-                <img src={`${apiPath}/${folder_name}/${src}`} /> {/* // ! it will be removed when hosting */}
+                <img
+                    src={`${apiPath}/${folder_name}/${src}`}
+                    style={{ width: "75px", borderRadius: "5px" }}
+                /> {/* // ! it will be removed when hosting */}
 
-                <div className="draggableCharInfo mt-2 text-center">
+                <div className="draggableCharInfo mt-2 text-center"
+                    style={{
+                        textAlign: 'center',
+                        color: "#f9ae01",
+                        lineHeight: "1rem"
+                    }}
+                >
                     {`${name}`}
                     <br />
                     {`${role}`}

@@ -8,16 +8,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import PlayGround from '../components/PlayGround/PlayGround';
 import SideBar from '../components/SideBar';
 import PeanutGallery from '../components/PeanutGallery';
-import { addDraggableImg, setDraggableImgPosition } from "../Store/Slices/DraggableImgSlice.js";
+import { addDraggableImg, setDraggableImgPosition, removeDraggableImg } from "../Store/Slices/DraggableImgSlice.js";
+import { setCharacterToPeanutGallery } from "../Store/Slices/PeanutGalleryImgSlice.js";
 import CharactersListItem from "../components/CharacterListItem.jsx";
+import DraggableImage from "../components/PlayGround/DraggableImage.jsx";
 
 const Hero = () => {
     const [activeId, setActiveId] = useState(null);
     const [draggable_id, setDraggable_id] = useState(null);
+    const [draggable_Item_Type, setDraggable_Item_Type] = useState(null);
     const [dropCharacterPosition, setDropCharacterPosition] = useState(null);
 
     const dispatch = useDispatch();
     const allCharacters = useSelector(state => state.character_img.data);
+    const allDraggableImgs = useSelector(state => state.draggable_img);
 
     const mouseSensor = useSensor(MouseSensor, {
         // Require the mouse to move by 10 pixels before activating
@@ -32,22 +36,45 @@ const Hero = () => {
         },
     });
 
-    const OverlayItem = () => (
+    const OverlayItem = () => {
 
-        allCharacters.map((item) => {
-            if (item.id == activeId) {
-                return (<CharactersListItem
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    role={item.role}
-                    imgFilename={item.filename}
-                    folderName={item.folder_name}
-                    description={item.description}
-                />);
-            }
-        })
-    );
+        if (draggable_Item_Type === 'characterFromSlideMenu') {
+            return allCharacters.map(item => {
+                if (item.id == activeId) {
+                    return (<CharactersListItem
+                        key={item.id}
+                        id={item.id}
+                        name={item.name}
+                        role={item.role}
+                        imgFilename={item.filename}
+                        folderName={item.folder_name}
+                        description={item.description}
+                    />);
+                }
+            });
+        } else if (draggable_Item_Type === "PlayGroundCharacter") {
+            // console.log(allDraggableImgs);
+            return allDraggableImgs.map(item => {
+                if (item.draggable_id == activeId) {
+                    console.log(item.draggable_id);
+                    return (<DraggableImage
+                        key={item.id}
+                        id={item.id}
+                        name={item.name}
+                        role={item.role}
+                        src={item.src}
+                        folder_name={item.folder_name}
+                        description={item.description}
+                        // x={item.position_x}
+                        // y={item.position_y}
+                        draggable_id={item.draggable_id}
+                    />);
+                }
+            });
+        } else {
+            return (<>No Data</>);
+        }
+    };
 
     function handleAddToPlayGround(playGroundTop, playGroundLeft, new_x, new_y) {
         const character = allCharacters.find((item) => item.id === activeId);
@@ -72,10 +99,16 @@ const Hero = () => {
 
     function handleDragStart(event) {
         const { data } = event.active;
+
         if (data.current.type === "characterFromSlideMenu") {
+            setDraggable_Item_Type("characterFromSlideMenu");
             setActiveId(data.current.characterId);
             setDraggable_id(data.current.draggable_id);
             setDropCharacterPosition(data.current.position);
+        } else if (data.current.type === "PlayGroundCharacter") {
+            setDraggable_Item_Type("PlayGroundCharacter");
+            setActiveId(data.current.draggable_id);
+            setDraggable_id(data.current.draggable_id);
         }
     }
 
@@ -84,13 +117,31 @@ const Hero = () => {
         const { x: new_x, y: new_y } = delta;
         const { id } = active;
         const { top: playGroundTop, left: playGroundLeft } = event.over.rect;
-
         setActiveId(null);
-        dispatch(setDraggableImgPosition({ id, new_x, new_y }));
-        if (activeId && draggable_id && dropCharacterPosition) {
-            handleAddToPlayGround(playGroundTop, playGroundLeft, new_x, new_y);
-        }
 
+        if (event.over.id === "Droppable") {
+            dispatch(setDraggableImgPosition({ id, new_x, new_y }));
+            if (activeId && draggable_id && dropCharacterPosition) {
+                handleAddToPlayGround(playGroundTop, playGroundLeft, new_x, new_y);
+            }
+        } else if (event.over.id === "PeanutGallery") {
+            const draggableImg = allDraggableImgs.find(item => item.draggable_id == activeId);
+            dispatch(setCharacterToPeanutGallery(
+                {
+                    id: draggableImg.id,
+                    src: draggableImg.src,
+                    x: draggableImg.x,
+                    y: draggableImg.y,
+                    name: draggableImg.name,
+                    role: draggableImg.role,
+                    folder_name: draggableImg.folder_name,
+                    draggable_id: draggableImg.draggable_id,
+                    description: draggableImg.description
+                }
+            ));
+            dispatch(removeDraggableImg(draggableImg.draggable_id));
+        }
+        console.log(event);
     }
 
     return (

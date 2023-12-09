@@ -62,6 +62,7 @@ div {
 
       // not selectable mode start
       user-select: none;
+      -o-user-select: none;
       -moz-user-select: none;
       -khtml-user-select: none;
       -webkit-user-select: none;
@@ -101,24 +102,28 @@ body {
         margin-bottom: 12px;
         .peanutGalleryWrapper {
           height: 90px;
+          min-width: 90px;
           width: min-content;
           margin: 12px 0 0 12px;
           display: flex;
           gap: 5px;
-          border: 3px solid transparent;
           border-radius: 12px;
-          transition: 0.5s;
+          border: 3px solid $borderColor;
 
           &:hover {
-            border: 3px solid $borderColor;
-            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.5s;
           }
-        }
 
-        img {
-          cursor: pointer;
-          &:hover {
-            scale: 1.05;
+          p {
+            color: $textColor;
+          }
+
+          img {
+            cursor: pointer;
+            &:hover {
+              scale: 1.05;
+            }
           }
         }
       }

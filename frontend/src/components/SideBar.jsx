@@ -2,7 +2,6 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from "react-router-dom";
-import {DragOverlay} from '@dnd-kit/core';
 
 // internal import 
 import CharactersListItem from "./CharacterListItem";

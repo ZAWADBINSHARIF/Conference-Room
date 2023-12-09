@@ -1,11 +1,11 @@
 // external import
-import { useDroppable, TouchSensor, MouseSensor, useSensor } from '@dnd-kit/core';
+import { useDroppable } from '@dnd-kit/core';
 import { useDispatch, useSelector } from 'react-redux';
 
 // internal import
 import TablePlace from "./TablePlace";
 import DraggableImage from './DraggableImage';
-import { fetchSaveHistoryThunk, setDraggableImgPosition } from '../../Store/Slices/DraggableImgSlice.js';
+import { fetchSaveHistoryThunk } from '../../Store/Slices/DraggableImgSlice.js';
 import { useEffect, useState } from 'react';
 import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
@@ -13,7 +13,6 @@ import TablesChooseModal from '../Modals/TablesChooseModal';
 
 const PlayGround = () => {
 
-  const [itemPosition, setItemPosition] = useState({ x: 0, y: 0 });
   const draggableImgs = useSelector(state => state.draggable_img);
   const dispatch = useDispatch();
 
@@ -31,10 +30,7 @@ const PlayGround = () => {
   }, [dispatch]);
 
   return (
-    // <DndContext
-    //   onDragEnd={handleDragEnd}
-    //   sensors={[mouseSensor, touchSensor]}
-    // >
+
     <>
       <TablesChooseModal
         show={showTableModal}
@@ -69,17 +65,8 @@ const PlayGround = () => {
       </div>
 
     </>
-    // </DndContext>
+
   );
-
-  // function handleDragEnd(event) {
-  //   const { active, delta } = event;
-  //   const { x: new_x, y: new_y } = delta;
-  //   const { id } = active;
-
-  //   dispatch(setDraggableImgPosition({ id, new_x, new_y }));
-
-  // }
 
 };
 
