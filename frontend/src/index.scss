@@ -145,6 +145,14 @@ body {
         -o-user-select: none;
         // not selectable mode end
 
+        // Table Image Design
+        .TablePlace {
+          img {
+            width: 500px;
+            border-radius: 12px;
+          }
+        }
+
         // Draggable Image design
         .DraggableImage {
           img {
@@ -204,6 +212,7 @@ body {
         flex-direction: column;
 
         .MenuList {
+          min-width: 100px;
           overflow-y: scroll;
           border: 3px solid $borderColor;
           border-radius: 25px;

@@ -38,7 +38,7 @@ export function fetchSaveTableThunk() {
 export function saveTableThunk(filename) {
     return async function (dispatch, getState) {
         try {
-            const response = await axios.post('/save_table', {
+            await axios.post('/save_table', {
                 body:filename
             })
         } catch (error) {

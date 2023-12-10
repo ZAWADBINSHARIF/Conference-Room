@@ -23,8 +23,6 @@ const PlayGround = () => {
     }
   });
 
-  const [showTableModal, setShowTableModal] = useState(true);
-
   useEffect(() => {
     dispatch(fetchSaveHistoryThunk());
   }, [dispatch]);
@@ -32,11 +30,6 @@ const PlayGround = () => {
   return (
 
     <>
-      <TablesChooseModal
-        show={showTableModal}
-        onHide={() => setShowTableModal(false)}
-      />
-
       <div
         className="PlayGround w-100 d-flex justify-content-center align-items-center"
         ref={setNodeRef}
