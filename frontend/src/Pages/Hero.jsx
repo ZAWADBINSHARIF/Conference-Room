@@ -65,8 +65,6 @@ const Hero = () => {
                         src={item.src}
                         folder_name={item.folder_name}
                         description={item.description}
-                        // x={item.position_x}
-                        // y={item.position_y}
                         draggable_id={item.draggable_id}
                     />);
                 }

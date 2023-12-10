@@ -1,13 +1,13 @@
 // external import
-import { Modal, Button } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { Modal } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 // internal import
-import TableListItem from "../TableListItem"
+import TableListItem from "../TableListItem";
 
 const TablesChooseModal = (props) => {
 
-    const allTables = useSelector(state => state.table_img.data)
+    const allTables = useSelector(state => state.table_img.data);
 
     return (
         <div className="TablesChooseModal">
@@ -36,9 +36,9 @@ const TablesChooseModal = (props) => {
                         ))}
                     </div>
                 </Modal.Body>
-                <Modal.Footer/>
+                <Modal.Footer />
             </Modal>
         </div>
-    )
-}
-export default TablesChooseModal
+    );
+};
+export default TablesChooseModal;
