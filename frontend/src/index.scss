@@ -278,12 +278,23 @@ body {
       }
     }
 
-    // .swiper_container {
-    //     img {
-    //       // width: 185px;
-    //       // object-fit: cover;
-    //       // scale:1.2 ;
-    //   }
-    // }
+    .Session {
+      .FormArea {
+        width: 400px;
+        border: 1px solid $borderColor;
+        border-radius: 12px;
+        *:not(button) {
+          color: white;
+          background-color: $backGroundColor;
+          ::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+          }
+          input {
+            color: black;
+            background-color: white;
+          }
+        }
+      }
+    }
   }
 }

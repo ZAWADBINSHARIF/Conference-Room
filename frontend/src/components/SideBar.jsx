@@ -1,14 +1,16 @@
 // enternal import
-import {useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 // internal import 
 import CharactersListItem from "./CharacterListItem";
-import {fetchAllCharacters} from "../Store/Slices/CharacterImgSlice.js";
-import {fetchAllTables} from "../Store/Slices/TableImgSlice.js";
-import {Button} from "react-bootstrap";
-import {toast} from "react-toastify";
+import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js";
+import { fetchAllTables } from "../Store/Slices/TableImgSlice.js";
+import { setStopGameTime } from "../Store/Slices/SessionSlice.js";
+import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const SideBar = () => {
 
@@ -16,6 +18,8 @@ const SideBar = () => {
     const navigate = useNavigate();
     const allCharacters = useSelector(state => state.character_img.data);
     const draggable_imgs = useSelector(state => state.draggable_img);
+
+
 
     const MenuListItem = () => (
 
@@ -34,6 +38,7 @@ const SideBar = () => {
 
     function handleEndGame() {
         if (!draggable_imgs.length) return toast.info("At least make one Ally");
+        dispatch(setStopGameTime(format(new Date(), "HH:mm:SS")));
         navigate('/result');
     }
 
@@ -45,7 +50,7 @@ const SideBar = () => {
     return (
         <menu
             className="SideBar text-center d-flex flex-column me-4"
-            style={{display: allCharacters.length != 0 ? 'flex' : "none"}}>
+            style={{ display: allCharacters.length != 0 ? 'flex' : "none" }}>
 
             <Button className="my-4" variant="success" onClick={() => handleEndGame()}>
                 End Game
@@ -53,7 +58,7 @@ const SideBar = () => {
 
             <div className="MenuList ">
 
-                <MenuListItem/>
+                <MenuListItem />
 
             </div>
         </menu>

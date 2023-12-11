@@ -57,6 +57,7 @@ const FormArea = () => {
             encType="multipart/form-data"
         >
             <h1>Add Image</h1>
+            <hr/>
             {folderName !== "" && folderName !== 'tables' &&
                 <>
                     <Form.Group className="mb-3" controlId="name">
