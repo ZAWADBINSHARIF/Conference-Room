@@ -12,6 +12,7 @@ import FinalResult from './Pages/FinalResult.jsx'
 import 'react-toastify/dist/ReactToastify.css'; // toastify css file
 import 'bootstrap/dist/css/bootstrap.min.css' // bootstrap css file
 import './index.scss'
+import SessionName from './Pages/SessionName.jsx';
 
 // set axios base url
 const baseUrl = '/api'
@@ -20,6 +21,7 @@ axios.defaults.baseURL = baseUrl
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
+      <Route path='/' element={<SessionName/> } />
       <Route path='/' element={<Hero />} />
       <Route path='/admin' element={<Admin />} />
       <Route path='/result' element={<FinalResult />} />

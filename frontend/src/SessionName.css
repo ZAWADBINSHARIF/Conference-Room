@@ -1,0 +1,29 @@
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 185px;
+  transition: .7s;
+  /* height: 300px; */
+}
+
+.swiper-slide img {
+    opacity: .3;
+  display: block;
+  width: 100%;
+  transition: .5s;
+}
+
+.swiper-slide-active{
+    scale: 1.4;
+    z-index: 100;
+}
+
+.swiper-slide-active>img{
+    opacity: 1;
+}
