@@ -32,8 +32,6 @@ const CharacterListItem = ({ id, name, role, imgFilename, folderName, descriptio
             }
         }
     });
-    // console.log({x: characterRef.current?.offsetLeft,
-    //     y: characterRef.current?.offsetTop})
 
     const style = {
         transform: CSS.Translate.toString(transform),

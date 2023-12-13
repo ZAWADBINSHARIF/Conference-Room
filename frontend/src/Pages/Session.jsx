@@ -72,15 +72,11 @@ const Session = () => {
       date: date,
       startGameTime: format(new Date(), "HH:mm:SS")
     };
-
     dispatch(setSessionData(sessionInfo));
-
-    console.log(activeImgName);
 
     navigate('/game');
 
   }
-
 
   const apiPath = import.meta.env.VITE_API;
 
@@ -146,7 +142,7 @@ const Session = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="session_name">
             <Form.Label>Time</Form.Label>
-            <Form.Control type="time" value={time.current} onChange={(e) => setTime({ time: e.target.value, isChange: true })} />
+            <Form.Control type="time" value={time.current} onChange={(e) => setTime({ current: e.target.value, isChange: true })} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="session_name">
             <Form.Label>Date</Form.Label>

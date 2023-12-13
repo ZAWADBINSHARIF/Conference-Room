@@ -13,6 +13,7 @@ import Session from './Pages/Session.jsx';
 import 'react-toastify/dist/ReactToastify.css'; // toastify css file
 import 'bootstrap/dist/css/bootstrap.min.css'; // bootstrap css file
 import './index.scss';
+import ProtectedRoute from './Pages/ProtectedRoute.jsx';
 
 // set axios base url
 const baseUrl = '/api';
@@ -22,9 +23,13 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route path='/' element={<Session />} />
-      <Route path='/game' element={<Hero />} />
+
+      <Route path='/game' element={<ProtectedRoute/>}>
+        <Route path='/game' element={<Hero />} />
+      </Route>
+      
+      <Route path='/result' element={<FinalResult />}/>
       <Route path='/admin' element={<Admin />} />
-      <Route path='/result' element={<FinalResult />} />
     </Route>
   )
 );

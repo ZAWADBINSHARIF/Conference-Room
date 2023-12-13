@@ -82,8 +82,8 @@ const Hero = () => {
             name: character.name,
             role: character.role,
             src: character.filename,
-            position_x: dropCharacterPosition.x + new_x - playGroundLeft,
-            position_y: dropCharacterPosition.y + new_y - playGroundTop,
+            position_x: dropCharacterPosition.x + new_x - playGroundLeft || 32,
+            position_y: dropCharacterPosition.y + new_y - playGroundTop || 32,
             folder_name: character.folder_name,
             description: character.description
         };
