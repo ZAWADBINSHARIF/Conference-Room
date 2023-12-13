@@ -25,8 +25,6 @@ const FinalResult = () => {
         minute: Math.abs(parseInt(startTime[1]) - parseInt(stopTime[1])),
         second: Math.abs(parseInt(startTime[2]) - parseInt(stopTime[2]))
     };
-    console.log(gameTime.second);
-
 
     function showPrintPDF() {
         window.print();

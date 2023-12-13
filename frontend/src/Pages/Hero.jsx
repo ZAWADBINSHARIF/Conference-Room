@@ -53,10 +53,9 @@ const Hero = () => {
                 }
             });
         } else if (draggable_Item_Type === "PlayGroundCharacter") {
-            // console.log(allDraggableImgs);
+
             return allDraggableImgs.map(item => {
                 if (item.draggable_id == activeId) {
-                    console.log(item.draggable_id);
                     return (<DraggableImage
                         key={item.id}
                         id={item.id}
