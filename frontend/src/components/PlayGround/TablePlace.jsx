@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// external import
+import { useSelector } from "react-redux";
 
 // internal import
 
@@ -11,7 +11,7 @@ const TablePlace = () => {
   const apiPath = import.meta.env.VITE_API;
 
   return (
-    <div className="TablePlace">
+    <div className="TablePlace d-flex justify-content-center">
       {tableFileName &&
         <img src={`${apiPath}/tables/${tableFileName}`} />
       }

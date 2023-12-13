@@ -4,7 +4,7 @@ export const db = mariadb.createPool(
     {
         host: "localhost",
         user: "root",
-        password: "1234",
+        password: "",
         database: 'mind_game',
         connectionLimit: 5
     }

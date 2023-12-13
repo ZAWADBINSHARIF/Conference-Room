@@ -139,7 +139,6 @@ const Hero = () => {
             ));
             dispatch(removeDraggableImg(draggableImg.draggable_id));
         }
-        console.log(event);
     }
 
     return (
