@@ -9,7 +9,6 @@ import { fetchSaveHistoryThunk } from '../../Store/Slices/DraggableImgSlice.js';
 import { useEffect, useState } from 'react';
 import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
-import TablesChooseModal from '../Modals/TablesChooseModal';
 
 const PlayGround = () => {
 

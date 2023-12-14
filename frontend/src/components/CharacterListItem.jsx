@@ -1,78 +1,88 @@
-// external import 
+// external import
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import CryptoJS from 'crypto-js';
-import { useDraggable } from '@dnd-kit/core';
+import CryptoJS from "crypto-js";
+import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
 // internal import
-import { clearAchetypeDescriptionText, setAchetypeDescriptionText } from "../Store/Slices/CharacterImgSlice";
+import {
+  clearAchetypeDescriptionText,
+  setAchetypeDescriptionText,
+} from "../Store/Slices/CharacterImgSlice";
 
-const CharacterListItem = ({ id, name, role, imgFilename, folderName, description }) => {
+const CharacterListItem = ({
+  id,
+  name,
+  role,
+  imgFilename,
+  folderName,
+  description,
+}) => {
+  const dispatch = useDispatch();
+  const characterRef = useRef();
+  const [draggable_id] = useState(CryptoJS.lib.WordArray.random(6).toString());
 
-    const dispatch = useDispatch();
-    const characterRef = useRef();
-    const [draggable_id] = useState(CryptoJS.lib.WordArray.random(6).toString());
-
-    const {
-        attributes,
-        listeners,
-        setNodeRef,
-        transform,
-        isDragging,
-    } = useDraggable({
-        id: draggable_id,
-        data: {
-            type: 'characterFromSlideMenu',
-            characterId: id,
-            draggable_id,
-            position: {
-                x: characterRef.current?.offsetLeft,
-                y: characterRef.current?.offsetTop
-            }
-        }
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id: draggable_id,
+      data: {
+        type: "characterFromSlideMenu",
+        characterId: id,
+        draggable_id,
+        position: {
+          x: characterRef.current?.offsetLeft,
+          y: characterRef.current?.offsetTop,
+        },
+      },
     });
+    console.log()
+//   console.log({
+//     position: {
+//       x: characterRef.current?.offsetLeft,
+//       y: characterRef.current?.offsetTop,
+//     },
+//   });
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    cursor: isDragging ? "grabbing" : "grab",
+  };
 
-    const style = {
-        transform: CSS.Translate.toString(transform),
-        cursor: isDragging ? "grabbing" : "grab"
-    };
+  function onTouchEndAndOnMouseOver() {
+    dispatch(setAchetypeDescriptionText(id));
+  }
 
-    function onTouchEndAndOnMouseOver() {
-        dispatch(setAchetypeDescriptionText(id));
-    }
+  const apiPath = import.meta.env.VITE_API;
 
-    const apiPath = import.meta.env.VITE_API;
-
-    return (
-
+  return (
+    <div
+      className="CharacterListItem text-light"
+      onTouchEnd={() => onTouchEndAndOnMouseOver()}
+      onMouseOver={() => onTouchEndAndOnMouseOver()}
+      onMouseOut={() => dispatch(clearAchetypeDescriptionText())}
+      style={style}
+      ref={setNodeRef}
+    >
+      <div className="d-flex flex-column" ref={characterRef}>
         <div
-            className="CharacterListItem text-light"
-            onTouchEnd={() => onTouchEndAndOnMouseOver()}
-            onMouseOver={() => onTouchEndAndOnMouseOver()}
-            onMouseOut={() => dispatch(clearAchetypeDescriptionText())}
-            style={style}
-            ref={setNodeRef}
-        >
-            <div className="d-flex flex-column" ref={characterRef}>
-
-                <div className="
+          className="
                     imgArea
                     d-flex
                     justify-content-center
                     align-items-center"
-                    {...attributes} {...listeners}
-                >
-                    <img
-                        width={75}
-                        id={id}
-                        src={`${apiPath}/${folderName}/${imgFilename}`}
-                    />
-                </div>
-                <p className="text-center">{name}</p>
-            </div>
+          {...attributes}
+          {...listeners}
+        >
+          <img
+            width={75}
+            id={id}
+            src={`${apiPath}/${folderName}/${imgFilename}`}
+          />
         </div>
-    );
+        <p className="text-center">{name}</p>
+      </div>
+    </div>
+  );
 };
 
 export default CharacterListItem;
