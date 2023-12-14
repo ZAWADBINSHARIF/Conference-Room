@@ -29,7 +29,7 @@ app.use(cors({
 // for database connection
 dbConnection({ app, PORT })
 
-// set up static files
+// ** set up static files. this code for linux server.
 // app.use(express.static(path.join(__dirname, 'public', 'uploads')))
 // app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')))
 // app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')))

@@ -9,7 +9,11 @@ const singleUpload = (
     errorMessage
 ) => {
     const __dirname = path.resolve()
+    // this uploadFolder path for windows
     const uploadFolder = path.join(__dirname, "backend", "public", "uploads", subFolderName)
+    // this uploadFolder path for linux server
+    // const uploadFolder = path.join(__dirname, "public", "uploads", subFolderName)
+    
     const storage = multer.diskStorage({
         destination: function (req, file, cd) {
             cd(null, uploadFolder)
