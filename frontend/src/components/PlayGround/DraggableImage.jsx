@@ -10,115 +10,116 @@ import { getRemovedDraggableImg } from "../../Store/Slices/RemovedDraggableImgSl
 import { setCharacterToPeanutGallery } from "../../Store/Slices/PeanutGalleryImgSlice.js";
 
 const DraggableImage = ({
-    id,
-    src,
-    x,
-    y,
-    name,
-    role,
-    folder_name,
-    draggable_id,
-    description }) => {
-
-    const apiPath = import.meta.env.VITE_API; // ! it will be removed when hosting
-    const [showContextMenu, setShowContextMenu] = useState(false);
-    const dispatch = useDispatch();
-    const {
-        attributes,
-        listeners,
-        setNodeRef,
-        transform,
-        isDragging
-    } = useDraggable({
-        id: draggable_id,
-        data: {
-            type: 'PlayGroundCharacter',
-            draggable_id
-        }
+  id,
+  src,
+  x,
+  y,
+  name,
+  role,
+  folder_name,
+  draggable_id,
+  description,
+}) => {
+  const apiPath = import.meta.env.VITE_API; // ! it will be removed when hosting
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const dispatch = useDispatch();
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id: draggable_id,
+      data: {
+        type: "PlayGroundCharacter",
+        draggable_id,
+      },
     });
-    let timer;
+  let timer;
 
-    const style = {
-        transform: CSS.Translate.toString(transform),
-        left: x,
-        top: y,
-        cursor: isDragging ? "grabbing" : "grab",
-        position: 'absolute'
-    };
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    left: x,
+    top: y,
+    cursor: isDragging ? "grabbing" : "grab",
+    position: "absolute",
+  };
 
-    function handleAddToPeanutGallery() {
-        dispatch(setCharacterToPeanutGallery({ id, src, x, y, name, role, folder_name, draggable_id, description }));
-        dispatch(removeDraggableImg(draggable_id));
-    }
-
-    function handleRemove() {
-        dispatch(getRemovedDraggableImg(draggable_id));
-        dispatch(removeDraggableImg(draggable_id));
-    }
-
-    function ContextMenu() {
-        return (
-            <div className="ContextMenu">
-                <span
-                    onClick={() => handleAddToPeanutGallery()}>Peanut Gallery</span>
-                <span
-                    onClick={() => handleRemove()}
-                    className="text-danger">
-                    Leave
-                </span>
-            </div>
-        );
-    }
-
-    function handleContextMenu(e) {
-        e.preventDefault();
-        setShowContextMenu(prev => !prev);
-    }
-
-    function handleOnTouchStart() {
-        timer = setTimeout(handleContextMenu, 500);
-    }
-
-    function handleOnTouchEnd() {
-        if (timer)
-            clearTimeout(timer);
-    }
-
-    return (
-        <div
-            className="DraggableImage text-center"
-            onClick={() => setShowContextMenu(false)}
-            onTouchStart={() => handleOnTouchStart()}
-            onTouchEnd={() => handleOnTouchEnd()}
-            style={style}
-            ref={setNodeRef}
-            onContextMenu={handleContextMenu}
-        >
-            {showContextMenu && <ContextMenu />}
-
-            {/* // ! Do not remove this div. If you do, any click event will not work*/}
-            <div
-                {...attributes}
-                {...listeners}
-            >
-                <img
-                    src={`${apiPath}/${folder_name}/${src}`}
-                    style={{ width: "75px", borderRadius: "5px" }}
-                /> {/* // ! it will be removed when hosting */}
-
-                <div className="draggableCharInfo mt-2 text-center"
-                    style={{
-                        textAlign: 'center',
-                        color: "#f9ae01",
-                        lineHeight: "1rem"
-                    }}
-                >
-                    {`${name}`}
-                    <br />
-                    {`${role}`}
-                </div>
-            </div>
-        </div>
+  function handleAddToPeanutGallery() {
+    dispatch(
+      setCharacterToPeanutGallery({
+        id,
+        src,
+        x,
+        y,
+        name,
+        role,
+        folder_name,
+        draggable_id,
+        description,
+      })
     );
+    dispatch(removeDraggableImg(draggable_id));
+  }
+
+  function handleRemove() {
+    dispatch(getRemovedDraggableImg(draggable_id));
+    dispatch(removeDraggableImg(draggable_id));
+  }
+
+  function ContextMenu() {
+    return (
+      <div className="ContextMenu">
+        <span onClick={() => handleAddToPeanutGallery()}>Peanut Gallery</span>
+        <span onClick={() => handleRemove()} className="text-danger">
+          Leave
+        </span>
+      </div>
+    );
+  }
+
+  function handleContextMenu(e) {
+    e.preventDefault();
+    setShowContextMenu((prev) => !prev);
+  }
+
+  function handleOnTouchStart() {
+    timer = setTimeout(handleContextMenu, 500);
+  }
+
+  function handleOnTouchEnd() {
+    if (timer) clearTimeout(timer);
+  }
+
+  return (
+    <div
+      className="DraggableImage text-center"
+      onClick={() => setShowContextMenu(false)}
+      onTouchStart={() => handleOnTouchStart()}
+      onTouchEnd={() => handleOnTouchEnd()}
+      style={style}
+      ref={setNodeRef}
+      onContextMenu={handleContextMenu}
+    >
+      {showContextMenu && <ContextMenu />}
+
+      {/* // ! Do not remove this div. If you do, any click event will not work*/}
+      <div {...attributes} {...listeners}>
+        <img
+          src={`/${folder_name}/${src}`}
+          style={{ width: "75px", borderRadius: "5px" }}
+        />{" "}
+        {/* // ! it will be removed when hosting */}
+        <div
+          className="draggableCharInfo mt-2 text-center"
+          style={{
+            textAlign: "center",
+            color: "#f9ae01",
+            lineHeight: "1rem",
+          }}
+        >
+          {`${name}`}
+          <br />
+          {`${role}`}
+        </div>
+      </div>
+    </div>
+  );
 };
 export default DraggableImage;

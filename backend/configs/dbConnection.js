@@ -2,9 +2,9 @@ import mariadb from 'mariadb'
 
 export const db = mariadb.createPool(
     {
-        host: "localhost",
+        host: "127.0.0.1",
         user: "root",
-        password: "",
+        password: "1234",
         database: 'mind_game',
         connectionLimit: 5
     }

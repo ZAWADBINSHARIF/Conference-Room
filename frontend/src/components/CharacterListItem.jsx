@@ -36,13 +36,8 @@ const CharacterListItem = ({
         },
       },
     });
-    console.log()
-//   console.log({
-//     position: {
-//       x: characterRef.current?.offsetLeft,
-//       y: characterRef.current?.offsetTop,
-//     },
-//   });
+  console.log();
+
   const style = {
     transform: CSS.Translate.toString(transform),
     cursor: isDragging ? "grabbing" : "grab",
@@ -73,11 +68,7 @@ const CharacterListItem = ({
           {...attributes}
           {...listeners}
         >
-          <img
-            width={75}
-            id={id}
-            src={`${apiPath}/${folderName}/${imgFilename}`}
-          />
+          <img width={75} id={id} src={`/${folderName}/${imgFilename}`} />
         </div>
         <p className="text-center">{name}</p>
       </div>

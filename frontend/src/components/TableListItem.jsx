@@ -1,18 +1,17 @@
 // external import
-import { BiPlus } from "react-icons/bi"
-import { useDispatch } from "react-redux"
+import { BiPlus } from "react-icons/bi";
+import { useDispatch } from "react-redux";
 
 // internal import
-import { addSaveTable } from "../Store/Slices/SaveTableSlice.js"
+import { addSaveTable } from "../Store/Slices/SaveTableSlice.js";
 
 const TableListItem = ({ id, imgFilename, hideTheTableModal }) => {
-
-  const dispatch = useDispatch()
-  const apiPath = import.meta.env.VITE_API // ! it will be removed when hosting
+  const dispatch = useDispatch();
+  const apiPath = import.meta.env.VITE_API; // ! it will be removed when hosting
 
   function handleAddTable() {
-    dispatch(addSaveTable(imgFilename))
-    hideTheTableModal()
+    dispatch(addSaveTable(imgFilename));
+    hideTheTableModal();
   }
 
   return (
@@ -20,10 +19,10 @@ const TableListItem = ({ id, imgFilename, hideTheTableModal }) => {
       <img
         width={250}
         id={id}
-        src={`${apiPath}/tables/${imgFilename}`} // ! it will be removed when hosting
+        src={`/tables/${imgFilename}`} // ! it will be removed when hosting
         onClick={() => handleAddTable()}
       />
     </div>
-  )
-}
-export default TableListItem
+  );
+};
+export default TableListItem;
