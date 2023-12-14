@@ -30,20 +30,20 @@ app.use(cors({
 dbConnection({ app, PORT })
 
 // ** set up static files. this code for linux server.
-// app.use(express.static(path.join(__dirname, 'public', 'uploads')))
-// app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')))
-// app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')))
+app.use(express.static(path.join(__dirname, 'public', 'uploads')))
+app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')))
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')))
 
 // ** this code for windows
-app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
-app.use(express.static(path.join(__dirname, 'backend', 'public', 'representation_imgs')))
-app.use(express.static(path.join(__dirname, 'frontend', 'dist')))
+// app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
+// app.use(express.static(path.join(__dirname, 'backend', 'public', 'representation_imgs')))
+// app.use(express.static(path.join(__dirname, 'frontend', 'dist')))
 
 // routers
 app.use('/api', apiRoute)
 
 // ** this code for linux
-// app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html')))
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html')))
 
 // ** this code for windows
 // app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html')))
