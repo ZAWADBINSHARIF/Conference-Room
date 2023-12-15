@@ -32,11 +32,13 @@ dbConnection({ app, PORT })
 // ** set up static files. this code for linux server.
 // app.use(express.static(path.join(__dirname, 'public', 'uploads')))
 // app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')))
+// app.use(express.static(path.join(__dirname, 'public', 'background')))
 // app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')))
 
 // ** this code for windows
 app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
 app.use(express.static(path.join(__dirname, 'backend', 'public', 'representation_imgs')))
+app.use(express.static(path.join(__dirname, 'backend', 'public', 'background')))
 app.use(express.static(path.join(__dirname, 'frontend', 'dist')))
 
 // routers

@@ -8,6 +8,7 @@ import {
   TouchSensor,
   useSensor,
 } from "@dnd-kit/core";
+import { snapCenterToCursor } from "@dnd-kit/modifiers";
 import { useDispatch, useSelector } from "react-redux";
 
 // internal import
@@ -32,6 +33,13 @@ const Hero = () => {
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => state.character_img.data);
   const allDraggableImgs = useSelector((state) => state.draggable_img);
+
+  const apiPath = import.meta.env.VITE_API;
+  const styles = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), 
+        rgba(0, 0, 0, 0.35)), 
+        url("${apiPath}/background_image.jpeg")`,
+  };
 
   const mouseSensor = useSensor(MouseSensor, {
     // Require the mouse to move by 10 pixels before activating
@@ -159,9 +167,10 @@ const Hero = () => {
       onDr
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+      modifiers={[snapCenterToCursor]}
       sensors={[mouseSensor, touchSensor]}
     >
-      <Row>
+      <Row className="game" style={styles}>
         {/* playGround */}
         <Col xxl={11} xl={10} md={10}>
           <PeanutGallery />
@@ -174,7 +183,15 @@ const Hero = () => {
         </Col>
       </Row>
 
-      <DragOverlay>{activeId ? <OverlayItem /> : null}</DragOverlay>
+      <DragOverlay
+        modifiers={
+          draggable_Item_Type === "characterFromSlideMenu"
+            ? [snapCenterToCursor]
+            : []
+        }
+      >
+        {activeId ? <OverlayItem /> : null}
+      </DragOverlay>
     </DndContext>
   );
 };

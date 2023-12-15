@@ -90,13 +90,17 @@ div {
 body {
   background-color: $backGroundColor;
   width: 100dvw;
-  // overflow: hidden;
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 
   #root {
     .App {
+      .game{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
       // * peanutGallery
       .PeanutGallery {
         margin-bottom: 12px;
@@ -257,6 +261,8 @@ body {
           }
         }
       }
+
+    }
 
       // * Admin design Start
       .Admin {
