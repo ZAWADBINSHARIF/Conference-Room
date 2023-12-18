@@ -1,11 +1,7 @@
 // external import
-import { useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { format } from 'date-fns';
-
-// internal import
-import '../result.scss';
+import { Page, Text, View, Document, StyleSheet, PDFViewer, Image } from '@react-pdf/renderer';
 
 const FinalResult = () => {
 
@@ -15,82 +11,123 @@ const FinalResult = () => {
     const SessionInfo = useSelector(state => state.session_info.data);
     const startTime = SessionInfo.startGameTime.split(":");
     const stopTime = SessionInfo.stopGameTime.split(":");
-    // const gameTime = {
-    //     hour: Math.abs(format(SessionInfo.stopGameTime, 'HH') - format(SessionInfo.startGameTime, 'HH')),
-    //     minute: Math.abs(format(SessionInfo.stopGameTime, 'mm') - format(SessionInfo.startGameTime, 'mm')),
-    //     second: Math.abs(format(SessionInfo.stopGameTime, 'SS') - format(SessionInfo.startGameTime, 'SS'))
-    // };
-    const gameTime = {
-        hour: Math.abs(parseInt(startTime[0]) - parseInt(stopTime[0])),
-        minute: Math.abs(parseInt(startTime[1]) - parseInt(stopTime[1])),
-        second: Math.abs(parseInt(startTime[2]) - parseInt(stopTime[2]))
-    };
 
-    function showPrintPDF() {
-        window.print();
-    }
+    const [gameTime, setGameTime] = useState({
+        hour: 0,
+        minute: 0,
+        second: 0
+    });
 
-    const apiPath = import.meta.env.VITE_API; // ! it will be removed when hosting
+    const apiPath = import.meta.env.VITE_API;
 
     useEffect(() => {
-        window.onload = showPrintPDF();
-    });
+        setGameTime({
+            hour: Math.abs(parseInt(startTime[0]) - parseInt(stopTime[0])),
+            minute: Math.abs(parseInt(startTime[1]) - parseInt(stopTime[1])),
+            second: Math.abs(parseInt(startTime[2]) - parseInt(stopTime[2]))
+        });
+    }, [startTime, stopTime]);
+    console.log(gameTime);
     return (
-        <div className="FinalResult">
-            <h1 className="text-center">Result</h1>
-            <br />
-            <Row>
-                <Col className='text-center'>
-                    <h5>
-                        Session name: {SessionInfo?.sessionName}
-                    </h5>
-                    <h6>Date and time: {SessionInfo?.date}  [{SessionInfo.time}]</h6>
-                    <h6>Game play time: {gameTime.hour > 0 ? `${gameTime.hour}:` : ""}{Math.abs(parseInt(startTime[1]) - parseInt(stopTime[1]))}m:{Math.abs(parseInt(startTime[2]) - parseInt(stopTime[2]))}s</h6>
-                </Col>
-            </Row>
-            <br />
-            <Row>
-                <Col>
-                    <h2>IN ROOM</h2>
-                    {Room.map(item => (
-                        <div className='d-flex flex-row' key={item.draggable_id}>
-                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} /> {/* // ! it will be removed when hosting */}
-                            <div className="d-flex flex-column justify-content-center align-content-center">
-                                <span>{item.name}</span>
-                                <span>{item.role}</span>
-                                <span>{item.description}</span>
-                            </div>
-                        </div>
-                    ))}
-                </Col>
-                <Col>
-                    <h2>PEANUT GALLERY</h2>
-                    {PeanutGallery.map(item => (
-                        <div className='d-flex flex-row' key={item.draggable_id}>
-                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} /> {/* // ! it will be removed when hosting */}
-                            <div className="d-flex flex-column justify-content-center align-content-center">
-                                <span>{item.name}</span>
-                                <span>{item.role}</span>
-                                <span>{item.description}</span>
-                            </div>
-                        </div>
-                    ))}
-                </Col>
-                <Col md={12}>
-                    <h2>OUTSIDE</h2>
-                    {Outside.map(item => (
-                        <div className='d-flex flex-row' key={item.draggable_id}>
-                            <img src={`${apiPath}/${item.folder_name}/${item.src}`} /> {/* // ! it will be removed when hosting */}
-                            <div className="d-flex flex-column justify-content-center align-content-center">
-                                <span>{item.name}</span>
-                                <span>{item.role}</span>
-                                <span>{item.description}</span>
-                            </div>
-                        </div>
-                    ))}
-                </Col>
-            </Row>
+        <div>
+            <PDFViewer style={{ width: '100%', height: "100vh" }}>
+                <Document>
+                    <Page size='A4' style={styles.page}>
+                        <View style={styles.mainView}>
+
+                            <View style={styles.heading}>
+                                <Text style={styles.headingText}>Result</Text>
+                                <Image src={`${apiPath}/${SessionInfo.clientImgSrc}`} style={{ width: 120, marginTop: 12, marginBottom: 7 }} />
+                                <Text style={{ fontSize: 15 }}>Session name: {SessionInfo.sessionName}</Text>
+                                <Text style={{ fontSize: 15 }}>Date and Time: {SessionInfo.date} [{SessionInfo.time}]</Text>
+                                <Text style={{ fontSize: 15 }}>Game play time: {gameTime.hour > 0 ? `${gameTime.hour}h:` : ""}{gameTime.minute}m:{gameTime.second}s </Text>
+                            </View>
+
+                            <View style={styles.mainSection}>
+                                <View>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>IN ROOM</Text>
+                                    <View style={{ flexDirection: 'column', paddingTop: 10, gap: 20 }}>
+                                        {/* // start  */}
+                                        {Room.map((item, index) => (
+                                            <View key={index} style={{ flexDirection: 'row' }}>
+                                                <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                                                <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
+                                                    <Text>{item.name}</Text>
+                                                    <Text>{item.role}</Text>
+                                                    <Text>{item.description}</Text>
+                                                </View>
+                                            </View>
+                                        ))}
+                                    </View>
+                                </View>
+                                <View>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>PEANUT GALLERY</Text>
+                                    <View style={{ flexDirection: 'column', paddingTop: 10, gap: 20 }}>
+                                        {/* // start  */}
+                                        {PeanutGallery.map((item, index) => (
+                                            <View key={index} style={{ flexDirection: 'row' }}>
+                                                <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                                                <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
+                                                    <Text>{item.name}</Text>
+                                                    <Text>{item.role}</Text>
+                                                    <Text>{item.description}</Text>
+                                                </View>
+                                            </View>
+                                        ))}
+                                    </View>
+                                </View>
+                                <View>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>OUTSIDE</Text>
+                                    <View style={{ flexDirection: 'column', paddingTop: 10, gap: 20 }}>
+                                        {/* // start  */}
+                                        {Outside.map((item, index) => (
+                                            <View key={index} style={{ flexDirection: 'row' }}>
+                                                <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                                                <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
+                                                    <Text>{item.name}</Text>
+                                                    <Text>{item.role}</Text>
+                                                    <Text>{item.description}</Text>
+                                                </View>
+                                            </View>
+                                        ))}
+                                    </View>
+                                </View>
+                            </View>
+
+                        </View>
+                    </Page>
+                </Document>
+            </PDFViewer>
         </div>
     );
 };
+
 export default FinalResult;
+
+
+const styles = StyleSheet.create({
+    page: {
+        padding: 42
+    },
+    mainView: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    heading: {
+        width: '100%',
+        alignItems: 'center',
+    },
+    headingText: {
+        fontSize: 28,
+        fontWeight: 900
+    },
+    mainSection: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 30,
+        justifyContent: 'space-between',
+        paddingTop: 25,
+        textAlign: 'center'
+    }
+});
