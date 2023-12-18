@@ -1,5 +1,5 @@
 // enternal import
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -12,14 +12,14 @@ import { setStopGameTime } from "../Store/Slices/SessionSlice.js";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-const SideBar = () => {
+const SideBar = ({ setSideBarScrollPosition }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const allCharacters = useSelector(state => state.character_img.data);
     const draggable_imgs = useSelector(state => state.draggable_img);
 
-
+    const [scrollTop, setScrollTop] = useState(0)
 
     const MenuListItem = () => (
 
@@ -42,6 +42,14 @@ const SideBar = () => {
         navigate('/result');
     }
 
+    function handleOnScroll(event) {
+        setScrollTop(event.currentTarget.scrollTop)
+    }
+
+    useEffect(() => {
+        setSideBarScrollPosition(scrollTop)
+     },[scrollTop, setSideBarScrollPosition])
+
     useEffect(() => {
         dispatch(fetchAllCharacters());
         dispatch(fetchAllTables());
@@ -56,7 +64,7 @@ const SideBar = () => {
                 End Game
             </Button>
 
-            <div className="MenuList ">
+            <div className="MenuList" onScroll={handleOnScroll}>
 
                 <MenuListItem />
 

@@ -29,6 +29,7 @@ const Hero = () => {
   const [draggable_id, setDraggable_id] = useState(null);
   const [draggable_Item_Type, setDraggable_Item_Type] = useState(null);
   const [dropCharacterPosition, setDropCharacterPosition] = useState(null);
+  const [sideBarScrollPosition, setSideBarScrollPosition] = useState(null);
 
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => state.character_img.data);
@@ -102,7 +103,7 @@ const Hero = () => {
       role: character.role,
       src: character.filename,
       position_x: dropCharacterPosition.x + new_x - playGroundLeft || 32,
-      position_y: dropCharacterPosition.y + new_y - playGroundTop || 32,
+      position_y: dropCharacterPosition.y + new_y - playGroundTop - sideBarScrollPosition || 32,
       folder_name: character.folder_name,
       description: character.description,
     };
@@ -134,6 +135,7 @@ const Hero = () => {
     const { x: new_x, y: new_y } = delta;
     const { id } = active;
     const { top: playGroundTop, left: playGroundLeft } = event.over.rect;
+  
     setActiveId(null);
 
     if (event.over.id === "Droppable") {
@@ -179,17 +181,11 @@ const Hero = () => {
 
         {/* SideBar */}
         <Col xxl={1} xl={2} md={2}>
-          <SideBar />
+          <SideBar setSideBarScrollPosition={setSideBarScrollPosition} />
         </Col>
       </Row>
 
-      <DragOverlay
-        modifiers={
-          draggable_Item_Type === "characterFromSlideMenu"
-            ? [snapCenterToCursor]
-            : []
-        }
-      >
+      <DragOverlay>
         {activeId ? <OverlayItem /> : null}
       </DragOverlay>
     </DndContext>
