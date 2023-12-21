@@ -1,5 +1,5 @@
 // external import
-import express from 'express'
+import express from 'express';
 
 // internal import
 import {
@@ -10,35 +10,40 @@ import {
     getSaveHistroy,
     getSaveTable,
     postSaveTable,
-    postSaveHistory
-} from '../controllers/apiController.js'
-import pictureUpload from '../middlewares/pictureUpload.js'
+    postSaveHistory,
+    getPDF,
+    postPDF
+} from '../controllers/apiController.js';
+import pictureUpload from '../middlewares/pictureUpload.js';
+import pdfUpload from '../middlewares/pdfUpload.js';
 
-const router = express.Router()
+const router = express.Router();
 
 const setFolderName = (name) => (
     function (req, res, next) {
-        req.folderName = name
-        next()
+        req.folderName = name;
+        next();
     }
-)
+);
 
 router.get('/', (req, res) => {
-    res.send('<h1>Hello</h1>')
-})
+    res.send('<h1>Hello</h1>');
+});
 
 // GET router
-router.get('/characters', getAllCharacters)
-router.get('/tables', getAllTable)
-router.get('/save_history', getSaveHistroy)
-router.get('/save_table', getSaveTable)
+router.get('/characters', getAllCharacters);
+router.get('/tables', getAllTable);
+router.get('/save_history', getSaveHistroy);
+router.get('/save_table', getSaveTable);
+router.get('/pdf', getPDF);
 
 
 // POST router
-router.post('/people', setFolderName('people'), pictureUpload, uploadCharacterPicture)
-router.post('/dogs', setFolderName('dogs'), pictureUpload, uploadCharacterPicture)
-router.post('/tables', setFolderName('tables'), pictureUpload, uploadTablePicture)
-router.post('/save_history', postSaveHistory)
-router.post('/save_table', postSaveTable)
+router.post('/people', setFolderName('people'), pictureUpload, uploadCharacterPicture);
+router.post('/dogs', setFolderName('dogs'), pictureUpload, uploadCharacterPicture);
+router.post('/tables', setFolderName('tables'), pictureUpload, uploadTablePicture);
+router.post('/save_history', postSaveHistory);
+router.post('/save_table', postSaveTable);
+router.post('/pdf', pdfUpload, postPDF);
 
-export default router
+export default router;

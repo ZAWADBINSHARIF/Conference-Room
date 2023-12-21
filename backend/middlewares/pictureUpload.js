@@ -4,7 +4,7 @@ import multer from "multer"
 // internal import
 import singleUpload from "../utilities/singleUploader.js"
 
-const pictureUpload = (req, res, next) => {
+const pictureUpload = (res, req, next) => {
 
     const subFolderName = req.folderName
 

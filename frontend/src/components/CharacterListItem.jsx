@@ -36,13 +36,7 @@ const CharacterListItem = ({
         },
       },
     });
-    console.log()
-//   console.log({
-//     position: {
-//       x: characterRef.current?.offsetLeft,
-//       y: characterRef.current?.offsetTop,
-//     },
-//   });
+
   const style = {
     transform: CSS.Translate.toString(transform),
     cursor: isDragging ? "grabbing" : "grab",
