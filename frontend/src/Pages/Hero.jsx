@@ -39,7 +39,7 @@ const Hero = () => {
   const styles = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), 
         rgba(0, 0, 0, 0.35)), 
-        url("${apiPath}/background_image.jpeg")`,
+        url("/background_image.jpeg")`,
   };
 
   const mouseSensor = useSensor(MouseSensor, {
