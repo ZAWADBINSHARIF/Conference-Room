@@ -10,6 +10,13 @@ CREATE TABLE
     );
 
 CREATE TABLE
+    pdfs(
+        id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
+        session_name VARCHAR(255) NOT NULL COMMENT "THIS THE SESSION NAME OF THE GAME",
+        filename VARCHAR(255) COMMENT "TABLE PICTURE'S FILE NAME"
+    );
+
+CREATE TABLE
     characters(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
         name VARCHAR(255) NOT NULL COMMENT "NAME OF THE CHARACTER",
@@ -31,4 +38,4 @@ CREATE TABLE
         position_y INT NOT NULL
     );
 
-CREATE TABLE save_table( filename VARCHAR(255) );
+CREATE TABLE save_table(filename VARCHAR(255));

@@ -36,7 +36,6 @@ const CharacterListItem = ({
         },
       },
     });
-  console.log();
 
   const style = {
     transform: CSS.Translate.toString(transform),

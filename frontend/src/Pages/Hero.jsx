@@ -8,6 +8,7 @@ import {
   TouchSensor,
   useSensor,
 } from "@dnd-kit/core";
+import { snapCenterToCursor } from "@dnd-kit/modifiers";
 import { useDispatch, useSelector } from "react-redux";
 
 // internal import
@@ -28,10 +29,18 @@ const Hero = () => {
   const [draggable_id, setDraggable_id] = useState(null);
   const [draggable_Item_Type, setDraggable_Item_Type] = useState(null);
   const [dropCharacterPosition, setDropCharacterPosition] = useState(null);
+  const [sideBarScrollPosition, setSideBarScrollPosition] = useState(null);
 
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => state.character_img.data);
   const allDraggableImgs = useSelector((state) => state.draggable_img);
+
+  const apiPath = import.meta.env.VITE_API;
+  const styles = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), 
+        rgba(0, 0, 0, 0.35)), 
+        url("${apiPath}/background_image.jpeg")`,
+  };
 
   const mouseSensor = useSensor(MouseSensor, {
     // Require the mouse to move by 10 pixels before activating
@@ -94,7 +103,7 @@ const Hero = () => {
       role: character.role,
       src: character.filename,
       position_x: dropCharacterPosition.x + new_x - playGroundLeft || 32,
-      position_y: dropCharacterPosition.y + new_y - playGroundTop || 32,
+      position_y: dropCharacterPosition.y + new_y - playGroundTop - sideBarScrollPosition || 32,
       folder_name: character.folder_name,
       description: character.description,
     };
@@ -126,6 +135,7 @@ const Hero = () => {
     const { x: new_x, y: new_y } = delta;
     const { id } = active;
     const { top: playGroundTop, left: playGroundLeft } = event.over.rect;
+  
     setActiveId(null);
 
     if (event.over.id === "Droppable") {
@@ -159,9 +169,10 @@ const Hero = () => {
       onDr
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+      modifiers={[snapCenterToCursor]}
       sensors={[mouseSensor, touchSensor]}
     >
-      <Row>
+      <Row className="game" style={styles}>
         {/* playGround */}
         <Col xxl={11} xl={10} md={10}>
           <PeanutGallery />
@@ -170,11 +181,13 @@ const Hero = () => {
 
         {/* SideBar */}
         <Col xxl={1} xl={2} md={2}>
-          <SideBar />
+          <SideBar setSideBarScrollPosition={setSideBarScrollPosition} />
         </Col>
       </Row>
 
-      <DragOverlay>{activeId ? <OverlayItem /> : null}</DragOverlay>
+      <DragOverlay>
+        {activeId ? <OverlayItem /> : null}
+      </DragOverlay>
     </DndContext>
   );
 };
