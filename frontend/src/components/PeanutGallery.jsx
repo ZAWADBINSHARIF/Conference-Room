@@ -12,8 +12,6 @@ const PeanutGallery = () => {
     }
   });
 
-  const apiPath = import.meta.env.VITE_API;
-
   return (
     <div className="PeanutGallery" ref={setNodeRef}>
       <div className="peanutGalleryWrapper p-1"
@@ -27,7 +25,7 @@ const PeanutGallery = () => {
         {peanutGalleryImg.map(item => (
           <img
             key={item.draggable_id}
-            src={`${apiPath}/${item.folder_name}/${item.src}`}
+            src={`/${item.folder_name}/${item.src}`}
             width={75}
           />
         ))}

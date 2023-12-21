@@ -49,8 +49,6 @@ const FinalResult = () => {
         }
     });
 
-    const apiPath = import.meta.env.VITE_API;
-
     useEffect(() => {
         setGameTime({
             hour: Math.abs(parseInt(startTime[0]) - parseInt(stopTime[0])),
@@ -65,7 +63,7 @@ const FinalResult = () => {
 
                 <View style={styles.heading}>
                     <Text style={styles.headingText}>Result</Text>
-                    <Image src={`${apiPath}/${SessionInfo.clientImgSrc}`} style={{ width: 120, marginTop: 12, marginBottom: 7 }} />
+                    <Image src={`/${SessionInfo.clientImgSrc}`} style={{ width: 120, marginTop: 12, marginBottom: 7 }} />
                     <Text style={{ fontSize: 15 }}>Session name: {SessionInfo.sessionName}</Text>
                     <Text style={{ fontSize: 15 }}>Date and Time: {SessionInfo.date} [{SessionInfo.time}]</Text>
                     <Text style={{ fontSize: 15 }}>Game play time: {gameTime.hour > 0 ? `${gameTime.hour}h:` : ""}{gameTime.minute}m:{gameTime.second}s </Text>
@@ -78,7 +76,7 @@ const FinalResult = () => {
                             {/* // start  */}
                             {Room.map((item, index) => (
                                 <View key={index} style={{ flexDirection: 'row' }}>
-                                    <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                                    <Image style={{ width: 75, height: 75 }} src={`/${item.folder_name}/${item.src}`} />
                                     <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
                                         <Text>{item.name}</Text>
                                         <Text>{item.role}</Text>
@@ -94,7 +92,7 @@ const FinalResult = () => {
                             {/* // start  */}
                             {PeanutGallery.map((item, index) => (
                                 <View key={index} style={{ flexDirection: 'row' }}>
-                                    <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                                    <Image style={{ width: 75, height: 75 }} src={`/${item.folder_name}/${item.src}`} />
                                     <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
                                         <Text>{item.name}</Text>
                                         <Text>{item.role}</Text>
@@ -110,7 +108,7 @@ const FinalResult = () => {
                             {/* // start  */}
                             {Outside.map((item, index) => (
                                 <View key={index} style={{ flexDirection: 'row' }}>
-                                    <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
+                                    <Image style={{ width: 75, height: 75 }} src={`/${item.folder_name}/${item.src}`} />
                                     <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
                                         <Text>{item.name}</Text>
                                         <Text>{item.role}</Text>
@@ -133,7 +131,7 @@ const FinalResult = () => {
         const pdfFile = new File([pdfBlob], `${SessionInfo.sessionName}.pdf`, { type: 'application/pdf' });
         const formData = new FormData();
         formData.append('file', pdfFile);
-        formData.append('session_name', SessionInfo.sessionName)
+        formData.append('session_name', SessionInfo.sessionName);
 
         try {
             await axios.post(`/pdf`, formData, {

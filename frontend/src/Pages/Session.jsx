@@ -78,8 +78,6 @@ const Session = () => {
 
   }
 
-  const apiPath = import.meta.env.VITE_API;
-
   return (
     <div className='Session'>
       <Swiper
@@ -97,28 +95,28 @@ const Session = () => {
         className="swiper_container"
       >
         <SwiperSlide>
-          <img src={`${apiPath}/aman_dream.png`} alt="aman_dream.png" name="aman_dream.png" />
+          <img src={`/aman_dream.png`} alt="aman_dream.png" name="aman_dream.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${apiPath}/bman_dream.png`} alt="bman_dream.png" name="bman_dream.png" />
+          <img src={`/bman_dream.png`} alt="bman_dream.png" name="bman_dream.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${apiPath}/bwimagine.png`} alt="bwimagine.png" name="bwimagine.png" />
+          <img src={`/bwimagine.png`} alt="bwimagine.png" name="bwimagine.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${apiPath}/dream.png`} alt="dream.png" name="dream.png" />
+          <img src={`/dream.png`} alt="dream.png" name="dream.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${apiPath}/wboy_imagine.png`} alt="wboy_imagine.png" name="wboy_imagine.png" />
+          <img src={`/wboy_imagine.png`} alt="wboy_imagine.png" name="wboy_imagine.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${apiPath}/wgirl_dream.png`} alt="wgirl_dream.png" name="wgirl_dream.png" />
+          <img src={`/wgirl_dream.png`} alt="wgirl_dream.png" name="wgirl_dream.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${apiPath}/wman_imagine.png`} alt="wman_imagine.png" name="wman_imagine.png" />
+          <img src={`/wman_imagine.png`} alt="wman_imagine.png" name="wman_imagine.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${apiPath}/wwoman_imagine.png`} alt="wwoman_imagine.png" name="wwoman_imagine.png" />
+          <img src={`/wwoman_imagine.png`} alt="wwoman_imagine.png" name="wwoman_imagine.png" />
         </SwiperSlide>
       </Swiper>
 

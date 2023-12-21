@@ -35,11 +35,10 @@ const Hero = () => {
   const allCharacters = useSelector((state) => state.character_img.data);
   const allDraggableImgs = useSelector((state) => state.draggable_img);
 
-  const apiPath = import.meta.env.VITE_API;
   const styles = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), 
         rgba(0, 0, 0, 0.35)), 
-        url("${apiPath}/background_image.jpeg")`,
+        url("/background_image.jpeg")`,
   };
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -133,7 +132,7 @@ const Hero = () => {
     const { x: new_x, y: new_y } = delta;
     const { id } = active;
     const { top: playGroundTop, left: playGroundLeft } = event.over.rect;
-  
+
     setActiveId(null);
 
     if (event.over.id === "Droppable") {
