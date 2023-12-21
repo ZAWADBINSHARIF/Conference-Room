@@ -14,10 +14,8 @@ import {
 const CharacterListItem = ({
   id,
   name,
-  role,
   imgFilename,
-  folderName,
-  description,
+  folderName
 }) => {
   const dispatch = useDispatch();
   const characterRef = useRef();

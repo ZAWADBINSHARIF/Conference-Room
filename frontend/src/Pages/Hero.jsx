@@ -64,10 +64,8 @@ const Hero = () => {
               key={item.id}
               id={item.id}
               name={item.name}
-              role={item.role}
               imgFilename={item.filename}
               folderName={item.folder_name}
-              description={item.description}
             />
           );
         }

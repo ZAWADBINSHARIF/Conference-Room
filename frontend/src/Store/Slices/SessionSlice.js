@@ -5,12 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const sessionSlice = createSlice({
     name: "Session_info",
     initialState: {
-        data: {
-            sessionName: "",
-            clientImgSrc: "",
-            time: "",
-            date: ""
-        },
+        data: {},
     },
     reducers: {
         setSessionData(state, action) {

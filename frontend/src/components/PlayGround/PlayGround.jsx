@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TablePlace from "./TablePlace";
 import DraggableImage from './DraggableImage';
 import { fetchSaveHistoryThunk } from '../../Store/Slices/DraggableImgSlice.js';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
 
