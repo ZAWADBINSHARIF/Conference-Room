@@ -8,7 +8,7 @@ const pdfUpload = (req, res, next) => {
     const upload = singleUpload(
         'pdfs',
         ['application/pdf'],
-        '100',
+        '15',
         'Only .pdf file allowed'
     );
 
