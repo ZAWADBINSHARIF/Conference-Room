@@ -78,6 +78,8 @@ const Session = () => {
 
   }
 
+  const apiPath = import.meta.env.VITE_API;
+
   return (
     <div className='Session'>
       <Swiper
@@ -95,28 +97,28 @@ const Session = () => {
         className="swiper_container"
       >
         <SwiperSlide>
-          <img src={`/aman_dream.png`} alt="aman_dream.png" name="aman_dream.png" />
+          <img src={`${apiPath}/asian_man.jpg`} alt="asian_man.jpg" name="asian_man.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/bman_dream.png`} alt="bman_dream.png" name="bman_dream.png" />
+          <img src={`${apiPath}/asian_woman.jpg`} alt="asian_woman.jpg" name="asian_woman.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/bwimagine.png`} alt="bwimagine.png" name="bwimagine.png" />
+          <img src={`${apiPath}/black_man.jpg`} alt="black_man.jpg" name="black_man.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/dream.png`} alt="dream.png" name="dream.png" />
+          <img src={`${apiPath}/black_woman.jpg`} alt="black_woman.jpg" name="black_woman.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/wboy_imagine.png`} alt="wboy_imagine.png" name="wboy_imagine.png" />
+          <img src={`${apiPath}/indian_man.jpg`} alt="indian_man.jpg" name="indian_man.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/wgirl_dream.png`} alt="wgirl_dream.png" name="wgirl_dream.png" />
+          <img src={`${apiPath}/indian_woman.jpg`} alt="indian_woman.jpg" name="indian_woman.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/wman_imagine.png`} alt="wman_imagine.png" name="wman_imagine.png" />
+          <img src={`${apiPath}/white_man.jpg`} alt="white_man.jpg" name="white_man.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/wwoman_imagine.png`} alt="wwoman_imagine.png" name="wwoman_imagine.png" />
+          <img src={`${apiPath}/white_woman.jpg`} alt="white_woman.jpg" name="white_woman.jpg" />
         </SwiperSlide>
       </Swiper>
 

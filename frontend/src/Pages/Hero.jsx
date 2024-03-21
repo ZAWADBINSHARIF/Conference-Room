@@ -35,10 +35,12 @@ const Hero = () => {
   const allCharacters = useSelector((state) => state.character_img.data);
   const allDraggableImgs = useSelector((state) => state.draggable_img);
 
+  const apiPath = import.meta.env.VITE_API;
+
   const styles = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), 
         rgba(0, 0, 0, 0.35)), 
-        url("/background_image.jpeg")`,
+        url("${apiPath}/background_image.jpeg")`,
   };
 
   const mouseSensor = useSensor(MouseSensor, {

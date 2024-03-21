@@ -3,6 +3,11 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import path from 'path'
+import basicAuth from 'basic-auth';
+
+const users = {
+  'admin': '12345'
+};
 
 // internal import
 import dbConnection from './configs/dbConnection.js'
@@ -29,17 +34,38 @@ app.use(cors({
 // for database connection
 dbConnection({ app, PORT })
 
+
+// Auth middleware
+app.use(function(req, res, next) {
+
+  var user = basicAuth(req);
+
+  if (!user || !users[user.name] || users[user.name] !== user.pass) {
+
+    res.set('WWW-Authenticate', 'Basic');  
+    res.status(401).send('You are not allowed to access this page. Unauthorized!');
+    return;
+
+  }
+
+  next();
+
+});
+
+
+
 // ** set up static files. this code for linux server.
-app.use(express.static(path.join(__dirname, 'public', 'uploads')))
-app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')))
-app.use(express.static(path.join(__dirname, 'public', 'background')))
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')))
+// app.use(express.static(path.join(__dirname, 'public', 'uploads')))
+// app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')))
+// app.use(express.static(path.join(__dirname, 'public', 'background')))
+// app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')))
 
 // ** this code for windows
-// app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
-// app.use(express.static(path.join(__dirname, 'backend', 'public', 'representation_imgs')))
-// app.use(express.static(path.join(__dirname, 'backend', 'public', 'background')))
+app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
+app.use(express.static(path.join(__dirname, 'backend', 'public', 'representation_imgs')))
+app.use(express.static(path.join(__dirname, 'backend', 'public', 'background')))
 // app.use(express.static(path.join(__dirname, 'frontend', 'dist')))
+
 
 // routers
 app.use('/api', apiRoute)
