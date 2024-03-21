@@ -20,12 +20,17 @@ const characterImageSlice = createSlice({
         },
         clearAchetypeDescriptionText(state, action) {
             state.achetypeDescriptionText = ''
+        },
+        removeCharacter(state, action) {
+            const filterCharacters = state.data.filter(item => item.id != action.payload)
+            console.log(filterCharacters);
+            state.data = filterCharacters
         }
     }
 })
 
 
-export const { setAllCharacters, setAchetypeDescriptionText, clearAchetypeDescriptionText } = characterImageSlice.actions
+export const { setAllCharacters, setAchetypeDescriptionText, clearAchetypeDescriptionText, removeCharacter } = characterImageSlice.actions
 export default characterImageSlice.reducer
 
 export function fetchAllCharacters() {

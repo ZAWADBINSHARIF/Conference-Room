@@ -55,7 +55,7 @@ const CharacterListItem = ({
       style={style}
       ref={setNodeRef}
     >
-      <div className="d-flex flex-column" ref={characterRef}>
+      <div className="d-flex flex-column" ref={characterRef} >
         <div
           className="
                     imgArea

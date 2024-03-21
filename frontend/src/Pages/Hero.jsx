@@ -1,5 +1,5 @@
 // external import
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Col, Row } from "react-bootstrap";
 import {
   DndContext,
@@ -8,7 +8,7 @@ import {
   TouchSensor,
   useSensor,
 } from "@dnd-kit/core";
-import { snapCenterToCursor } from "@dnd-kit/modifiers";
+import { createSnapModifier } from "@dnd-kit/modifiers";
 import { useDispatch, useSelector } from "react-redux";
 
 // internal import
@@ -23,9 +23,11 @@ import {
 import { setCharacterToPeanutGallery } from "../Store/Slices/PeanutGalleryImgSlice.js";
 import CharactersListItem from "../components/CharacterListItem.jsx";
 import DraggableImage from "../components/PlayGround/DraggableImage.jsx";
+import { removeCharacter } from "../Store/Slices/CharacterImgSlice.js";
 
 const Hero = () => {
   const [activeId, setActiveId] = useState(null);
+  const [selectedCharacterId, setSelectedCharacterId] = useState(null)
   const [draggable_id, setDraggable_id] = useState(null);
   const [draggable_Item_Type, setDraggable_Item_Type] = useState(null);
   const [dropCharacterPosition, setDropCharacterPosition] = useState(null);
@@ -55,6 +57,13 @@ const Hero = () => {
       tolerance: 5,
     },
   });
+
+
+  const [gridSize] = useState(40);
+
+  const snapToGrid = useMemo(() => createSnapModifier(gridSize), [gridSize]);
+
+
 
   const OverlayItem = () => {
     if (draggable_Item_Type === "characterFromSlideMenu") {
@@ -118,8 +127,10 @@ const Hero = () => {
     const { data } = event.active;
 
     if (data.current.type === "characterFromSlideMenu") {
+      console.log(data.current.characterId);
       setDraggable_Item_Type("characterFromSlideMenu");
       setActiveId(data.current.characterId);
+      setSelectedCharacterId(data.current.characterId);
       setDraggable_id(data.current.draggable_id);
       setDropCharacterPosition(data.current.position);
     } else if (data.current.type === "PlayGroundCharacter") {
@@ -141,6 +152,7 @@ const Hero = () => {
       dispatch(setDraggableImgPosition({ id, new_x, new_y }));
       if (activeId && draggable_id && dropCharacterPosition) {
         handleAddToPlayGround(playGroundTop, playGroundLeft, new_x, new_y);
+        dispatch(removeCharacter(selectedCharacterId));
       }
     } else if (event.over.id === "PeanutGallery") {
       const draggableImg = allDraggableImgs.find(
@@ -165,10 +177,9 @@ const Hero = () => {
 
   return (
     <DndContext
-      onDr
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      modifiers={[snapCenterToCursor]}
+      modifiers={[snapToGrid]}
       sensors={[mouseSensor, touchSensor]}
     >
       <Row className="game" style={styles}>
@@ -184,7 +195,9 @@ const Hero = () => {
         </Col>
       </Row>
 
-      <DragOverlay>
+      <DragOverlay
+        modifiers={[snapToGrid]}
+      >
         {activeId ? <OverlayItem /> : null}
       </DragOverlay>
     </DndContext>
