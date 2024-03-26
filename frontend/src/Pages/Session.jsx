@@ -70,7 +70,7 @@ const Session = () => {
       clientImgSrc: activeImgName,
       time: time.isChange ? time.current : format(new Date(), "HH:mm"),
       date: date,
-      startGameTime: format(new Date(), "HH:mm:SS")
+      startGameTime: format(new Date(), "HH:mm:ss")
     };
     dispatch(setSessionData(sessionInfo));
 
@@ -150,7 +150,7 @@ const Session = () => {
           </Form.Group>
 
           <div className='d-flex justify-content-end mt-3'>
-            <Button variant="secondary" onClick={handleStartGame}>
+            <Button variant="secondary" onClick={(e) => handleStartGame(e)}>
               Start Game
             </Button>
           </div>

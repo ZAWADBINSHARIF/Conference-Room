@@ -4,7 +4,7 @@ $borderColor: #73737b;
 $buttonColor: #243341;
 $buttonHover: #456077;
 $chooseTableHoverColor: #0d1a25;
-$textColor: #a4a4a4;
+$textColor: #dadada;
 $DraggableCharInfoFontCOlor: #f9ae01;
 
 * {
@@ -96,173 +96,184 @@ body {
 
   #root {
     .App {
-      .game{
+      .game {
+        // aspect-ratio: 16/9;
+        object-fit: cover;
+        width: 100vw;
+        height: 100vh;
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center;
+        // background-position: center;
 
-      // * peanutGallery
-      .PeanutGallery {
-        margin-bottom: 12px;
-        .peanutGalleryWrapper {
-          height: 90px;
-          min-width: 90px;
-          width: min-content;
-          margin: 12px 0 0 12px;
-          display: flex;
-          gap: 5px;
-          border-radius: 12px;
-          border: 3px solid $borderColor;
-
-          &:hover {
-            cursor: pointer;
-            transition: 0.5s;
-          }
-
-          p {
-            color: $textColor;
-          }
-
-          img {
-            cursor: pointer;
-            &:hover {
-              scale: 1.05;
-            }
-          }
-        }
-      }
-
-      // * playGround
-      .PlayGround {
-        position: relative;
-        overflow: hidden;
-        border: 3px solid $borderColor;
-        border-radius: 12px;
-        min-height: 85vh;
-        margin-left: 12px;
-
-        // not selectable mode start
-        user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
-        // not selectable mode end
-
-        // Table Image Design
-        .TablePlace { 
-          img {
-            // width: 500px;
-            width: 30vw;
-            border-radius: 12px;
-          }
-        }
-
-        // Draggable Image design
-        .DraggableImage {
-          img {
-            width: 75px;
-            border-radius: 5px;
-          }
-
-          .ContextMenu {
-            position: absolute;
-            left: 75px;
-            padding: 9px;
-            border-radius: 6px;
-            margin-left: 16px;
-            background-color: white;
+        // * peanutGallery
+        .PeanutGallery {
+          margin-bottom: 12px;
+          .peanutGalleryWrapper {
+            height: 90px;
+            min-width: 90px;
+            width: min-content;
+            margin: 12px 0 0 12px;
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-            text-align: center;
-            cursor: pointer;
-            span {
-              color: $buttonHover;
-              font-weight: 600;
+            gap: 5px;
+            border-radius: 12px;
+            border: 3px solid $borderColor;
 
-              &:hover {
-                color: $backGroundColor;
-              }
-            }
-          }
-        }
-
-        .draggableCharInfo {
-          text-align: center;
-          color: $DraggableCharInfoFontCOlor;
-          line-height: 1rem;
-        }
-
-        .ArchetypeDescription {
-          width: 80%;
-          height: 120px;
-          padding: 7px;
-          overflow-y: hidden;
-          border: 3px solid $borderColor;
-          border-radius: 12px;
-          position: absolute;
-          bottom: -5%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-
-      // * SideBar Menu
-      menu {
-        height: 100dvh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        .MenuList {
-          min-width: 100px;
-          overflow-y: scroll;
-          border: 3px solid $borderColor;
-          border-radius: 25px;
-          height: 75%;
-          padding: 12px 0;
-          
-          .CharacterListItem {
-            .imgArea {
-              position: relative;
-
-              * {
-                color: inherit;
-              }
-
-              .addButton {
-                opacity: 0;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                transition: opacity 0.3s ease;
-                border-radius: 5px;
-                background-color: $buttonColor;
-              }
-
-              img {
-                // width: 90px;
-                border-radius: 5px;
-              }
-
-              &:hover .addButton {
-                opacity: 0.85;
-                cursor: pointer;
-              }
+            &:hover {
+              cursor: pointer;
+              transition: 0.5s;
             }
 
             p {
-              // font-weight: 100;
               color: $textColor;
+            }
+
+            img {
+              cursor: pointer;
+              &:hover {
+                scale: 1.05;
+              }
+            }
+          }
+        }
+
+        // * playGround
+        .PlayGround {
+          position: relative;
+          overflow: hidden;
+          border: 3px solid $borderColor;
+          border-radius: 12px;
+          min-height: 85vh;
+          margin-left: 12px;
+
+          // not selectable mode start
+          user-select: none;
+          -moz-user-select: none;
+          -khtml-user-select: none;
+          -webkit-user-select: none;
+          -o-user-select: none;
+          // not selectable mode end
+
+          // Table Image Design
+          .TablePlace {
+            img {
+              // width: 500px;
+              width: 30vw;
+              border-radius: 12px;
+            }
+          }
+
+          // Draggable Image design
+          .DraggableImage {
+            img {
+              width: 75px;
+              border-radius: 5px;
+            }
+
+            .ContextMenu {
+              position: absolute;
+              left: 75px;
+              padding: 9px;
+              border-radius: 6px;
+              margin-left: 16px;
+              background-color: white;
+              display: flex;
+              flex-direction: column;
+              gap: 6px;
+              text-align: center;
+              cursor: pointer;
+              span {
+                color: $buttonHover;
+                font-weight: 600;
+
+                &:hover {
+                  color: $backGroundColor;
+                }
+              }
+            }
+          }
+
+          .draggableCharInfo {
+            text-align: center;
+            color: $DraggableCharInfoFontCOlor;
+            line-height: 1rem;
+          }
+
+          .ArchetypeDescription {
+            width: 80%;
+            height: 120px;
+            padding: 7px;
+            overflow-y: hidden;
+            border: 3px solid $borderColor;
+            border-radius: 12px;
+            position: absolute;
+            bottom: -5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        // * SideBar Menu
+
+        .digital-time {
+          width: 125px;
+          font-size: 1.7rem;
+          background-color: #9e6c9bc9;
+          padding: 0.5rem 1rem;
+          border-radius: 12px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        menu {
+          height: 100dvh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          .MenuList {
+            min-width: 100px;
+            overflow-y: scroll;
+            height: 75%;
+            padding: 12px 0;
+
+            .CharacterListItem {
+              .imgArea {
+                position: relative;
+
+                * {
+                  color: inherit;
+                }
+
+                .addButton {
+                  opacity: 0;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  transition: opacity 0.3s ease;
+                  border-radius: 5px;
+                  background-color: $buttonColor;
+                }
+
+                img {
+                  // width: 90px;
+                  border-radius: 5px;
+                }
+
+                &:hover .addButton {
+                  opacity: 0.85;
+                  cursor: pointer;
+                }
+              }
+
+              p {
+                // font-weight: 100;
+                color: $textColor;
+              }
             }
           }
         }
       }
-
-    }
 
       // * Admin design Start
       .Admin {

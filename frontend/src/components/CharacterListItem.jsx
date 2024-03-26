@@ -13,6 +13,7 @@ import {
 
 const CharacterListItem = ({
   id,
+  title,
   name,
   imgFilename,
   folderName
@@ -66,12 +67,12 @@ const CharacterListItem = ({
           {...listeners}
         >
           <img
-            width={75}
+            width={90}
             id={id}
             src={`${apiPath}/${folderName}/${imgFilename}`}
           />
         </div>
-        <p className="text-center">{name}</p>
+        <p className="text-center">{title}</p>
       </div>
     </div>
   );

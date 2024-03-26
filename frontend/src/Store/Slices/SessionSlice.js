@@ -11,11 +11,11 @@ const sessionSlice = createSlice({
         setSessionData(state, action) {
             state.data = action.payload;
         },
-        setStopGameTime(state, action) {
-            state.data = { ...state.data, stopGameTime: action.payload };
+        setGamePlayTime(state, action) {
+            state.data = { ...state.data, gamePlayTime: action.payload };
         }
     }
 });
 
-export const { setSessionData, setStopGameTime } = sessionSlice.actions;
+export const { setSessionData, setGamePlayTime } = sessionSlice.actions;
 export default sessionSlice.reducer;

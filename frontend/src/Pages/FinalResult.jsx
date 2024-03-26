@@ -12,14 +12,8 @@ const FinalResult = () => {
     const PeanutGallery = useSelector(state => state.peanut_gallery_img);
     const Outside = useSelector(state => state.removed_draggable_img);
     const SessionInfo = useSelector(state => state.session_info.data);
-    const startTime = SessionInfo.startGameTime.split(":");
-    const stopTime = SessionInfo.stopGameTime.split(":");
+    const gamePlayTime = SessionInfo.gamePlayTime.split(":");
 
-    const [gameTime, setGameTime] = useState({
-        hour: 0,
-        minute: 0,
-        second: 0
-    });
 
     const styles = StyleSheet.create({
         page: {
@@ -52,14 +46,6 @@ const FinalResult = () => {
 
     const apiPath = import.meta.env.VITE_API;
 
-    useEffect(() => {
-        setGameTime({
-            hour: Math.abs(parseInt(startTime[0]) - parseInt(stopTime[0])),
-            minute: Math.abs(parseInt(startTime[1]) - parseInt(stopTime[1])),
-            second: Math.abs(parseInt(startTime[2]) - parseInt(stopTime[2]))
-        });
-    }, []);
-
     const MyPDF = (<Document>
         <Page size='A4' style={styles.page}>
             <View style={styles.mainView}>
@@ -69,7 +55,7 @@ const FinalResult = () => {
                     <Image src={`${apiPath}/${SessionInfo.clientImgSrc}`} style={{ width: 120, marginTop: 12, marginBottom: 7 }} />
                     <Text style={{ fontSize: 15 }}>Session name: {SessionInfo.sessionName}</Text>
                     <Text style={{ fontSize: 15 }}>Date and Time: {SessionInfo.date} [{SessionInfo.time}]</Text>
-                    <Text style={{ fontSize: 15 }}>Game play time: {gameTime.hour > 0 ? `${gameTime.hour}h:` : ""}{gameTime.minute}m:{gameTime.second}s </Text>
+                    <Text style={{ fontSize: 15 }}>Game play time: {`${gamePlayTime[0] > 0 ? gamePlayTime[0] + "m:" : ""}${gamePlayTime[1]}s`} </Text>
                 </View>
 
                 <View style={styles.mainSection}>
@@ -81,7 +67,7 @@ const FinalResult = () => {
                                 <View key={index} style={{ flexDirection: 'row' }}>
                                     <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
                                     <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
-                                        <Text>{item.name}</Text>
+                                        <Text>{item.title}</Text>
                                         <Text>{item.role}</Text>
                                         <Text style={styles.descriptionText}>{item.description}</Text>
                                     </View>

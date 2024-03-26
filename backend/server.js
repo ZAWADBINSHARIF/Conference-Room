@@ -1,8 +1,8 @@
 // external import
-import express from 'express'
-import dotenv from 'dotenv'
-import cors from 'cors'
-import path from 'path'
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import path from 'path';
 import basicAuth from 'basic-auth';
 
 const users = {
@@ -10,47 +10,29 @@ const users = {
 };
 
 // internal import
-import dbConnection from './configs/dbConnection.js'
-import apiRoute from './routes/apiRoute.js'
+import dbConnection from './configs/dbConnection.js';
+import apiRoute from './routes/apiRoute.js';
 // import errorHandler from './middlewares/common/errorHandler.js'
 
 // for getting the values from the .env file
-dotenv.config()
+dotenv.config();
 
-const app = express()
-const PORT = process.env.PORT || 4000
-const __dirname = path.resolve()
+const app = express();
+const PORT = process.env.PORT || 4000;
+const __dirname = path.resolve();
 
 // for getting json data
-app.use(express.json())
+app.use(express.json());
 
 // for getting json form data
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-    origin: "*"
-}))
+  origin: "*"
+}));
 
 // for database connection
-dbConnection({ app, PORT })
-
-
-// Auth middleware
-app.use(function(req, res, next) {
-
-  var user = basicAuth(req);
-
-  if (!user || !users[user.name] || users[user.name] !== user.pass) {
-
-    res.set('WWW-Authenticate', 'Basic');  
-    res.status(401).send('You are not allowed to access this page. Unauthorized!');
-    return;
-
-  }
-
-  next();
-
-});
+dbConnection({ app, PORT });
 
 
 
@@ -61,14 +43,14 @@ app.use(function(req, res, next) {
 // app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')))
 
 // ** this code for windows
-app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')))
-app.use(express.static(path.join(__dirname, 'backend', 'public', 'representation_imgs')))
-app.use(express.static(path.join(__dirname, 'backend', 'public', 'background')))
+app.use(express.static(path.join(__dirname, 'backend', 'public', 'uploads')));
+app.use(express.static(path.join(__dirname, 'backend', 'public', 'representation_imgs')));
+app.use(express.static(path.join(__dirname, 'backend', 'public', 'background')));
 // app.use(express.static(path.join(__dirname, 'frontend', 'dist')))
 
 
 // routers
-app.use('/api', apiRoute)
+app.use('/api', apiRoute);
 
 // ** this code for linux
 // app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html')))

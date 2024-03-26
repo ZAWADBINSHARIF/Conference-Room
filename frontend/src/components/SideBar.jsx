@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import CharactersListItem from "./CharacterListItem";
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js";
 import { fetchAllTables } from "../Store/Slices/TableImgSlice.js";
-import { setStopGameTime } from "../Store/Slices/SessionSlice.js";
+import { setGamePlayTime } from "../Store/Slices/SessionSlice.js";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
@@ -19,7 +19,10 @@ const SideBar = ({ setSideBarScrollPosition }) => {
     const allCharacters = useSelector(state => state.character_img.data);
     const draggable_imgs = useSelector(state => state.draggable_img);
 
-    const [scrollTop, setScrollTop] = useState(0)
+    const [seconds, setSeconds] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+
+    const [scrollTop, setScrollTop] = useState(0);
 
     const MenuListItem = () => (
 
@@ -27,6 +30,7 @@ const SideBar = ({ setSideBarScrollPosition }) => {
             <CharactersListItem
                 key={item.id}
                 id={item.id}
+                title={item.title}
                 name={item.name}
                 role={item.role}
                 imgFilename={item.filename}
@@ -38,17 +42,31 @@ const SideBar = ({ setSideBarScrollPosition }) => {
 
     function handleEndGame() {
         if (!draggable_imgs.length) return toast.info("At least make one Ally");
-        dispatch(setStopGameTime(format(new Date(), "HH:mm:SS")));
+        dispatch(setGamePlayTime(`${minutes}:${seconds}`));
         navigate('/result');
     }
 
     function handleOnScroll(event) {
-        setScrollTop(event.currentTarget.scrollTop)
+        setScrollTop(event.currentTarget.scrollTop);
     }
 
     useEffect(() => {
-        setSideBarScrollPosition(scrollTop)
-     },[scrollTop, setSideBarScrollPosition])
+        const timer = setInterval(() => {
+            setSeconds(prev => prev + 1);
+
+            if (seconds === 59) {
+                setMinutes(prev => prev + 1);
+                setSeconds(0);
+            }
+
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [seconds]);
+
+    useEffect(() => {
+        setSideBarScrollPosition(scrollTop);
+    }, [scrollTop, setSideBarScrollPosition]);
 
     useEffect(() => {
         dispatch(fetchAllCharacters());
@@ -59,6 +77,12 @@ const SideBar = ({ setSideBarScrollPosition }) => {
         <menu
             className="SideBar text-center d-flex flex-column me-4"
             style={{ display: allCharacters.length != 0 ? 'flex' : "none" }}>
+
+            <div>
+                <div className="digital-time">
+                    {`${minutes}m:${seconds}s`}
+                </div>
+            </div>
 
             <Button className="my-4" variant="success" onClick={() => handleEndGame()}>
                 End Game

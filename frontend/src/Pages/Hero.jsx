@@ -27,7 +27,7 @@ import { removeCharacter } from "../Store/Slices/CharacterImgSlice.js";
 
 const Hero = () => {
   const [activeId, setActiveId] = useState(null);
-  const [selectedCharacterId, setSelectedCharacterId] = useState(null)
+  const [selectedCharacterId, setSelectedCharacterId] = useState(null);
   const [draggable_id, setDraggable_id] = useState(null);
   const [draggable_Item_Type, setDraggable_Item_Type] = useState(null);
   const [dropCharacterPosition, setDropCharacterPosition] = useState(null);
@@ -36,13 +36,13 @@ const Hero = () => {
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => state.character_img.data);
   const allDraggableImgs = useSelector((state) => state.draggable_img);
-
+  const clientImgSrcName = useSelector(state => state.session_info.data.clientImgSrc).split(".")[0];
+  console.log(clientImgSrcName);
   const apiPath = import.meta.env.VITE_API;
 
   const styles = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), 
-        rgba(0, 0, 0, 0.35)), 
-        url("${apiPath}/background_image.jpeg")`,
+    backgroundImage: ` 
+        url("${apiPath}/${clientImgSrcName}_podium_background.jpg")`
   };
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -107,6 +107,7 @@ const Hero = () => {
     const imgInfo = {
       id: character.id,
       draggable_id: draggable_id,
+      title: character?.title,
       name: character.name,
       role: character.role,
       src: character.filename,

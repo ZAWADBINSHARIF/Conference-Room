@@ -3,7 +3,6 @@ import { useDroppable } from '@dnd-kit/core';
 import { useDispatch, useSelector } from 'react-redux';
 
 // internal import
-import TablePlace from "./TablePlace";
 import DraggableImage from './DraggableImage';
 import { fetchSaveHistoryThunk } from '../../Store/Slices/DraggableImgSlice.js';
 import { useEffect } from 'react';
@@ -50,7 +49,6 @@ const PlayGround = () => {
             description={img.description}
           />
         ))}
-        <TablePlace />
 
         <ArchetypeDescription />
 

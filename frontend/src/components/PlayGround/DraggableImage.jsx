@@ -109,8 +109,8 @@ const DraggableImage = ({
                 <div className="draggableCharInfo mt-2 text-center"
                     style={{
                         textAlign: 'center',
-                        color: "#f9ae01",
-                        lineHeight: "1rem"
+                        color: "#ffffff",
+                        lineHeight: "1rem",
                     }}
                 >
                     {`${name}`}
