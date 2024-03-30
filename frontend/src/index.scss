@@ -153,13 +153,11 @@ body {
           -o-user-select: none;
           // not selectable mode end
 
-          // Table Image Design
-          .TablePlace {
-            img {
-              // width: 500px;
-              width: 30vw;
-              border-radius: 12px;
-            }
+          // Removable Area
+          .RemovableArea {
+            width: 10px;
+            height: 10px;
+            background-color: #0d1a25;
           }
 
           // Draggable Image design

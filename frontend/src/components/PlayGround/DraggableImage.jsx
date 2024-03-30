@@ -11,6 +11,7 @@ import { setCharacterToPeanutGallery } from "../../Store/Slices/PeanutGalleryImg
 
 const DraggableImage = ({
     id,
+    title,
     src,
     x,
     y,
@@ -113,7 +114,7 @@ const DraggableImage = ({
                         lineHeight: "1rem",
                     }}
                 >
-                    {`${name}`}
+                    {`${title}`}
                     <br />
                     {`${role}`}
                 </div>

@@ -15,8 +15,9 @@ const PeanutGallery = () => {
   const apiPath = import.meta.env.VITE_API;
 
   return (
-    <div className="PeanutGallery" ref={setNodeRef}>
+    <div className="PeanutGallery">
       <div className="peanutGalleryWrapper p-1"
+        ref={setNodeRef}
         style={{
           scale: isOver ? "1.02" : "1",
           transition: "0.5s"

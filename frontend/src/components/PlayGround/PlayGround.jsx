@@ -1,6 +1,10 @@
 // external import
 import { useDroppable } from '@dnd-kit/core';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 
 // internal import
 import DraggableImage from './DraggableImage';
@@ -8,11 +12,14 @@ import { fetchSaveHistoryThunk } from '../../Store/Slices/DraggableImgSlice.js';
 import { useEffect } from 'react';
 import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
+import { RemovableArea } from './RemovableArea.jsx';
+
 
 const PlayGround = () => {
 
   const draggableImgs = useSelector(state => state.draggable_img);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { setNodeRef } = useDroppable({
     id: 'Droppable',
@@ -20,6 +27,11 @@ const PlayGround = () => {
       accepts: ['PlayGroundCharacter', 'characterFromSlideMenu']
     }
   });
+
+  function handleEndGame() {
+    if (!draggableImgs.length) return toast.info("At least make one Ally");
+    navigate('/result');
+  }
 
   useEffect(() => {
     dispatch(fetchSaveHistoryThunk());
@@ -29,7 +41,7 @@ const PlayGround = () => {
 
     <>
       <div
-        className="PlayGround w-100 d-flex justify-content-center align-items-center"
+        className="PlayGround w-100 d-flex justify-content-sart align-items-start"
         ref={setNodeRef}
         onTouchEnd={() => dispatch(clearAchetypeDescriptionText())}
         onClick={() => dispatch(clearAchetypeDescriptionText())}
@@ -39,6 +51,7 @@ const PlayGround = () => {
           <DraggableImage
             key={img.draggable_id}
             draggable_id={img.draggable_id}
+            title={img?.title}
             id={img.id}
             name={img.name}
             role={img.role}
@@ -51,6 +64,14 @@ const PlayGround = () => {
         ))}
 
         <ArchetypeDescription />
+
+        <div className="align-self-end p-2">
+          <Button className="EndGameBtn btn" variant="danger" onClick={handleEndGame}>
+            End Game
+          </Button>
+        </div>
+
+        <RemovableArea />
 
       </div>
 

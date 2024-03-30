@@ -23,7 +23,6 @@ const characterImageSlice = createSlice({
         },
         removeCharacter(state, action) {
             const filterCharacters = state.data.filter(item => item.id != action.payload)
-            console.log(filterCharacters);
             state.data = filterCharacters
         }
     }

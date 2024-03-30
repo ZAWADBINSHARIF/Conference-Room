@@ -61,8 +61,10 @@ const SideBar = ({ setSideBarScrollPosition }) => {
 
         }, 1000);
 
+        dispatch(setGamePlayTime(`${minutes}:${seconds}`));
+
         return () => clearInterval(timer);
-    }, [seconds]);
+    }, [dispatch, minutes, seconds]);
 
     useEffect(() => {
         setSideBarScrollPosition(scrollTop);
@@ -79,14 +81,14 @@ const SideBar = ({ setSideBarScrollPosition }) => {
             style={{ display: allCharacters.length != 0 ? 'flex' : "none" }}>
 
             <div>
-                <div className="digital-time">
+                <div className="digital-time mb-5">
                     {`${minutes}m:${seconds}s`}
                 </div>
             </div>
 
-            <Button className="my-4" variant="success" onClick={() => handleEndGame()}>
+            {/* <Button className="my-4" variant="success" onClick={() => handleEndGame()}>
                 End Game
-            </Button>
+            </Button> */}
 
             <div className="MenuList" onScroll={handleOnScroll}>
 

@@ -24,6 +24,8 @@ import { setCharacterToPeanutGallery } from "../Store/Slices/PeanutGalleryImgSli
 import CharactersListItem from "../components/CharacterListItem.jsx";
 import DraggableImage from "../components/PlayGround/DraggableImage.jsx";
 import { removeCharacter } from "../Store/Slices/CharacterImgSlice.js";
+import { setRemovableAreaVisibility } from "../Store/Slices/RemovableAreaSlice.js";
+
 
 const Hero = () => {
   const [activeId, setActiveId] = useState(null);
@@ -37,7 +39,7 @@ const Hero = () => {
   const allCharacters = useSelector((state) => state.character_img.data);
   const allDraggableImgs = useSelector((state) => state.draggable_img);
   const clientImgSrcName = useSelector(state => state.session_info.data.clientImgSrc).split(".")[0];
-  console.log(clientImgSrcName);
+
   const apiPath = import.meta.env.VITE_API;
 
   const styles = {
@@ -87,6 +89,7 @@ const Hero = () => {
             <DraggableImage
               key={item.id}
               id={item.id}
+              title={item.title}
               name={item.name}
               role={item.role}
               src={item.src}
@@ -128,7 +131,6 @@ const Hero = () => {
     const { data } = event.active;
 
     if (data.current.type === "characterFromSlideMenu") {
-      console.log(data.current.characterId);
       setDraggable_Item_Type("characterFromSlideMenu");
       setActiveId(data.current.characterId);
       setSelectedCharacterId(data.current.characterId);
@@ -139,6 +141,19 @@ const Hero = () => {
       setActiveId(data.current.draggable_id);
       setDraggable_id(data.current.draggable_id);
     }
+  }
+
+  function handleDragMove(event) {
+    const { collisions } = event;
+
+    const isCollisionOnRemovable = collisions?.find(item => item.id == "Removable");
+    dispatch(setRemovableAreaVisibility(true));
+
+
+    if (isCollisionOnRemovable) {
+      console.log(isCollisionOnRemovable);
+    }
+
   }
 
   function handleDragEnd(event) {
@@ -173,13 +188,19 @@ const Hero = () => {
         })
       );
       dispatch(removeDraggableImg(draggableImg.draggable_id));
+    } else if (event.over.id === "Removable") {
+      dispatch(removeDraggableImg(id));
     }
+
+    dispatch(setRemovableAreaVisibility(false));
+
   }
 
   return (
     <DndContext
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+      onDragMove={handleDragMove}
       modifiers={[snapToGrid]}
       sensors={[mouseSensor, touchSensor]}
     >
