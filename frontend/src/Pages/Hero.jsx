@@ -14,13 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 // internal import
 import PlayGround from "../components/PlayGround/PlayGround";
 import SideBar from "../components/SideBar";
-import PeanutGallery from "../components/PeanutGallery";
+import PeanutGallery from "../components/PeanutGallery/PeanutGallery";
 import {
   addDraggableImg,
   setDraggableImgPosition,
   removeDraggableImg,
 } from "../Store/Slices/DraggableImgSlice.js";
-import { setCharacterToPeanutGallery } from "../Store/Slices/PeanutGalleryImgSlice.js";
+import { removeCharacterToPeanutGallery, setCharacterToPeanutGallery } from "../Store/Slices/PeanutGalleryImgSlice.js";
 import CharactersListItem from "../components/CharacterListItem.jsx";
 import DraggableImage from "../components/PlayGround/DraggableImage.jsx";
 import { removeCharacter } from "../Store/Slices/CharacterImgSlice.js";
@@ -38,6 +38,7 @@ const Hero = () => {
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => state.character_img.data);
   const allDraggableImgs = useSelector((state) => state.draggable_img);
+  const allPeanutGallery = useSelector((state) => state.peanut_gallery_img);
   const clientImgSrcName = useSelector(state => state.session_info.data.clientImgSrc).split(".")[0];
 
   const apiPath = import.meta.env.VITE_API;
@@ -72,10 +73,11 @@ const Hero = () => {
       return allCharacters.map((item) => {
         if (item.id == activeId) {
           return (
+            // <>Character form menu</>
             <CharactersListItem
               key={item.id}
               id={item.id}
-              name={item.name}
+              title={item.title}
               imgFilename={item.filename}
               folderName={item.folder_name}
             />
@@ -100,6 +102,24 @@ const Hero = () => {
           );
         }
       });
+    } else if (draggable_Item_Type === "characterFromPeanutGallery") {
+      return allPeanutGallery.map((item) => {
+        if (item.id == activeId) {
+          return (
+            <DraggableImage
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              name={item.name}
+              role={item.role}
+              src={item.src}
+              folder_name={item.folder_name}
+              description={item.description}
+              draggable_id={item.draggable_id}
+            />
+          );
+        }
+      });
     } else {
       return <>No Data</>;
     }
@@ -107,18 +127,37 @@ const Hero = () => {
 
   function handleAddToPlayGround(playGroundTop, playGroundLeft, new_x, new_y) {
     const character = allCharacters.find((item) => item.id === activeId);
-    const imgInfo = {
-      id: character.id,
-      draggable_id: draggable_id,
-      title: character?.title,
-      name: character.name,
-      role: character.role,
-      src: character.filename,
-      position_x: dropCharacterPosition.x + new_x - playGroundLeft || 32,
-      position_y: dropCharacterPosition.y + new_y - playGroundTop - sideBarScrollPosition || 32,
-      folder_name: character.folder_name,
-      description: character.description,
-    };
+    let imgInfo;
+
+    if (draggable_Item_Type == 'characterFromSlideMenu') {
+      imgInfo = {
+        id: character.id,
+        draggable_id: draggable_id,
+        title: character?.title,
+        name: character.name,
+        role: character.role,
+        src: character.filename,
+        position_x: dropCharacterPosition.x + new_x - playGroundLeft || 32,
+        position_y: dropCharacterPosition.y + new_y - playGroundTop - sideBarScrollPosition || 32,
+        folder_name: character.folder_name,
+        description: character.description,
+      };
+    } else if (draggable_Item_Type == 'characterFromPeanutGallery') {
+      const character = allPeanutGallery.find((item) => item.id === activeId);
+      imgInfo = {
+        id: character.id,
+        draggable_id: draggable_id,
+        title: character?.title,
+        name: character.name,
+        role: character.role,
+        src: character.src,
+        position_x: dropCharacterPosition.x + new_x - playGroundLeft || 32,
+        position_y: dropCharacterPosition.y + new_y - playGroundTop || 32,
+        folder_name: character.folder_name,
+        description: character.description,
+      };
+
+    }
 
     dispatch(addDraggableImg(imgInfo));
 
@@ -131,15 +170,27 @@ const Hero = () => {
     const { data } = event.active;
 
     if (data.current.type === "characterFromSlideMenu") {
+
       setDraggable_Item_Type("characterFromSlideMenu");
       setActiveId(data.current.characterId);
       setSelectedCharacterId(data.current.characterId);
       setDraggable_id(data.current.draggable_id);
       setDropCharacterPosition(data.current.position);
+
     } else if (data.current.type === "PlayGroundCharacter") {
+
       setDraggable_Item_Type("PlayGroundCharacter");
       setActiveId(data.current.draggable_id);
       setDraggable_id(data.current.draggable_id);
+
+    } else if (data.current.type === "characterFromPeanutGallery") {
+
+      setDraggable_Item_Type("characterFromPeanutGallery");
+      setActiveId(data.current.characterId);
+      setSelectedCharacterId(data.current.characterId);
+      setDraggable_id(data.current.draggable_id);
+      setDropCharacterPosition(data.current.position);
+
     }
   }
 
@@ -160,12 +211,20 @@ const Hero = () => {
     const { top: playGroundTop, left: playGroundLeft } = event.over.rect;
 
     setActiveId(null);
-
     if (event.over.id === "Droppable") {
+
       dispatch(setDraggableImgPosition({ id, new_x, new_y }));
+
       if (activeId && draggable_id && dropCharacterPosition) {
+
         handleAddToPlayGround(playGroundTop, playGroundLeft, new_x, new_y);
-        dispatch(removeCharacter(selectedCharacterId));
+
+        if (draggable_Item_Type === "characterFromSlideMenu") {
+          dispatch(removeCharacter(selectedCharacterId));
+        }
+        else if (draggable_Item_Type === "characterFromPeanutGallery") {
+          dispatch(removeCharacterToPeanutGallery(draggable_id));
+        }
       }
     } else if (event.over.id === "PeanutGallery") {
       const draggableImg = allDraggableImgs.find(
@@ -174,6 +233,7 @@ const Hero = () => {
       dispatch(
         setCharacterToPeanutGallery({
           id: draggableImg.id,
+          title: draggableImg?.title,
           src: draggableImg.src,
           x: draggableImg.x,
           y: draggableImg.y,
