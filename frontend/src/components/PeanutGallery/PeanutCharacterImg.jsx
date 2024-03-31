@@ -35,9 +35,9 @@ const PeanutCharacterImg = ({ src, item }) => {
                     {...attributes}
                     {...listeners}
                 >
-                    <img
+                    <img className='peanut-gallery-img'
                         src={src}
-                        width={75}
+                    // width={75}
                     />
                 </div>
             </div>

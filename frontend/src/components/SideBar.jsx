@@ -1,23 +1,18 @@
 // enternal import
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
-import { format } from "date-fns";
 
 // internal import 
 import CharactersListItem from "./CharacterListItem";
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js";
 import { fetchAllTables } from "../Store/Slices/TableImgSlice.js";
 import { setGamePlayTime } from "../Store/Slices/SessionSlice.js";
-import { Button } from "react-bootstrap";
-import { toast } from "react-toastify";
+
 
 const SideBar = ({ setSideBarScrollPosition }) => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const allCharacters = useSelector(state => state.character_img.data);
-    const draggable_imgs = useSelector(state => state.draggable_img);
 
     const [seconds, setSeconds] = useState(0);
     const [minutes, setMinutes] = useState(0);
@@ -40,11 +35,6 @@ const SideBar = ({ setSideBarScrollPosition }) => {
         ))
     );
 
-    function handleEndGame() {
-        if (!draggable_imgs.length) return toast.info("At least make one Ally");
-        dispatch(setGamePlayTime(`${minutes}:${seconds}`));
-        navigate('/result');
-    }
 
     function handleOnScroll(event) {
         setScrollTop(event.currentTarget.scrollTop);

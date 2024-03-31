@@ -110,6 +110,7 @@ body {
           margin-bottom: 12px;
           .peanutGalleryWrapper {
             height: 90px;
+            max-width: 100%;
             min-width: 90px;
             width: min-content;
             margin: 12px 0 0 12px;
@@ -129,8 +130,9 @@ body {
               font-weight: bold;
             }
 
-            img {
+            .peanut-gallery-img {
               cursor: pointer;
+              max-width: 75px;
               &:hover {
                 scale: 1.05;
               }
