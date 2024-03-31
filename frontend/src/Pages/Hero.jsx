@@ -24,7 +24,7 @@ import { setCharacterToPeanutGallery } from "../Store/Slices/PeanutGalleryImgSli
 import CharactersListItem from "../components/CharacterListItem.jsx";
 import DraggableImage from "../components/PlayGround/DraggableImage.jsx";
 import { removeCharacter } from "../Store/Slices/CharacterImgSlice.js";
-import { setRemovableAreaVisibility } from "../Store/Slices/RemovableAreaSlice.js";
+import { setOpenRemovableModal, setRemovableAreaVisibility, setRemovingCharacterId } from "../Store/Slices/RemovableAreaSlice.js";
 
 
 const Hero = () => {
@@ -144,14 +144,11 @@ const Hero = () => {
   }
 
   function handleDragMove(event) {
-    const { collisions } = event;
+    const { active } = event;
 
-    const isCollisionOnRemovable = collisions?.find(item => item.id == "Removable");
-    dispatch(setRemovableAreaVisibility(true));
-
-
-    if (isCollisionOnRemovable) {
-      console.log(isCollisionOnRemovable);
+    if (active.data.current.type === "PlayGroundCharacter") {
+      // const isCollisionOnRemovableArea = collisions?.find(item => item.id == "Removable");
+      dispatch(setRemovableAreaVisibility(true));
     }
 
   }
@@ -189,7 +186,8 @@ const Hero = () => {
       );
       dispatch(removeDraggableImg(draggableImg.draggable_id));
     } else if (event.over.id === "Removable") {
-      dispatch(removeDraggableImg(id));
+      dispatch(setRemovingCharacterId(id));
+      dispatch(setOpenRemovableModal(true));
     }
 
     dispatch(setRemovableAreaVisibility(false));

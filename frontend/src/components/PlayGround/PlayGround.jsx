@@ -13,11 +13,13 @@ import { useEffect } from 'react';
 import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
 import { RemovableArea } from './RemovableArea.jsx';
+import RemovableModal from "../Modals/RemovableModal.jsx";
 
 
 const PlayGround = () => {
 
   const draggableImgs = useSelector(state => state.draggable_img);
+  const { openRemovableModal } = useSelector(state => state.removable_area);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,6 +49,7 @@ const PlayGround = () => {
         onClick={() => dispatch(clearAchetypeDescriptionText())}
       >
 
+
         {draggableImgs.map(img => (
           <DraggableImage
             key={img.draggable_id}
@@ -70,6 +73,8 @@ const PlayGround = () => {
             End Game
           </Button>
         </div>
+
+        {openRemovableModal && <RemovableModal />}
 
         <RemovableArea />
 
