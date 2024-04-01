@@ -61,7 +61,6 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
 
         <PeanutGallery />
 
-        {openRemovableModal && <RemovableModal />}
 
         {draggableImgs.map(img => (
           <DraggableImage
@@ -87,6 +86,7 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
           </Button>
         </div>
 
+        {openRemovableModal && <RemovableModal />}
 
         <RemovableArea />
 

@@ -20,11 +20,11 @@ const RemovableModal = () => {
 
     return (
         <div
-            className="modal show align-self-end position-absolute z-2 RemovableModal z-3"
+            className="modal show align-self-end position-absolute RemovableModal"
             style={{ display: 'block', position: 'initial' }}
         >
             <Modal.Dialog>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>⚠ Warning</Modal.Title>
                 </Modal.Header>
 
