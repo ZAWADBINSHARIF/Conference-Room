@@ -105,48 +105,13 @@ body {
         background-size: cover;
         // background-position: center;
 
-        // * peanutGallery
-        .PeanutGallery {
-          margin-bottom: 12px;
-          .peanutGalleryWrapper {
-            height: 90px;
-            max-width: 100%;
-            min-width: 90px;
-            width: min-content;
-            margin: 12px 0 0 12px;
-            display: flex;
-            gap: 5px;
-            border-radius: 12px;
-            border: 3px solid $borderColor;
-
-            &:hover {
-              cursor: pointer;
-              transition: 0.5s;
-            }
-
-            p {
-              // color: $textColor;
-              color: 'white';
-              font-weight: bold;
-            }
-
-            .peanut-gallery-img {
-              cursor: pointer;
-              max-width: 75px;
-              &:hover {
-                scale: 1.05;
-              }
-            }
-          }
-        }
-
         // * playGround
         .PlayGround {
           position: relative;
           overflow: hidden;
-          border: 3px solid $borderColor;
-          border-radius: 12px;
-          min-height: 85vh;
+          // border: 3px solid $borderColor;
+          // border-radius: 12px;
+          min-height: 100vh;
           margin-left: 12px;
 
           // not selectable mode start
@@ -157,14 +122,51 @@ body {
           -o-user-select: none;
           // not selectable mode end
 
+          // * peanutGallery
+          .PeanutGallery {
+            margin-bottom: 12px;
+            .peanutGalleryWrapper {
+              height: 90px;
+              max-width: 100%;
+              min-width: 90px;
+              width: min-content;
+              margin: 12px 0 0 12px;
+              display: flex;
+              gap: 5px;
+              border-radius: 12px;
+              border: 3px solid $borderColor;
+
+              &:hover {
+                cursor: pointer;
+                transition: 0.5s;
+              }
+
+              p {
+                // color: $textColor;
+                color: 'white';
+                font-weight: bold;
+              }
+
+              .peanut-gallery-img {
+                cursor: pointer;
+                max-width: 75px;
+                &:hover {
+                  scale: 1.05;
+                }
+              }
+            }
+          }
+
           // Removable Area
           .RemovableArea {
-            width: 10px;
-            height: 10px;
+            width: 25px;
+            height: 25px;
+            // background-color: red;
           }
 
           // Draggable Image design
           .DraggableImage {
+            z-index: 10;
             img {
               width: 75px;
               border-radius: 5px;
@@ -177,12 +179,16 @@ body {
             line-height: 1rem;
           }
 
+          .RemovableModal {
+            z-index: 120;
+          }
+
           .ArchetypeDescription {
             width: 80%;
             height: 120px;
             padding: 7px;
             overflow-y: hidden;
-            border: 3px solid $borderColor;
+            // border: 3px solid $borderColor;
             border-radius: 12px;
             position: absolute;
             bottom: -5%;

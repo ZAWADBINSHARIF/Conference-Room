@@ -67,7 +67,7 @@ const CharacterListItem = ({
           {...listeners}
         >
           <img
-            width={90}
+            width={105}
             id={id}
             src={`${apiPath}/${folderName}/${imgFilename}`}
           />

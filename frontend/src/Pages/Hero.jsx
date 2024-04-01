@@ -15,7 +15,6 @@ import { useScreenshot } from 'use-react-screenshot';
 // internal import
 import PlayGround from "../components/PlayGround/PlayGround";
 import SideBar from "../components/SideBar";
-import PeanutGallery from "../components/PeanutGallery/PeanutGallery";
 import {
   addDraggableImg,
   setDraggableImgPosition,
@@ -268,7 +267,6 @@ const Hero = () => {
       <Row className="game" style={styles} ref={ref_of_game}>
         {/* playGround */}
         <Col xxl={11} xl={10} md={10}>
-          <PeanutGallery />
           <PlayGround captureScreenShot={captureScreenShot} screenShotImgSrc = {screenShotImgSrc} />
         </Col>
 

@@ -15,6 +15,7 @@ import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSli
 import { RemovableArea } from './RemovableArea.jsx';
 import RemovableModal from "../Modals/RemovableModal.jsx";
 import { setScreenShotImgSrc } from '../../Store/Slices/ScreenShotImgSlice.js';
+import PeanutGallery from "../PeanutGallery/PeanutGallery";
 
 
 const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
@@ -49,6 +50,8 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
   return (
 
     <>
+
+
       <div
         className="PlayGround w-100 d-flex justify-content-sart align-items-start"
         ref={setNodeRef}
@@ -56,6 +59,9 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
         onClick={() => dispatch(clearAchetypeDescriptionText())}
       >
 
+        <PeanutGallery />
+
+        {openRemovableModal && <RemovableModal />}
 
         {draggableImgs.map(img => (
           <DraggableImage
@@ -75,13 +81,12 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
 
         <ArchetypeDescription />
 
-        <div className="align-self-end p-2">
+        <div className="align-self-end position-absolute p-2">
           <Button className="EndGameBtn btn" variant="danger" onClick={handleEndGame}>
             End Game
           </Button>
         </div>
 
-        {openRemovableModal && <RemovableModal />}
 
         <RemovableArea />
 
