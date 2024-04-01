@@ -1,5 +1,5 @@
 // external import
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, Image } from "react";
 import { Col, Row } from "react-bootstrap";
 import {
   DndContext,
@@ -10,6 +10,7 @@ import {
 } from "@dnd-kit/core";
 import { createSnapModifier } from "@dnd-kit/modifiers";
 import { useDispatch, useSelector } from "react-redux";
+import { useScreenshot } from 'use-react-screenshot';
 
 // internal import
 import PlayGround from "../components/PlayGround/PlayGround";
@@ -28,12 +29,14 @@ import { setOpenRemovableModal, setRemovableAreaVisibility, setRemovingCharacter
 
 
 const Hero = () => {
+  const ref_of_game = useRef(null);
   const [activeId, setActiveId] = useState(null);
   const [selectedCharacterId, setSelectedCharacterId] = useState(null);
   const [draggable_id, setDraggable_id] = useState(null);
   const [draggable_Item_Type, setDraggable_Item_Type] = useState(null);
   const [dropCharacterPosition, setDropCharacterPosition] = useState(null);
   const [sideBarScrollPosition, setSideBarScrollPosition] = useState(null);
+  const [screenShotImgSrc, takeScreenshot] = useScreenshot();
 
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => state.character_img.data);
@@ -66,7 +69,7 @@ const Hero = () => {
 
   const snapToGrid = useMemo(() => createSnapModifier(gridSize), [gridSize]);
 
-
+  const captureScreenShot = () => takeScreenshot(ref_of_game.current);
 
   const OverlayItem = () => {
     if (draggable_Item_Type === "characterFromSlideMenu") {
@@ -262,11 +265,11 @@ const Hero = () => {
       modifiers={[snapToGrid]}
       sensors={[mouseSensor, touchSensor]}
     >
-      <Row className="game" style={styles}>
+      <Row className="game" style={styles} ref={ref_of_game}>
         {/* playGround */}
         <Col xxl={11} xl={10} md={10}>
           <PeanutGallery />
-          <PlayGround />
+          <PlayGround captureScreenShot={captureScreenShot} screenShotImgSrc = {screenShotImgSrc} />
         </Col>
 
         {/* SideBar */}

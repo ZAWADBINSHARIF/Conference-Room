@@ -14,9 +14,10 @@ import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
 import { RemovableArea } from './RemovableArea.jsx';
 import RemovableModal from "../Modals/RemovableModal.jsx";
+import { setScreenShotImgSrc } from '../../Store/Slices/ScreenShotImgSlice.js';
 
 
-const PlayGround = () => {
+const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
 
   const draggableImgs = useSelector(state => state.draggable_img);
   const { openRemovableModal } = useSelector(state => state.removable_area);
@@ -32,8 +33,14 @@ const PlayGround = () => {
 
   function handleEndGame() {
     if (!draggableImgs.length) return toast.info("At least make one Ally");
+    captureScreenShot();
     navigate('/result');
   }
+
+  useEffect(() => {
+    dispatch(setScreenShotImgSrc(screenShotImgSrc));
+
+  }, [dispatch, screenShotImgSrc]);
 
   useEffect(() => {
     dispatch(fetchSaveHistoryThunk());

@@ -1,5 +1,4 @@
 // external import
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
@@ -12,6 +11,8 @@ const FinalResult = () => {
     const PeanutGallery = useSelector(state => state.peanut_gallery_img);
     const Outside = useSelector(state => state.removed_draggable_img);
     const SessionInfo = useSelector(state => state.session_info.data);
+    const ScreenShotImgSrc = useSelector(state => state.screen_shot_img.src);
+    console.log(ScreenShotImgSrc);
     const gamePlayTime = SessionInfo.gamePlayTime.split(":");
 
 
