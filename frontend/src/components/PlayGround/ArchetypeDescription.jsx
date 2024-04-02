@@ -9,7 +9,7 @@ const ArchetypeDescription = () => {
     };
 
     return (
-        <div className="ArchetypeDescription" style={style}>{description}</div>
+        <div className="ArchetypeDescription position-absolute" style={style}>{description}</div>
     );
 };
 export default ArchetypeDescription;
