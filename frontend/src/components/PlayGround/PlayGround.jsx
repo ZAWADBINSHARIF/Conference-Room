@@ -16,6 +16,7 @@ import { RemovableArea } from './RemovableArea.jsx';
 import RemovableModal from "../Modals/RemovableModal.jsx";
 import { setScreenShotImgSrc } from '../../Store/Slices/ScreenShotImgSlice.js';
 import PeanutGallery from "../PeanutGallery/PeanutGallery";
+import EndGameLogo from '../../assets/end_game_btn_logo.png';
 
 
 const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
@@ -80,10 +81,8 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
 
         <ArchetypeDescription />
 
-        <div className="align-self-end position-absolute p-2">
-          <Button className="EndGameBtn btn" variant="danger" onClick={handleEndGame}>
-            End Game
-          </Button>
+        <div className="EndButtonLogo align-self-end position-absolute p-2 pb-2">
+          <img src={EndGameLogo} width={125} onClick={handleEndGame} />
         </div>
 
         {openRemovableModal && <RemovableModal />}

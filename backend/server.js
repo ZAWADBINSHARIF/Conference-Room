@@ -3,11 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
-import basicAuth from 'basic-auth';
 
-const users = {
-  'admin': '12345'
-};
 
 // internal import
 import dbConnection from './configs/dbConnection.js';
