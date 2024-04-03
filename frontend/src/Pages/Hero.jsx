@@ -47,7 +47,7 @@ const Hero = () => {
 
   const styles = {
     backgroundImage: ` 
-        url("${apiPath}/${clientImgSrcName}_podium_background.jpg")`
+        url("${clientImgSrcName}_podium_background.jpg")`
   };
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -267,7 +267,7 @@ const Hero = () => {
       <Row className="game" style={styles} ref={ref_of_game}>
         {/* playGround */}
         <Col xxl={11} xl={10} md={10}>
-          <PlayGround captureScreenShot={captureScreenShot} screenShotImgSrc = {screenShotImgSrc} />
+          <PlayGround captureScreenShot={captureScreenShot} screenShotImgSrc={screenShotImgSrc} />
         </Col>
 
         {/* SideBar */}

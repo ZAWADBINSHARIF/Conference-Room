@@ -13,7 +13,7 @@ const TablePlace = () => {
   return (
     <div className="TablePlace d-flex justify-content-center">
       {tableFileName &&
-        <img src={`${apiPath}/tables/${tableFileName}`} />
+        <img src={`tables/${tableFileName}`} />
       }
     </div>
   );

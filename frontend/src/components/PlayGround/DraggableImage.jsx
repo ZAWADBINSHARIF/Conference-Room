@@ -53,7 +53,7 @@ const DraggableImage = ({
                 {...listeners}
             >
                 <img
-                    src={`${apiPath}/${folder_name}/${src}`}
+                    src={`${folder_name}/${src}`}
                     style={{ width: "75px", borderRadius: "5px" }}
                 /> {/* // ! it will be removed when hosting */}
 
