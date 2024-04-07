@@ -1,7 +1,6 @@
 // external import
 import { useDroppable } from '@dnd-kit/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 

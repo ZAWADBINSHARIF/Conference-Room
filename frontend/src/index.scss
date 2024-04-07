@@ -1,4 +1,10 @@
-// ariables
+// import
+@font-face {
+  font-family: 'a-l-c-h-e-m-y';
+  src: url('./assets/a-l-c-h-e-m-y_Regular.ttf') format('ttf');
+}
+
+// Variables
 $backGroundColor: #182129;
 $borderColor: #73737b;
 $buttonColor: #243341;
@@ -11,6 +17,8 @@ $DraggableCharInfoFontCOlor: #f9ae01;
   padding: 0;
   margin: 0;
   box-sizing: 0;
+  font-family: 'a-l-c-h-e-m-y';
+  font-size: 1.05rem;
 }
 
 a {
@@ -158,11 +166,9 @@ body {
           }
 
           // Removable Area
-          .RemovableArea {
-            width: 25px;
-            height: 25px;
-            // background-color: red;
-          }
+          // .RemovableArea {
+
+          // }
 
           // Draggable Image design
           .DraggableImage {
@@ -185,6 +191,8 @@ body {
 
           .RemovableModal {
             z-index: 12;
+            font-family: 'a-l-c-h-e-m-y';
+            font-size: 1.2rem;
           }
 
           .ArchetypeDescription {
