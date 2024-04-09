@@ -267,7 +267,7 @@ const Hero = () => {
       <Row className="game" style={styles} ref={ref_of_game}>
         {/* playGround */}
         <Col xxl={11} xl={10} md={10}>
-          <PlayGround captureScreenShot={captureScreenShot} screenShotImgSrc = {screenShotImgSrc} />
+          <PlayGround />
         </Col>
 
         {/* SideBar */}

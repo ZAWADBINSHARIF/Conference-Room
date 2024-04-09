@@ -1,18 +1,25 @@
 // enternal import
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 // internal import 
 import CharactersListItem from "./CharacterListItem";
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js";
 import { fetchAllTables } from "../Store/Slices/TableImgSlice.js";
 import { setGamePlayTime } from "../Store/Slices/SessionSlice.js";
+import EndGameLogo from '../assets/end_game_btn_logo.png';
+
 
 
 const SideBar = ({ setSideBarScrollPosition }) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const allCharacters = useSelector(state => state.character_img.data);
+    const draggableImgs = useSelector(state => state.draggable_img);
 
     const [seconds, setSeconds] = useState(0);
     const [minutes, setMinutes] = useState(0);
@@ -38,6 +45,11 @@ const SideBar = ({ setSideBarScrollPosition }) => {
 
     function handleOnScroll(event) {
         setScrollTop(event.currentTarget.scrollTop);
+    }
+
+    function handleEndGame() {
+        if (!draggableImgs.length) return toast.info("At least make one Ally");
+        navigate('/result');
     }
 
     useEffect(() => {
@@ -67,18 +79,19 @@ const SideBar = ({ setSideBarScrollPosition }) => {
 
     return (
         <menu
-            className="SideBar text-center d-flex flex-column me-4"
+            className="SideBar text-center d-flex flex-column me-4 gap-2"
             style={{ display: allCharacters.length != 0 ? 'flex' : "none" }}>
 
             <div>
-                <div className="digital-time mb-5">
+                <div className="digital-time">
                     {`${minutes}m:${seconds}s`}
                 </div>
             </div>
 
-            {/* <Button className="my-4" variant="success" onClick={() => handleEndGame()}>
-                End Game
-            </Button> */}
+
+            <div className="EndButtonLogo ">
+                <img src={EndGameLogo} width={115} onClick={handleEndGame} />
+            </div>
 
             <div className="MenuList" onScroll={handleOnScroll}>
 

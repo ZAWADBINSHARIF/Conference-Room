@@ -16,7 +16,7 @@ export const RemovableArea = () => {
     });
 
     return (
-        <div className={`RemovableArea align-self-end position-absolute z-2 p-2 pb-2 ${visibility ? 'visible' : 'visually-hidden'}`} ref={setNodeRef}>
+        <div className={`RemovableArea align-self-end position-absolute z-2 p-2 pb-2 `} ref={setNodeRef}>
             <img src={Banish} width={125} />
         </div>
     );

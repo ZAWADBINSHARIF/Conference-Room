@@ -185,10 +185,6 @@ body {
             line-height: 1rem;
           }
 
-          .EndButtonLogo {
-            cursor: pointer;
-          }
-
           .RemovableModal {
             z-index: 12;
             font-family: 'a-l-c-h-e-m-y';
@@ -219,6 +215,10 @@ body {
           padding: 0.5rem 1rem;
           border-radius: 12px;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .EndButtonLogo {
+          cursor: pointer;
         }
 
         menu {

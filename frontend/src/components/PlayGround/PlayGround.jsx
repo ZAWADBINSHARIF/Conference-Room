@@ -1,8 +1,7 @@
 // external import
 import { useDroppable } from '@dnd-kit/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+
 
 
 // internal import
@@ -15,15 +14,13 @@ import { RemovableArea } from './RemovableArea.jsx';
 import RemovableModal from "../Modals/RemovableModal.jsx";
 import { setScreenShotImgSrc } from '../../Store/Slices/ScreenShotImgSlice.js';
 import PeanutGallery from "../PeanutGallery/PeanutGallery";
-import EndGameLogo from '../../assets/end_game_btn_logo.png';
 
 
-const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
+const PlayGround = () => {
 
   const draggableImgs = useSelector(state => state.draggable_img);
   const { openRemovableModal } = useSelector(state => state.removable_area);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { setNodeRef } = useDroppable({
     id: 'Droppable',
@@ -32,16 +29,6 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
     }
   });
 
-  function handleEndGame() {
-    if (!draggableImgs.length) return toast.info("At least make one Ally");
-    captureScreenShot();
-    navigate('/result');
-  }
-
-  useEffect(() => {
-    dispatch(setScreenShotImgSrc(screenShotImgSrc));
-
-  }, [dispatch, screenShotImgSrc]);
 
   useEffect(() => {
     dispatch(fetchSaveHistoryThunk());
@@ -50,7 +37,6 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
   return (
 
     <>
-
 
       <div
         className="PlayGround w-100 d-flex justify-content-sart align-items-start"
@@ -79,10 +65,6 @@ const PlayGround = ({ captureScreenShot, screenShotImgSrc }) => {
         ))}
 
         <ArchetypeDescription />
-
-        <div className="EndButtonLogo align-self-end position-absolute p-2 pb-2">
-          <img src={EndGameLogo} width={125} onClick={handleEndGame} />
-        </div>
 
         {openRemovableModal && <RemovableModal />}
 
