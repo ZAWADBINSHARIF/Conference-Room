@@ -1,10 +1,14 @@
 import mariadb from 'mariadb';
+import 'dotenv/config';
+
+const DATABASE_USER = process.env.DATABASE_USER;
+const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
 
 export const db = mariadb.createPool(
     {
         host: "db",
-        user: "root",
-        password: "root",
+        user: DATABASE_USER,
+        password: DATABASE_PASSWORD,
         database: 'mind_map_game',
         connectionLimit: 5,
         port: "3306",

@@ -2,3 +2,5 @@ node_modules/
 frontend/
 database.sql
 backup.sql
+.gitignore
+compose.yaml
