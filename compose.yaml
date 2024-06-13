@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  server:
+    container_name: "mind_map_server"
+    build: ./
+    ports:
+      - 4000:4000
+    env_file: .env
+    depends_on:
+      - db
+    networks:
+      - mind-map-game-network
+  
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - ./backup-volume:/backup
+      - ./backup.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - mind-map-game-network
+
+networks:
+  mind-map-game-network:
+    driver: bridge

@@ -8,11 +8,9 @@ const singleUpload = (
     fileSizeLimit,
     errorMessage
 ) => {
-    const __dirname = path.resolve();
+    const __dirname = import.meta.dirname;
     //  **this uploadFolder path for windows
-    const uploadFolder = path.join(__dirname, "backend", "public", "uploads", subFolderName);
-    // **this uploadFolder path for linux server
-    // const uploadFolder = path.join(__dirname, "public", "uploads", subFolderName)
+    const uploadFolder = path.join(__dirname, "..", "public", "uploads", subFolderName);
 
     const storage = multer.diskStorage({
         destination: function (req, file, cd) {
