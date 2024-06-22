@@ -24,11 +24,11 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       <Route path='/' element={<Session />} />
 
-      <Route path='/game' element={<ProtectedRoute/>}>
+      <Route path='/game' element={<ProtectedRoute />}>
         <Route path='/game' element={<Hero />} />
       </Route>
-      
-      <Route path='/result' element={<FinalResult />}/>
+
+      <Route path='/result' element={<FinalResult />} />
       <Route path='/admin' element={<Admin />} />
     </Route>
   )

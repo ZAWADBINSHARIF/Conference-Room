@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  web:
+    depends_on:
+      - server
+    container_name: "conference_root_frontend"
+    build: ./frontend
+    ports: 
+      - 3000:3000
+    environment:
+      - VITE_API=http://localhost:4000
+    networks:
+      - conference-room-network
+
+    develop:
+      watch:
+        - path: ./frontend/package.json
+          action: rebuild
+        - path: ./frontend/package-lock.json
+          action: rebuild
+        - path: ./frontend
+          target: /app
+          action: sync
+
+  server:
+    depends_on:
+      - db
+    container_name: "conference_root_backend"
+    build: ./
+    ports:
+      - 4000:4000
+    env_file: .env
+    networks:
+      - conference-room-network
+
+    develop:
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild
+        - path: .env
+          target: /app/.env
+          action: sync
+        - path: ./backend
+          target: /app/backend
+          action: sync
+  
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: 1234
+    volumes:
+      - ./backup-volume:/backup
+      - ./backup.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - conference-room-network
+
+networks:
+  conference-room-network:
+    driver: bridge

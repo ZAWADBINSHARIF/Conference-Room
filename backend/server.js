@@ -35,14 +35,17 @@ dbConnection({ app, PORT });
 app.use(express.static(path.join(__dirname, 'public', 'uploads')));
 app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')));
 app.use(express.static(path.join(__dirname, 'public', 'background')));
-app.use(express.static(path.join(__dirname, '..', 'dist')));
+// app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 
 // routers
+app.get("/", (req, res) => {
+  res.end("<H1>Server is running 🚀</H1>");
+});
 app.use('/api', apiRoute);
 
 
-app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html')));
+// app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html')));
 
 
 // common error handle

@@ -1,5 +1,5 @@
 // external import
-import { useState, useMemo, useRef, Image } from "react";
+import { useState, useMemo, useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import {
   DndContext,
@@ -10,7 +10,6 @@ import {
 } from "@dnd-kit/core";
 import { createSnapModifier } from "@dnd-kit/modifiers";
 import { useDispatch, useSelector } from "react-redux";
-import { useScreenshot } from 'use-react-screenshot';
 
 // internal import
 import PlayGround from "../components/PlayGround/PlayGround";
@@ -35,7 +34,6 @@ const Hero = () => {
   const [draggable_Item_Type, setDraggable_Item_Type] = useState(null);
   const [dropCharacterPosition, setDropCharacterPosition] = useState(null);
   const [sideBarScrollPosition, setSideBarScrollPosition] = useState(null);
-  const [screenShotImgSrc, takeScreenshot] = useScreenshot();
 
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => state.character_img.data);
@@ -43,11 +41,11 @@ const Hero = () => {
   const allPeanutGallery = useSelector((state) => state.peanut_gallery_img);
   const clientImgSrcName = useSelector(state => state.session_info.data.clientImgSrc).split(".")[0];
 
-
+  const apiPath = import.meta.env.VITE_API;
 
   const styles = {
     backgroundImage: ` 
-        url("${clientImgSrcName}_podium_background.jpg")`
+        url("${apiPath}/${clientImgSrcName}_podium_background.jpg")`
   };
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -67,8 +65,6 @@ const Hero = () => {
   const [gridSize] = useState(40);
 
   const snapToGrid = useMemo(() => createSnapModifier(gridSize), [gridSize]);
-
-  const captureScreenShot = () => takeScreenshot(ref_of_game.current);
 
   const OverlayItem = () => {
     if (draggable_Item_Type === "characterFromSlideMenu") {

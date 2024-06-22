@@ -78,7 +78,7 @@ const Session = () => {
 
   }
 
-
+  const apiPath = import.meta.env.VITE_API;
 
   return (
     <div className='Session'>
@@ -97,28 +97,28 @@ const Session = () => {
         className="swiper_container"
       >
         <SwiperSlide>
-          <img src={`asian_man.jpg`} alt="asian_man.jpg" name="asian_man.jpg" />
+          <img src={`${apiPath}/asian_man.jpg`} alt="asian_man.jpg" name="asian_man.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`asian_woman.jpg`} alt="asian_woman.jpg" name="asian_woman.jpg" />
+          <img src={`${apiPath}/asian_woman.jpg`} alt="asian_woman.jpg" name="asian_woman.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`black_man.jpg`} alt="black_man.jpg" name="black_man.jpg" />
+          <img src={`${apiPath}/black_man.jpg`} alt="black_man.jpg" name="black_man.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`black_woman.jpg`} alt="black_woman.jpg" name="black_woman.jpg" />
+          <img src={`${apiPath}/black_woman.jpg`} alt="black_woman.jpg" name="black_woman.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`indian_man.jpg`} alt="indian_man.jpg" name="indian_man.jpg" />
+          <img src={`${apiPath}/indian_man.jpg`} alt="indian_man.jpg" name="indian_man.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`indian_woman.jpg`} alt="indian_woman.jpg" name="indian_woman.jpg" />
+          <img src={`${apiPath}/indian_woman.jpg`} alt="indian_woman.jpg" name="indian_woman.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`white_man.jpg`} alt="white_man.jpg" name="white_man.jpg" />
+          <img src={`${apiPath}/white_man.jpg`} alt="white_man.jpg" name="white_man.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`white_woman.jpg`} alt="white_woman.jpg" name="white_woman.jpg" />
+          <img src={`${apiPath}/white_woman.jpg`} alt="white_woman.jpg" name="white_woman.jpg" />
         </SwiperSlide>
       </Swiper>
 

@@ -45,6 +45,7 @@ const CharacterListItem = ({
     dispatch(setAchetypeDescriptionText(id));
   }
 
+  const apiPath = import.meta.env.VITE_API;
 
 
   return (
@@ -69,7 +70,7 @@ const CharacterListItem = ({
           <img
             width={105}
             id={id}
-            src={`${folderName}/${imgFilename}`}
+            src={`${apiPath}/${folderName}/${imgFilename}`}
           />
         </div>
         <p className="text-center">{title}</p>

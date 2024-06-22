@@ -15,7 +15,7 @@ const DraggableImage = ({
     draggable_id,
     description }) => {
 
-
+    const apiPath = import.meta.env.VITE_API;
 
     const {
         attributes,
@@ -53,7 +53,7 @@ const DraggableImage = ({
                 {...listeners}
             >
                 <img
-                    src={`${folder_name}/${src}`}
+                    src={`${apiPath}/${folder_name}/${src}`}
                     style={{ width: "75px", borderRadius: "5px" }}
                 /> {/* // ! it will be removed when hosting */}
 
