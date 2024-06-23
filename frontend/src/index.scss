@@ -262,7 +262,7 @@ body {
       // * Admin design Start
       .Admin {
         .FormArea {
-          width: 400px;
+          // width: 400px;
           border: 1px solid $borderColor;
           border-radius: 12px;
           *:not(button) {
@@ -275,6 +275,42 @@ body {
               color: black;
               background-color: white;
             }
+          }
+        }
+
+        .ProfileForm {
+          // width: 400px;
+          border: 1px solid $borderColor;
+          border-radius: 12px;
+          *:not(button) {
+            color: white;
+            background-color: $backGroundColor;
+            ::placeholder {
+              color: rgba(0, 0, 0, 0.5);
+            }
+            input {
+              color: black;
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+
+    // * Login form
+    .Login {
+      .LoginForm {
+        border: 1px solid $borderColor;
+        border-radius: 12px;
+        *:not(button) {
+          color: white;
+          background-color: $backGroundColor;
+          ::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+          }
+          input {
+            color: black;
+            background-color: white;
           }
         }
       }

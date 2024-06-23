@@ -13,11 +13,13 @@ import Session from './Pages/Session.jsx';
 import 'react-toastify/dist/ReactToastify.css'; // toastify css file
 import 'bootstrap/dist/css/bootstrap.min.css'; // bootstrap css file
 import './index.scss';
+import Login from './Pages/Login.jsx';
 import ProtectedRoute from './Pages/ProtectedRoute.jsx';
 
 // set axios base url
-const baseUrl = "http://127.0.0.1:4000/api";
+const baseUrl = "api";
 axios.defaults.baseURL = baseUrl;
+axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +32,8 @@ const router = createBrowserRouter(
 
       <Route path='/result' element={<FinalResult />} />
       <Route path='/admin' element={<Admin />} />
+      <Route path='/login' element={<Login />} />
+
     </Route>
   )
 );

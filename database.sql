@@ -36,3 +36,9 @@ CREATE TABLE save_history (
 );
 
 CREATE TABLE save_table (filename VARCHAR(255));
+
+CREATE TABLE admin_user (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);

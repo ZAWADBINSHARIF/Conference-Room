@@ -38,7 +38,8 @@ const DraggableImage = ({
         data: {
             type: 'PlayGroundCharacter',
             draggable_id
-        }
+        },
+        disabled: titleEditable
     });
 
     const style = {

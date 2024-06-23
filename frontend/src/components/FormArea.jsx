@@ -1,52 +1,52 @@
-import axios from "axios"
-import { useState } from "react"
-import { Form, Row, Col, Button } from "react-bootstrap"
-import { toast } from 'react-toastify'
+import axios from "axios";
+import { useState } from "react";
+import { Form, Row, Col, Button } from "react-bootstrap";
+import { toast } from 'react-toastify';
 
 const FormArea = () => {
 
-    const [folderName, setFolderName] = useState('')
-    const [role, setRole] = useState('')
-    const [description, setDescription] = useState('')
-    const [pictureName, setPictureName] = useState('')
-    const [imageFile, setImageFile] = useState(null)
+    const [folderName, setFolderName] = useState('');
+    const [role, setRole] = useState('');
+    const [description, setDescription] = useState('');
+    const [pictureName, setPictureName] = useState('');
+    const [imageFile, setImageFile] = useState(null);
 
     function handleSelectImage(e) {
 
-        const file = e.target.files[0]
-        setImageFile(file)
+        const file = e.target.files[0];
+        setImageFile(file);
 
         if (folderName === 'people' || folderName === 'dogs') {
-            const filename = file.name.replace(/\.[^/.]+$/, "")
-            setPictureName(filename)
+            const filename = file.name.replace(/\.[^/.]+$/, "");
+            setPictureName(filename);
         }
     }
 
     async function handleSubmit() {
 
-        const formData = new FormData()
+        const formData = new FormData();
 
         if (folderName !== "" && folderName !== 'tables') {
-            formData.append('name', pictureName)
+            formData.append('name', pictureName);
         }
         if (imageFile && pictureName && role) {
-            formData.append('folderName', folderName)
-            formData.append('role', role)
-            formData.append('description', description)
-            formData.append('image', imageFile)
+            formData.append('folderName', folderName);
+            formData.append('role', role);
+            formData.append('description', description);
+            formData.append('image', imageFile);
         }
         if (folderName === 'tables') {
-            formData.append('image', imageFile)
+            formData.append('image', imageFile);
         }
 
         try {
-            await axios.post(`/${folderName}`, formData)
+            await axios.post(`/${folderName}`, formData);
 
-            toast.success("Picture has been uploaded")
+            toast.success("Picture has been uploaded");
 
         } catch (error) {
-            toast.error("Failed to upload")
-            console.log(error)
+            toast.error("Failed to upload");
+            console.log(error);
         }
     }
 
@@ -57,7 +57,7 @@ const FormArea = () => {
             encType="multipart/form-data"
         >
             <h1>Add Image</h1>
-            <hr/>
+            <hr />
             {folderName !== "" && folderName !== 'tables' &&
                 <>
                     <Form.Group className="mb-3" controlId="name">
@@ -87,11 +87,11 @@ const FormArea = () => {
             </Form.Group>
             <Row className="text-end">
                 <Col>
-                    <Button variant="secondary"
+                    <Button variant="primary"
                         onClick={() => handleSubmit()}>Add</Button>
                 </Col>
             </Row>
         </Form >
-    )
-}
-export default FormArea
+    );
+};
+export default FormArea;

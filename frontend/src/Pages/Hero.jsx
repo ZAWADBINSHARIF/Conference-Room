@@ -227,7 +227,7 @@ const Hero = () => {
       const draggableImg = allDraggableImgs.find(
         (item) => item.draggable_id == activeId
       );
-      console.log({ title: draggableImg.title });
+
       dispatch(
         setCharacterToPeanutGallery({
           id: draggableImg.id,

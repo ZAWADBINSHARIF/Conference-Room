@@ -5,22 +5,18 @@ import { configureStore } from "@reduxjs/toolkit";
 import SessionSlice from "./Slices/SessionSlice.js";
 import DraggableImgSlice from "./Slices/DraggableImgSlice.js";
 import CharacterImgSlice from "./Slices/CharacterImgSlice.js";
-import TableImgSlice from "./Slices/TableImgSlice.js";
 import RemovedDraggableImgSlice from "./Slices/RemovedDraggableImgSlice.js";
 import PeanutGalleryImgSlice from "./Slices/PeanutGalleryImgSlice.js";
 import RemovableAreaSlice from "./Slices/RemovableAreaSlice.js";
-import ScreenShotImgSlice from "./Slices/ScreenShotImgSlice.js";
 
 const store = configureStore({
     reducer: {
         session_info: SessionSlice,
         draggable_img: DraggableImgSlice,
         character_img: CharacterImgSlice,
-        table_img: TableImgSlice,
         removed_draggable_img: RemovedDraggableImgSlice,
         peanut_gallery_img: PeanutGalleryImgSlice,
         removable_area: RemovableAreaSlice,
-        screen_shot_img: ScreenShotImgSlice
     }
 });
 
