@@ -16,7 +16,7 @@ import './index.scss';
 import ProtectedRoute from './Pages/ProtectedRoute.jsx';
 
 // set axios base url
-const baseUrl = '/api';
+const baseUrl = "http://127.0.0.1:4000/api";
 axios.defaults.baseURL = baseUrl;
 
 const router = createBrowserRouter(

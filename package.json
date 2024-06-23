@@ -1,7 +1,7 @@
 {
-  "name": "mind-game",
-  "version": "3.0.0",
-  "description": "This is a mind game.",
+  "name": "conference-room",
+  "version": "4.5.0",
+  "description": "This is a conference room.",
   "main": "backend/server.js",
   "type": "module",
   "scripts": {

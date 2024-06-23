@@ -19,6 +19,12 @@ const draggableImgSlice = createSlice({
 
             state = [...state, found];
         },
+        setDraggableImgTitle(state, action) {
+            const found = state.find(item => item.draggable_id === action.payload.id);
+            found.title = action.payload.title;
+
+            state = [...state, found];
+        },
         removeDraggableImg(state, action) {
             const newData = state.filter(item => item.draggable_id !== action.payload);
 
@@ -38,7 +44,8 @@ export const {
     setDraggableImgPosition,
     addDraggableImg,
     removeAllDraggableImg,
-    setDraggableImg
+    setDraggableImg,
+    setDraggableImgTitle
 } = draggableImgSlice.actions;
 export default draggableImgSlice.reducer;
 

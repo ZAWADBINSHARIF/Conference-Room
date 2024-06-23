@@ -7,12 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 // internal import
 import DraggableImage from './DraggableImage';
 import { fetchSaveHistoryThunk } from '../../Store/Slices/DraggableImgSlice.js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
 import { RemovableArea } from './RemovableArea.jsx';
 import RemovableModal from "../Modals/RemovableModal.jsx";
-import { setScreenShotImgSrc } from '../../Store/Slices/ScreenShotImgSlice.js';
 import PeanutGallery from "../PeanutGallery/PeanutGallery";
 
 
@@ -29,7 +28,9 @@ const PlayGround = () => {
     }
   });
 
-
+  const handleClickOnPlayGround = () => {
+    dispatch(clearAchetypeDescriptionText());
+  };
   useEffect(() => {
     dispatch(fetchSaveHistoryThunk());
   }, [dispatch]);
@@ -41,8 +42,8 @@ const PlayGround = () => {
       <div
         className="PlayGround w-100 d-flex justify-content-sart align-items-start"
         ref={setNodeRef}
-        onTouchEnd={() => dispatch(clearAchetypeDescriptionText())}
-        onClick={() => dispatch(clearAchetypeDescriptionText())}
+        onTouchEnd={handleClickOnPlayGround}
+        onClick={handleClickOnPlayGround}
       >
 
         <PeanutGallery />

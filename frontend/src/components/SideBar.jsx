@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 // internal import 
 import CharactersListItem from "./CharacterListItem";
 import { fetchAllCharacters } from "../Store/Slices/CharacterImgSlice.js";
-import { fetchAllTables } from "../Store/Slices/TableImgSlice.js";
 import { setGamePlayTime } from "../Store/Slices/SessionSlice.js";
 import EndGameLogo from '../assets/end_game_btn_logo.png';
 
@@ -74,7 +73,6 @@ const SideBar = ({ setSideBarScrollPosition }) => {
 
     useEffect(() => {
         dispatch(fetchAllCharacters());
-        dispatch(fetchAllTables());
     }, [dispatch]);
 
     return (

@@ -27,7 +27,7 @@ const setFolderName = (name) => (
 );
 
 router.get('/', (req, res) => {
-    res.send('<h1>Hello</h1>');
+    res.send('<h1>Conference Room Backend Server 🥾</h1>');
 });
 
 // GET router

@@ -1,6 +1,11 @@
 // external import
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+// internal import
+import { setDraggableImgTitle } from "../../Store/Slices/DraggableImgSlice";
 
 
 const DraggableImage = ({
@@ -13,7 +18,12 @@ const DraggableImage = ({
     role,
     folder_name,
     draggable_id,
-    description }) => {
+    description
+}) => {
+
+    const [titleEditable, setTitleEditable] = useState(false);
+    const [characterTitle, setCharacterTitle] = useState(title);
+    const dispatch = useDispatch();
 
     const apiPath = import.meta.env.VITE_API;
 
@@ -39,6 +49,25 @@ const DraggableImage = ({
         position: 'absolute'
     };
 
+    const saveCharacterTitle = () => {
+        dispatch(setDraggableImgTitle({ id: draggable_id, title: characterTitle }));
+    };
+
+    const handleRightClick = (e) => {
+        e.preventDefault();
+        if (characterTitle) {
+            setTitleEditable(!titleEditable);
+            saveCharacterTitle();
+        }
+    };
+
+    const handleChangeCharacterTitle = (e) => {
+        if (e.key === 'Enter' && characterTitle) {
+            setTitleEditable(false);
+            saveCharacterTitle();
+        }
+    };
+
 
     return (
         <div
@@ -47,15 +76,15 @@ const DraggableImage = ({
             ref={setNodeRef}
         >
 
-            {/* // ! Do not remove this div. If you do, any click event will not work*/}
             <div
                 {...attributes}
                 {...listeners}
+                onContextMenu={handleRightClick}
             >
                 <img
                     src={`${apiPath}/${folder_name}/${src}`}
                     style={{ width: "75px", borderRadius: "5px" }}
-                /> {/* // ! it will be removed when hosting */}
+                />
 
                 <div className="draggableCharInfo mt-2 text-center"
                     style={{
@@ -64,8 +93,19 @@ const DraggableImage = ({
                         lineHeight: "1rem",
                     }}
                 >
-                    {`${title}`}
-                    <br />
+                    {titleEditable ?
+                        <>
+                            <input type="text" value={characterTitle}
+                                className="titleEditInput p-0 m-0 text-center w-auto"
+                                onChange={(e) => setCharacterTitle(e.target.value)}
+                                onKeyUp={handleChangeCharacterTitle}
+                            />
+                            {/* <br /> */}
+                        </>
+                        :
+                        <p className="p-0 m-0">{`${characterTitle}`}</p>
+                    }
+
                     {`${role}`}
                 </div>
             </div>

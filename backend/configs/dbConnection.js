@@ -5,12 +5,7 @@ const DATABASE_HOST = process.env.DATABASE_HOST;
 const DATABASE_USER = process.env.DATABASE_USER;
 const DATABASE_NAME = process.env.DATABASE_NAME;
 const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
-console.log({
-    DATABASE_HOST,
-    DATABASE_USER,
-    DATABASE_NAME,
-    DATABASE_PASSWORD
-});
+
 export const db = mariadb.createPool(
     {
         host: DATABASE_HOST,

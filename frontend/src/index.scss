@@ -183,6 +183,11 @@ body {
             text-align: center;
             color: $DraggableCharInfoFontCOlor;
             line-height: 1rem;
+
+            .titleEditInput {
+              width: 90px !important;
+              display: block;
+            }
           }
 
           .RemovableModal {

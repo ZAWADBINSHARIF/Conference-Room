@@ -71,7 +71,6 @@ const Hero = () => {
       return allCharacters.map((item) => {
         if (item.id == activeId) {
           return (
-            // <>Character form menu</>
             <CharactersListItem
               key={item.id}
               id={item.id}
@@ -228,6 +227,7 @@ const Hero = () => {
       const draggableImg = allDraggableImgs.find(
         (item) => item.draggable_id == activeId
       );
+      console.log({ title: draggableImg.title });
       dispatch(
         setCharacterToPeanutGallery({
           id: draggableImg.id,
@@ -243,7 +243,7 @@ const Hero = () => {
         })
       );
       dispatch(removeDraggableImg(draggableImg.draggable_id));
-    } else if (event.over.id === "Removable") {
+    } else if (event.over.id === "Removable" && draggable_Item_Type === 'PlayGroundCharacter') {
       dispatch(setRemovingCharacterId(id));
       dispatch(setOpenRemovableModal(true));
     }
