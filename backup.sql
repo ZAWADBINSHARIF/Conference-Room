@@ -27,6 +27,23 @@ CREATE DATABASE IF NOT EXISTS `conference_room` /*!40100 DEFAULT CHARACTER SET l
 
 USE `conference_room`;
 
+-- Dumping structure for table conference_room.admin_user
+CREATE TABLE IF NOT EXISTS `admin_user` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `username` varchar(255) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = latin1 COLLATE = latin1_swedish_ci;
+
+-- Dumping data for table conference_room.admin_user: ~1 rows (approximately)
+INSERT INTO
+    `admin_user` (`id`, `username`, `password`)
+VALUES (
+        1,
+        'admin',
+        '$2b$10$XLQnU8sFqEiYvCqPBfJpJuxVmcsGKiP9Pny685zPHgWX8P.64SLF2'
+    );
+
 -- Dumping structure for table conference_room.characters
 CREATE TABLE IF NOT EXISTS `characters` (
     `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
@@ -37,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
     `filename` varchar(255) NOT NULL COMMENT 'CHARACTER PICTURE''S FILE NAME',
     `title` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB AUTO_INCREMENT = 28 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 DEFAULT CHARSET = latin1 COLLATE = latin1_swedish_ci;
 
 -- Dumping data for table conference_room.characters: ~26 rows (approximately)
 INSERT INTO
@@ -291,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `pdfs` (
     `session_name` varchar(255) NOT NULL COMMENT 'THIS THE SESSION NAME OF THE GAME',
     `filename` varchar(255) DEFAULT NULL COMMENT 'TABLE PICTURE''S FILE NAME',
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1 COLLATE = latin1_swedish_ci;
 
 -- Dumping data for table conference_room.pdfs: ~0 rows (approximately)
 
@@ -305,14 +322,14 @@ CREATE TABLE IF NOT EXISTS `save_history` (
     `src` varchar(255) NOT NULL,
     `position_x` int(11) NOT NULL,
     `position_y` int(11) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1 COLLATE = latin1_swedish_ci;
 
 -- Dumping data for table conference_room.save_history: ~0 rows (approximately)
 
 -- Dumping structure for table conference_room.save_table
 CREATE TABLE IF NOT EXISTS `save_table` (
     `filename` varchar(255) DEFAULT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = latin1 COLLATE = latin1_swedish_ci;
 
 -- Dumping data for table conference_room.save_table: ~0 rows (approximately)
 
@@ -322,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `tables` (
     `create_time` datetime DEFAULT NULL COMMENT 'Create Time',
     `filename` varchar(255) DEFAULT NULL COMMENT 'TABLE PICTURE''S FILE NAME',
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB AUTO_INCREMENT = 17 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 DEFAULT CHARSET = latin1 COLLATE = latin1_swedish_ci;
 
 -- Dumping data for table conference_room.tables: ~5 rows (approximately)
 INSERT INTO

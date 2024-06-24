@@ -13,7 +13,7 @@ const PeanutGallery = () => {
     }
   });
 
-  const apiPath = import.meta.env.VITE_API;
+
 
   return (
     <div className="PeanutGallery">
@@ -30,7 +30,7 @@ const PeanutGallery = () => {
           <PeanutCharacterImg
             key={item.draggable_id}
             item={item}
-            src={`${apiPath}/${item.folder_name}/${item.src}`}
+            src={`${item.folder_name}/${item.src}`}
           />
         ))}
 

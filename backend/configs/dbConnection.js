@@ -13,7 +13,7 @@ export const db = mariadb.createPool(
         password: DATABASE_PASSWORD,
         database: DATABASE_NAME,
         connectionLimit: 5,
-        port: "3307",
+        port: "3306",
 
     }
 );

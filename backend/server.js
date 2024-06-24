@@ -40,7 +40,7 @@ dbConnection({ app, PORT });
 app.use(express.static(path.join(__dirname, 'public', 'uploads')));
 app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')));
 app.use(express.static(path.join(__dirname, 'public', 'background')));
-// app.use(express.static(path.join(__dirname, '..', 'dist')));
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 
 // routers
@@ -52,7 +52,7 @@ app.use('/api/auth', authRouters);
 app.get('/api/verifier', jwtVerifier);
 
 
-// app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html')));
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html')));
 
 
 // common error handle
