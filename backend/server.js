@@ -29,7 +29,9 @@ app.use(express.json());
 // for getting json form data
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(cors({
+  'origin': 'http://localhost:3000'
+}));
 
 // for database connection
 dbConnection({ app, PORT });

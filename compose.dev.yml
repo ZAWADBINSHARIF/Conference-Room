@@ -1,27 +1,27 @@
 version: "3.8"
 
 services:
-  web:
-    depends_on:
-      - server
-    container_name: "conference_root_frontend"
-    build: ./frontend
-    ports: 
-      - 3000:3000
-    environment:
-      - VITE_API=http://127.0.0.1:4000
-    networks:
-      - conference-room-network
+  # web:
+  #   depends_on:
+  #     - server
+  #   container_name: "conference_root_frontend"
+  #   build: ./frontend
+  #   ports: 
+  #     - 3000:3000
+  #   environment:
+  #     - VITE_API=http://127.0.0.1:4000
+  #   networks:
+  #     - conference-room-network
 
-    develop:
-      watch:
-        - path: ./frontend/package.json
-          action: rebuild
-        - path: ./frontend/package-lock.json
-          action: rebuild
-        - path: ./frontend
-          target: /app
-          action: sync
+  #   develop:
+  #     watch:
+  #       - path: ./frontend/package.json
+  #         action: rebuild
+  #       - path: ./frontend/package-lock.json
+  #         action: rebuild
+  #       - path: ./frontend
+  #         target: /app
+  #         action: sync
 
   server:
     depends_on:

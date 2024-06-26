@@ -2,6 +2,7 @@ import mariadb from 'mariadb';
 import 'dotenv/config';
 
 const DATABASE_HOST = process.env.DATABASE_HOST;
+const DATABASE_PORT = process.env.DATABASE_PORT;
 const DATABASE_USER = process.env.DATABASE_USER;
 const DATABASE_NAME = process.env.DATABASE_NAME;
 const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
@@ -13,7 +14,7 @@ export const db = mariadb.createPool(
         password: DATABASE_PASSWORD,
         database: DATABASE_NAME,
         connectionLimit: 5,
-        port: "3307",
+        port: DATABASE_PORT,
 
     }
 );
