@@ -41,11 +41,11 @@ const Hero = () => {
   const allPeanutGallery = useSelector((state) => state.peanut_gallery_img);
   const clientImgSrcName = useSelector(state => state.session_info.data.clientImgSrc).split(".")[0];
 
-  const apiPath = import.meta.env.VITE_API;
+
 
   const styles = {
     backgroundImage: ` 
-        url("${apiPath}/${clientImgSrcName}_podium_background.jpg")`
+        url("${clientImgSrcName}_podium_background.jpg")`
   };
 
   const mouseSensor = useSensor(MouseSensor, {

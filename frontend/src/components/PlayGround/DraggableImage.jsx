@@ -1,7 +1,7 @@
 // external import
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // internal import
@@ -26,7 +26,7 @@ const DraggableImage = ({
     const [characterRole, setCharacterRole] = useState(role);
     const dispatch = useDispatch();
 
-    const apiPath = import.meta.env.VITE_API;
+
 
     const {
         attributes,
@@ -94,7 +94,7 @@ const DraggableImage = ({
                 onContextMenu={handleRightClick}
             >
                 <img
-                    src={`${apiPath}/${folder_name}/${src}`}
+                    src={`${folder_name}/${src}`}
                     style={{ width: "75px", borderRadius: "5px" }}
                 />
 

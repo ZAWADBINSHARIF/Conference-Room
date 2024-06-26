@@ -5,15 +5,13 @@ services:
   server:
     depends_on:
       - db
+    image: zawadbinsharif/mind-map-game:4.6-Production
     container_name: "conference_room_backend"
-    build:
-      context: ./
-      dockerfile: Dockerfile.dev
     ports:
       - 4000:4000
     env_file: .env
     volumes:
-      - backup_of_conference_room:/app/backend/public/uploads/people
+      - backup_of_conference_room:/app/backend/public/
     networks:
       - conference-room-network
 
