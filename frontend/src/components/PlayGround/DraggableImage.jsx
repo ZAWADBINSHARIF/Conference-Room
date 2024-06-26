@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 // internal import
-import { setDraggableImgTitle } from "../../Store/Slices/DraggableImgSlice";
+import { setDraggableImgRole, setDraggableImgTitle } from "../../Store/Slices/DraggableImgSlice";
 
 
 const DraggableImage = ({
@@ -23,6 +23,7 @@ const DraggableImage = ({
 
     const [titleEditable, setTitleEditable] = useState(false);
     const [characterTitle, setCharacterTitle] = useState(title);
+    const [characterRole, setCharacterRole] = useState(role);
     const dispatch = useDispatch();
 
     const apiPath = import.meta.env.VITE_API;
@@ -50,22 +51,32 @@ const DraggableImage = ({
         position: 'absolute'
     };
 
-    const saveCharacterTitle = () => {
+    const saveCharacterTitleAndRole = () => {
         dispatch(setDraggableImgTitle({ id: draggable_id, title: characterTitle }));
+        dispatch(setDraggableImgRole({ id: draggable_id, role: characterRole }));
     };
 
     const handleRightClick = (e) => {
         e.preventDefault();
-        if (characterTitle) {
+        if (characterTitle && characterTitle === title && characterRole === role) {
             setTitleEditable(!titleEditable);
-            saveCharacterTitle();
+        } else if (characterTitle && (characterTitle !== title || characterRole !== role)) {
+            setTitleEditable(!titleEditable);
+            saveCharacterTitleAndRole();
         }
     };
 
     const handleChangeCharacterTitle = (e) => {
         if (e.key === 'Enter' && characterTitle) {
             setTitleEditable(false);
-            saveCharacterTitle();
+            saveCharacterTitleAndRole();
+        }
+    };
+
+    const handleChangeCharacterRole = (e) => {
+        if (e.key === 'Enter' && characterTitle) {
+            setTitleEditable(false);
+            saveCharacterTitleAndRole();
         }
     };
 
@@ -101,13 +112,19 @@ const DraggableImage = ({
                                 onChange={(e) => setCharacterTitle(e.target.value)}
                                 onKeyUp={handleChangeCharacterTitle}
                             />
-                            {/* <br /> */}
+                            <input type="text" value={characterRole}
+                                className="titleEditInput p-0 m-0 text-center w-auto"
+                                onChange={(e) => setCharacterRole(e.target.value)}
+                                onKeyUp={handleChangeCharacterRole}
+                            />
                         </>
                         :
-                        <p className="p-0 m-0">{`${characterTitle}`}</p>
+                        <>
+                            <p className="p-0 m-0">{`${characterTitle}`}</p>
+                            {`${role}`}
+                        </>
                     }
 
-                    {`${role}`}
                 </div>
             </div>
         </div>

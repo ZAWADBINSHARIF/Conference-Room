@@ -68,7 +68,10 @@ const FinalResult = () => {
                                     <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
                                     <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
                                         <Text>{item.title}</Text>
-                                        <Text>{item.role}</Text>
+                                        {
+                                            item.role &&
+                                            <Text>{item.role}</Text>
+                                        }
                                         <Text style={styles.descriptionText}>{item.description}</Text>
                                     </View>
                                 </View>
@@ -84,7 +87,10 @@ const FinalResult = () => {
                                     <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
                                     <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
                                         <Text>{item.title}</Text>
-                                        <Text>{item.role}</Text>
+                                        {
+                                            item.role &&
+                                            <Text>{item.role}</Text>
+                                        }
                                         <Text style={styles.descriptionText}>{item.description}</Text>
                                     </View>
                                 </View>
@@ -100,7 +106,10 @@ const FinalResult = () => {
                                     <Image style={{ width: 75, height: 75 }} src={`${apiPath}/${item.folder_name}/${item.src}`} />
                                     <View style={{ paddingLeft: 10, fontSize: 14, justifyContent: 'center', lineHeight: 1.5 }}>
                                         <Text>{item.title}</Text>
-                                        <Text>{item.role}</Text>
+                                        {
+                                            item.role &&
+                                            <Text>{item.role}</Text>
+                                        }
                                         <Text style={styles.descriptionText}>{item.description}</Text>
                                     </View>
                                 </View>
