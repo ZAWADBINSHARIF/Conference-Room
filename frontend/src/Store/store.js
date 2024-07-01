@@ -8,6 +8,7 @@ import CharacterImgSlice from "./Slices/CharacterImgSlice.js";
 import RemovedDraggableImgSlice from "./Slices/RemovedDraggableImgSlice.js";
 import PeanutGalleryImgSlice from "./Slices/PeanutGalleryImgSlice.js";
 import RemovableAreaSlice from "./Slices/RemovableAreaSlice.js";
+import CommonPropertySlice from "./Slices/CommonPropertySlice.js";
 
 const store = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
         removed_draggable_img: RemovedDraggableImgSlice,
         peanut_gallery_img: PeanutGalleryImgSlice,
         removable_area: RemovableAreaSlice,
+        common_property: CommonPropertySlice
     }
 });
 

@@ -7,18 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 // internal import
 import DraggableImage from './DraggableImage';
 import { fetchSaveHistoryThunk } from '../../Store/Slices/DraggableImgSlice.js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
 import { RemovableArea } from './RemovableArea.jsx';
 import RemovableModal from "../Modals/RemovableModal.jsx";
 import PeanutGallery from "../PeanutGallery/PeanutGallery";
+import SetDraggableImgDescriptionModal from '../Modals/SetDraggableImgDescriptionModal.jsx';
 
 
 const PlayGround = () => {
 
   const draggableImgs = useSelector(state => state.draggable_img);
-  const { openRemovableModal } = useSelector(state => state.removable_area);
+  const openRemovableModal = useSelector(state => state.removable_area.openRemovableModal);
+  const openSetDraggableImgDescriptionModal = useSelector(state => state.common_property.openSetDraggableImgDescriptionModal);
   const dispatch = useDispatch();
 
   const { setNodeRef } = useDroppable({
@@ -67,6 +69,7 @@ const PlayGround = () => {
         <ArchetypeDescription />
 
         {openRemovableModal && <RemovableModal />}
+        {openSetDraggableImgDescriptionModal && <SetDraggableImgDescriptionModal />}
 
         <RemovableArea />
 

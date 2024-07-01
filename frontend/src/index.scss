@@ -165,12 +165,6 @@ body {
             }
           }
 
-          // Session Name Heading
-          // .SessionNameHeading {
-          //   position: absolute;
-          // z-index: -1;
-          // }
-
           // Draggable Image design
           .DraggableImage {
             z-index: 10;
@@ -191,10 +185,19 @@ body {
             }
           }
 
-          .RemovableModal {
+          .RemovableModal,
+          .SetDraggableImgDescriptionModal {
             z-index: 12;
             font-family: 'a-l-c-h-e-m-y';
             font-size: 1.2rem;
+          }
+
+          .SetDraggableImgDescriptionModal {
+            textarea {
+              // background-color: $chooseTableHoverColor;
+              color: black;
+              padding: 5px;
+            }
           }
 
           .ArchetypeDescription {

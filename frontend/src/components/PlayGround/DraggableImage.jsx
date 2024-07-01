@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 // internal import
-import { setDraggableImgRole, setDraggableImgTitle } from "../../Store/Slices/DraggableImgSlice";
+import { setDraggableImgRole, setDraggableImgTitle } from "../../Store/Slices/DraggableImgSlice.js";
+import { setChangingDescriptionDraggableImgId, setOpenSetDraggableImgDescriptionModal } from "../../Store/Slices/CommonPropertySlice.js";
 
 
 const DraggableImage = ({
@@ -54,6 +55,8 @@ const DraggableImage = ({
     const saveCharacterTitleAndRole = () => {
         dispatch(setDraggableImgTitle({ id: draggable_id, title: characterTitle }));
         dispatch(setDraggableImgRole({ id: draggable_id, role: characterRole }));
+        dispatch(setOpenSetDraggableImgDescriptionModal(true));
+        dispatch(setChangingDescriptionDraggableImgId({ draggable_id }));
     };
 
     const handleRightClick = (e) => {
