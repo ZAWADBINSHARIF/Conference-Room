@@ -42,13 +42,10 @@ dbConnection({ app, PORT });
 app.use(express.static(path.join(__dirname, 'public', 'uploads')));
 app.use(express.static(path.join(__dirname, 'public', 'representation_imgs')));
 app.use(express.static(path.join(__dirname, 'public', 'background')));
-// app.use(express.static(path.join(__dirname, '..', 'dist')));
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 
 // routers
-app.get("/", (req, res) => {
-  res.end("<H1>Server is running 🚀</H1>");
-});
 app.use('/api', apiRoute);
 app.use('/api/auth', authRouters);
 app.get('/api/verifier', jwtVerifier);
