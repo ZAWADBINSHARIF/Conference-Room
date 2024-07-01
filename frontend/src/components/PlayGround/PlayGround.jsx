@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // internal import
 import DraggableImage from './DraggableImage';
 import { fetchSaveHistoryThunk } from '../../Store/Slices/DraggableImgSlice.js';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ArchetypeDescription from './ArchetypeDescription';
 import { clearAchetypeDescriptionText } from '../../Store/Slices/CharacterImgSlice';
 import { RemovableArea } from './RemovableArea.jsx';
@@ -47,7 +47,6 @@ const PlayGround = () => {
       >
 
         <PeanutGallery />
-
 
         {draggableImgs.map(img => (
           <DraggableImage

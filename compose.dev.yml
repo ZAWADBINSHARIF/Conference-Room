@@ -34,7 +34,7 @@ services:
       - 4000:4000
     env_file: .env
     volumes:
-      - backup_of_conference_room:/app/backend/public/uploads/people
+      - backup_of_conference_room:/app/backend/public/
     networks:
       - conference-room-network
 

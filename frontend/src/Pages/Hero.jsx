@@ -24,6 +24,7 @@ import CharactersListItem from "../components/CharacterListItem.jsx";
 import DraggableImage from "../components/PlayGround/DraggableImage.jsx";
 import { removeCharacter } from "../Store/Slices/CharacterImgSlice.js";
 import { setOpenRemovableModal, setRemovableAreaVisibility, setRemovingCharacterId } from "../Store/Slices/RemovableAreaSlice.js";
+import SessionNameHeading from "../components/SessionNameHeading.jsx";
 
 
 const Hero = () => {
@@ -263,6 +264,7 @@ const Hero = () => {
       <Row className="game" style={styles} ref={ref_of_game}>
         {/* playGround */}
         <Col xxl={11} xl={10} md={10}>
+          <SessionNameHeading />
           <PlayGround />
         </Col>
 
